@@ -281,17 +281,7 @@
   }
   .video-action-btn:hover { background:var(--glass2); color:var(--txt); border-color:rgba(124,58,237,.3); }
 
-  /* ══ GALLERY ══ */
-  .proj-gallery { padding:100px 0; background:var(--bg); }
-  .gal-cols { columns:3; column-gap:12px; margin-top:40px; }
-  .gal-item { display:block; width:100%; break-inside:avoid; margin:0 0 12px; padding:0; border-radius:18px; overflow:hidden; position:relative; border:1px solid var(--border); background:var(--bg3); transition:all .4s; text-align:left; }
-  .gal-item:hover { border-color:rgba(124,58,237,.35); box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 24px rgba(124,58,237,.08); }
-  .gal-img { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; transition:transform .6s,filter .4s; }
-  .gal-item:nth-child(even) .gal-img { aspect-ratio:16/10; }
-  .gal-item:nth-child(3n) .gal-img { aspect-ratio:1; }
-  .gal-item:hover .gal-img { transform:scale(1.06); filter:brightness(.6); }
-  .gal-veil { position:absolute; inset:0; background:rgba(8,8,14,.55); display:flex; align-items:center; justify-content:center; font-size:22px; opacity:0; transition:opacity .3s; border-radius:18px; }
-  .gal-item:hover .gal-veil { opacity:1; }
+  /* ══ GALLERY LIGHTBOX ══ */
   .lb { position:fixed; inset:0; background:rgba(8,8,14,.97); backdrop-filter:blur(28px); z-index:50000; opacity:0; pointer-events:none; transition:opacity .3s; display:flex; align-items:center; justify-content:center; }
   .lb.open { opacity:1; pointer-events:all; }
   .lb-stage { width:min(92vw,1100px); text-align:center; }
@@ -306,8 +296,6 @@
   .lb-prev { left:24px; }
   .lb-next { right:24px; }
 
-  @media(max-width:768px) { .gal-cols { columns:2; } }
-  @media(max-width:480px) { .gal-cols { columns:1; } }
 
   /* ══ RESULTS — 4-BENTO ══ */
   .proj-results { padding:100px 0; background:var(--bg2); }
@@ -454,6 +442,44 @@
     .tl-item { grid-template-columns:48px 1fr; gap:16px; }
     .timeline::before { left:23px; }
   }
+
+
+  /* ═══════════════════════════════════════
+     MODERN BENTO PROJECT GALLERY
+  ═══════════════════════════════════════ */
+  .proj-gallery {
+    min-height:auto;
+    padding:clamp(96px,10vw,140px) 0;
+    background:#0B0B0F;
+    background-image:
+      radial-gradient(ellipse 58% 38% at 10% 8%, rgba(124,58,237,.16), transparent 62%),
+      radial-gradient(ellipse 46% 34% at 88% 20%, rgba(6,182,212,.11), transparent 58%),
+      linear-gradient(180deg,#0B0B0F 0%,#08080d 100%);
+    position:relative;
+    overflow:hidden;
+  }
+  .proj-gallery::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.055; background-image:linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.3) 1px, transparent 1px); background-size:78px 78px; mask-image:linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent); }
+  .gallery-bento-head { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(260px,390px); gap:32px; align-items:end; margin-bottom:clamp(34px,5vw,58px); }
+  .gallery-bento-copy { color:var(--txt2); line-height:1.75; font-size:15px; margin:0 0 8px; }
+  .gallery-bento { position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-auto-rows:minmax(190px,14vw); gap:clamp(14px,1.6vw,22px); }
+  .gal-item { width:100%; height:100%; min-height:0; border-radius:28px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,.1); background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02)); box-shadow:0 22px 70px rgba(0,0,0,.42); transition:transform .48s cubic-bezier(.22,1,.36,1), box-shadow .48s cubic-bezier(.22,1,.36,1), border-color .48s cubic-bezier(.22,1,.36,1); will-change:transform; padding:0; text-align:left; cursor:pointer; }
+  .gal-item:nth-child(1) { grid-column:span 2; grid-row:span 2; }
+  .gal-item:nth-child(2) { grid-column:span 2; grid-row:span 1; }
+  .gal-item:nth-child(3) { grid-column:span 1; grid-row:span 1; }
+  .gal-item:nth-child(4) { grid-column:span 1; grid-row:span 2; }
+  .gal-item:nth-child(5) { grid-column:span 2; grid-row:span 1; }
+  .gal-item:nth-child(6) { grid-column:span 1; grid-row:span 1; }
+  .gal-item:hover { transform:translate3d(0,-8px,0) scale(1.015); border-color:rgba(103,232,249,.35); box-shadow:0 34px 100px rgba(0,0,0,.64), 0 0 40px rgba(6,182,212,.1); z-index:4; }
+  .gal-img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .58s cubic-bezier(.22,1,.36,1), filter .48s cubic-bezier(.22,1,.36,1); will-change:transform; }
+  .gal-item:hover .gal-img { transform:scale(1.055); filter:brightness(1.08) saturate(1.08); }
+  .gal-veil { position:absolute; inset:auto 18px 18px 18px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 16px; border-radius:18px; background:rgba(11,11,15,.58); border:1px solid rgba(255,255,255,.14); backdrop-filter:blur(20px); color:#fff; opacity:0; transform:translateY(14px); transition:all .42s cubic-bezier(.22,1,.36,1); }
+  .gal-item:hover .gal-veil { opacity:1; transform:none; }
+  .gal-title { font-size:15px; font-weight:800; letter-spacing:-.01em; }
+  .gal-cat { margin-top:4px; font-size:11px; color:#a8a8bb; }
+  .gal-view { font-size:12px; font-weight:800; white-space:nowrap; }
+  @media(max-width:980px){ .gallery-bento-head{grid-template-columns:1fr;} .gallery-bento{grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(210px,30vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1;} .gal-item:nth-child(1),.gal-item:nth-child(5){grid-column:span 2;} }
+  @media(max-width:560px){ .proj-gallery{padding:84px 0;} .gallery-bento{grid-template-columns:1fr; grid-auto-rows:minmax(280px,72vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1; border-radius:22px;} .gal-veil{opacity:1; transform:none; inset:auto 14px 14px 14px; padding:13px 14px;} }
+
   </style>
 </head>
 <body>
@@ -637,38 +663,44 @@
 
 
 <!-- ══ GALLERY ══ -->
-<section class="proj-gallery" id="gallery">
+<section class="proj-gallery" id="gallery" aria-label="Modern bento project image gallery">
   <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> Project Gallery</div>
-    <h2 class="sec-h2 rv" style="transition-delay:.1s;">Every screen <span class="grad">tells a story</span></h2>
-    <div class="gal-cols" id="galGrid">
+    <div class="gallery-bento-head">
+      <div>
+        <div class="sec-label rv"><span class="dot"></span> Project Gallery</div>
+        <h2 class="sec-h2 rv" style="transition-delay:.1s;">Every screen <span class="grad">tells a story</span></h2>
+      </div>
+      <p class="gallery-bento-copy">A refined bento grid of product moments, clinical workflows, analytics surfaces, and compliance screens—built for quick scanning and immersive viewing.</p>
+    </div>
+
+    <div class="gallery-bento" id="galGrid">
       <button class="gal-item" type="button" data-idx="0" aria-label="Open Hospital Dashboard Overview image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_737ff7737ff7737f.png" alt="Hospital dashboard overview" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">Hospital Dashboard</div><div class="gal-cat">SaaS · Healthcare</div></div><span class="gal-view">View</span></div>
       </button>
       <button class="gal-item" type="button" data-idx="1" aria-label="Open Analytics and Reporting Panel image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png" alt="Analytics and reporting panel" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">Analytics Panel</div><div class="gal-cat">Data UI · Reporting</div></div><span class="gal-view">View</span></div>
       </button>
       <button class="gal-item" type="button" data-idx="2" aria-label="Open AI Diagnostic Interface image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_8hehif8hehif8heh.png" alt="AI diagnostic interface" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">AI Diagnostics</div><div class="gal-cat">Clinical AI</div></div><span class="gal-view">View</span></div>
       </button>
       <button class="gal-item" type="button" data-idx="3" aria-label="Open Mobile Clinical App image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png" alt="Mobile clinical app" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">Mobile Clinical App</div><div class="gal-cat">Mobile UX</div></div><span class="gal-view">View</span></div>
       </button>
       <button class="gal-item" type="button" data-idx="4" aria-label="Open Real-Time Monitoring image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_bhkf44bhkf44bhkf.png" alt="Real-time monitoring interface" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">Real-Time Monitoring</div><div class="gal-cat">Dashboard · Ops</div></div><span class="gal-view">View</span></div>
       </button>
       <button class="gal-item" type="button" data-idx="5" aria-label="Open Security and Compliance Center image">
         <img class="gal-img" src="Images/Gemini_Generated_Image_5iyked5iyked5iyk.png" alt="Security and compliance center" loading="lazy" />
-        <div class="gal-veil">🔍</div>
+        <div class="gal-veil"><div><div class="gal-title">Compliance Center</div><div class="gal-cat">Security · SaaS</div></div><span class="gal-view">View</span></div>
       </button>
     </div>
   </div>
-  <!-- Lightbox -->
+
   <div class="lb" id="lb">
     <button class="lb-x" id="lb-x" type="button" aria-label="Close gallery lightbox">✕</button>
     <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous gallery image">‹</button>
@@ -973,7 +1005,8 @@ document.addEventListener('keydown', e => {
 });
 
 /* GSAP reveal for gallery + bento */
-gsap.fromTo('.gal-item', {opacity:0, y:36, scale:.95}, {opacity:1, y:0, scale:1, duration:.6, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'#galGrid', start:'top 85%', once:true}});
+gsap.fromTo('.gallery-bento-head', {opacity:0, y:34}, {opacity:1, y:0, duration:.85, ease:'power3.out', scrollTrigger:{trigger:'.proj-gallery', start:'top 78%', once:true}});
+gsap.fromTo('.gal-item', {opacity:0, y:44, scale:.94}, {opacity:1, y:0, scale:1, duration:.85, stagger:.09, ease:'power3.out', scrollTrigger:{trigger:'#galGrid', start:'top 82%', once:true}});
 gsap.fromTo('.bento-card', {opacity:0, y:32, scale:.96}, {opacity:1, y:0, scale:1, duration:.65, stagger:.1, ease:'power3.out', scrollTrigger:{trigger:'.bento-grid', start:'top 82%', once:true}});
 
 /* ══════════════════════════════════════
