@@ -480,6 +480,22 @@
   @media(max-width:980px){ .gallery-bento-head{grid-template-columns:1fr;} .gallery-bento{grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(210px,30vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1;} .gal-item:nth-child(1),.gal-item:nth-child(5){grid-column:span 2;} }
   @media(max-width:560px){ .proj-gallery{padding:84px 0;} .gallery-bento{grid-template-columns:1fr; grid-auto-rows:minmax(280px,72vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1; border-radius:22px;} .gal-veil{opacity:1; transform:none; inset:auto 14px 14px 14px; padding:13px 14px;} }
 
+
+  /* Simple centered headings and reference-style gallery/impact updates */
+  .sec-label, .sec-h2, .ov-big, .proj-h1 { text-align:center; margin-left:auto; margin-right:auto; }
+  .gallery-bento-head { display:block; text-align:center; max-width:980px; margin-left:auto; margin-right:auto; }
+  .gallery-bento-copy { display:none; }
+  .gallery-bento { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(360px,34vw); gap:30px; }
+  .gal-item:nth-child(n) { grid-column:auto; grid-row:auto; border-radius:0; }
+  .gal-item { box-shadow:none; border:0; background:transparent; }
+  .gal-item:hover { transform:none; box-shadow:none; }
+  .gal-img { object-fit:cover; }
+  .impact-box-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:44px; }
+  .impact-box { min-height:180px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:22px; background:var(--glass); }
+  .impact-box span { font-size:clamp(44px,7vw,86px); font-weight:800; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  @media(max-width:900px){ .gallery-bento{grid-template-columns:1fr; grid-auto-rows:minmax(300px,68vw);} .impact-box-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:520px){ .impact-box-grid{grid-template-columns:1fr;} }
+
   </style>
 </head>
 <body>
@@ -570,21 +586,7 @@
         <h2 class="ov-big rv" style="transition-delay:.1s;">Revolutionising diagnostics with <span class="grad">AI intelligence</span></h2>
         <p class="ov-p rv" style="transition-delay:.15s;">Apollo Health Systems faced fragmented patient data across 500+ facilities — overwhelming clinical staff and causing costly diagnostic delays. Revti Digital designed and engineered a unified AI-powered platform that connects every hospital, surfaces real-time insights, and assists physicians with evidence-based recommendations.</p>
         <p class="ov-p rv" style="transition-delay:.2s;">Full HIPAA, HL7 FHIR R4, and ISO 27001 compliance from sprint one — zero security incidents since April 2024 launch.</p>
-        <div class="rv" style="transition-delay:.25s;">
-          <div style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-bottom:12px;margin-top:4px;">Technology Stack</div>
-          <div class="tech-row">
-            <div class="tech-t"><span>⚛️</span> React 18</div>
-            <div class="tech-t"><span>🐍</span> Python / FastAPI</div>
-            <div class="tech-t"><span>🤖</span> TensorFlow</div>
-            <div class="tech-t"><span>🐘</span> PostgreSQL</div>
-            <div class="tech-t"><span>☁️</span> AWS GovCloud</div>
-            <div class="tech-t"><span>🐳</span> Docker / K8s</div>
-            <div class="tech-t"><span>📡</span> GraphQL</div>
-            <div class="tech-t"><span>📊</span> Apache Kafka</div>
-            <div class="tech-t"><span>🔴</span> Redis</div>
-            <div class="tech-t"><span>📐</span> Terraform</div>
-          </div>
-        </div>
+
       </div>
       <div class="ov-cards">
         <div class="ov-card rv" style="transition-delay:.1s;"><div class="ov-icon" style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.25);">🎯</div><div class="ov-text"><h4>The Challenge</h4><p>500+ hospitals, 15 different EMR systems, zero unified intelligence — causing diagnostic inconsistencies and dangerous data silos.</p></div></div>
@@ -610,57 +612,6 @@
     </div>
   </div>
 </section>
-
-<!-- ══ VIDEO SECTION ══ -->
-<section class="proj-video" id="video">
-  <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> Project Demo</div>
-    <h2 class="sec-h2 rv" style="transition-delay:.1s;">Watch it <span class="grad">in action</span></h2>
-    <p class="rv" style="font-size:15px;color:var(--txt2);margin-top:12px;max-width:520px;line-height:1.7;transition-delay:.15s;">A full walkthrough of the HealthCore platform — from the AI diagnostic engine to the real-time patient dashboard and clinical reporting suite.</p>
-
-    <div class="video-wrap">
-      <!-- Main Player -->
-      <div class="video-player rv" style="transition-delay:.2s;" id="videoPlayer">
-        <div class="video-bg-anim"></div>
-        <div class="video-thumb" id="videoThumb">🎬</div>
-        <button class="video-play-btn" id="videoPlayBtn" aria-label="Play demo video">
-          <i class="fa-solid fa-play"></i>
-        </button>
-        <div class="video-duration">12:34</div>
-
-        <!-- Animated chapter bars (decorative) -->
-        <div class="video-chapters" id="videoChapters"></div>
-
-        <!-- Iframe embed slot -->
-        <div class="video-iframe-wrap" id="videoIframe">
-          <iframe id="videoFrame" src="./videos/Unmukt_Video.mp4" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="HealthCore Platform Demo"></iframe>
-        </div>
-      </div>
-
-      <!-- Video metadata row -->
-      <div class="video-meta">
-        <div class="video-meta-left">
-          <div>
-            <div class="video-title-sm">HealthCore AI — Full Platform Demo</div>
-            <div class="video-sub-sm">Product Walkthrough · April 2024 · 12:34</div>
-          </div>
-        </div>
-        <div class="video-meta-right">
-          <a href="#" class="video-action-btn"><i class="fa-solid fa-share-nodes"></i> Share</a>
-          <a href="#" class="video-action-btn"><i class="fa-solid fa-download"></i> Download</a>
-          <a href="index.html#contact" class="video-action-btn" style="background:var(--grad);border-color:transparent;color:#fff;"><i class="fa-solid fa-rocket"></i> Build Similar</a>
-        </div>
-      </div>
-
-      <!-- Chapter list -->
-      <div class="rv" style="transition-delay:.3s;margin-top:28px;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px;">Chapters</div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;" id="chapterList"></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 <!-- ══ GALLERY ══ -->
 <section class="proj-gallery" id="gallery" aria-label="Modern bento project image gallery">
@@ -709,72 +660,16 @@
   </div>
 </section>
 
-<!-- ══ RESULTS — 4-BENTO ══ -->
+<!-- ══ RESULTS — SIMPLE IMPACT ══ -->
 <section class="proj-results" id="results">
   <div class="wrap">
     <div class="sec-label rv"><span class="dot"></span> Results & Impact</div>
-    <h2 class="sec-h2 rv" style="transition-delay:.1s;">The numbers <span class="grad">that matter</span></h2>
-    <div class="bento-grid">
-      <div class="bento-card bc1 rv" style="transition-delay:.1s;">
-        <div class="bento-badge">Diagnostic Impact</div>
-        <span class="bento-num counter" data-t="40" data-s="%">40%</span>
-        <div class="bento-title">Diagnostic Error Reduction</div>
-        <div class="bento-sub">Fewer errors vs. pre-platform baseline — 12 AI models trained on 2M+ medical images, delivering results in under 2 seconds per analysis.</div>
-        <div style="margin-top:20px;padding-top:20px;display:flex;flex-wrap:wrap;gap:8px;">
-          <span style="padding:4px 12px;border-radius:99px;font-size:10px;background:rgba(124,58,237,.15);color:var(--purple-lt);border:1px solid rgba(124,58,237,.25);font-weight:600;">94.7% AI Accuracy</span>
-          <span style="padding:4px 12px;border-radius:99px;font-size:10px;background:rgba(6,182,212,.12);color:var(--cyan-lt);border:1px solid rgba(6,182,212,.25);font-weight:600;">500+ Hospitals</span>
-        </div>
-      </div>
-      <div class="bento-card bc2 rv" style="transition-delay:.15s;">
-        <div class="bento-badge">Cost Savings</div>
-        <span class="bento-num counter" data-t="12" data-p="$" data-s="M">$12M</span>
-        <div class="bento-title">Annual Cost Savings</div>
-        <div class="bento-sub">Across the entire network in year one — from reduced errors, faster processing, and optimised clinical workflows.</div>
-      </div>
-      <div class="bento-card bc3 rv" style="transition-delay:.2s;">
-        <div class="bento-badge">Speed</div>
-        <span class="bento-num counter" data-t="3" data-s="×">3×</span>
-        <div class="bento-title">Faster Reporting</div>
-        <div class="bento-sub">Average report time dropped from 45 minutes to 15 — giving clinicians back time to focus on patients, not paperwork.</div>
-      </div>
-      <div class="bento-card bc4 rv" style="transition-delay:.25s;">
-        <div class="ring-wrap">
-          <svg width="120" height="120">
-            <circle class="ring-bg" stroke-width="8" fill="transparent" r="50" cx="60" cy="60"/>
-            <circle class="ring-bar" stroke="url(#ringGrad)" stroke-width="8" fill="transparent" r="50" cx="60" cy="60" id="ringBar"/>
-          </svg>
-          <div class="ring-val" id="ringVal">0%</div>
-        </div>
-        <div class="ring-text">
-          <div class="bento-badge">Customer Success</div>
-          <div class="bento-title">Clinician Satisfaction Score</div>
-          <div class="bento-sub">Based on 8,000+ structured reviews across all 500 facilities — consistently rated "exceptional" for usability, speed, and clinical accuracy. Highest score ever recorded on an Apollo internal product.</div>
-          <div style="display:flex;gap:2px;margin-top:10px;align-items:center;"><span style="color:#f59e0b;font-size:16px;">★★★★★</span><span style="font-size:12px;color:var(--txt3);margin-left:8px;">4.9 / 5.0</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TESTIMONIAL — WHATSAPP ══ -->
-<section class="proj-testimonial" id="testimonial">
-  <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> Client Feedback</div>
-    <h2 class="sec-h2 rv" style="transition-delay:.1s;">What our <span class="grad">clients said</span></h2>
-    <div class="wa-wrap rv" style="transition-delay:.2s;">
-      <div class="wa-sidebar">
-        <div class="wa-sidebar-hdr"><h3>Clients</h3></div>
-        <input class="wa-search" type="text" placeholder="Search clients..." id="waSearch" />
-        <div class="wa-list" id="waList"></div>
-      </div>
-      <div class="wa-chat-panel" id="waChatPanel">
-        <div class="wa-empty" id="waEmpty"><div class="wa-empty-icon">💬</div><p>Select a client to read their testimonial</p></div>
-        <div class="wa-chat-content" id="waChatContent">
-          <div class="wa-chat-hdr" id="waChatHdr"></div>
-          <div class="wa-msgs" id="waMessages"></div>
-          <div class="wa-input-row"><input class="wa-input" type="text" placeholder="Type a message..." readonly /><button class="wa-send"><i class="fa-solid fa-paper-plane" style="font-size:12px;margin-left:1px;"></i></button></div>
-        </div>
-      </div>
+    <h2 class="sec-h2 rv" style="transition-delay:.1s;">Impact</h2>
+    <div class="impact-box-grid">
+      <div class="impact-box rv" style="transition-delay:.1s;"><span class="counter" data-t="40" data-s="%">40%</span></div>
+      <div class="impact-box rv" style="transition-delay:.15s;"><span class="counter" data-t="12" data-s="M">12M</span></div>
+      <div class="impact-box rv" style="transition-delay:.2s;"><span class="counter" data-t="3" data-s="×">3×</span></div>
+      <div class="impact-box rv" style="transition-delay:.25s;"><span class="counter" data-t="99" data-s="%">99%</span></div>
     </div>
   </div>
 </section>
@@ -853,7 +748,7 @@ document.addEventListener('mousemove', e => {
 })();
 
 // Hover effects
-document.querySelectorAll('a, button, .gal-item, .sim-card, .bento-card, .ov-card, .wa-contact, .tl-item').forEach(el => {
+document.querySelectorAll('a, button, .gal-item, .sim-card, .impact-box, .ov-card, .tl-item').forEach(el => {
   el.addEventListener('mouseenter', () => curRing.classList.add('h'));
   el.addEventListener('mouseleave', () => curRing.classList.remove('h'));
 });
@@ -890,86 +785,6 @@ function runCounter(el) {
 const co = new IntersectionObserver(e => e.forEach(en => { if(en.isIntersecting) { runCounter(en.target); co.unobserve(en.target); } }), {threshold:.5});
 document.querySelectorAll('.counter').forEach(el => co.observe(el));
 
-/* PROGRESS RING */
-(function() {
-  const bar = document.getElementById('ringBar'), val = document.getElementById('ringVal');
-  if(!bar) return;
-  const ob = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) {
-        let v = 0; const dur = 1500, s = performance.now(); const ease = t => 1-Math.pow(1-t,3);
-        (function tick(now) {
-          const t = Math.min((now-s)/dur, 1); v = Math.round(ease(t)*95);
-          val.textContent = v + '%';
-          bar.style.strokeDashoffset = 314.15 * (1 - v/100);
-          if(t<1) requestAnimationFrame(tick);
-        })(s);
-        ob.unobserve(e.target);
-      }
-    });
-  }, {threshold:.5});
-  ob.observe(document.querySelector('.bento-card.bc4'));
-})();
-
-/* ══════════════════════════════════════
-   VIDEO SECTION
-══════════════════════════════════════ */
-const videoChapters = [
-  { time:'0:00', title:'Platform Overview', icon:'🏥' },
-  { time:'2:14', title:'AI Diagnostic Engine', icon:'🧠' },
-  { time:'4:52', title:'Patient Dashboard', icon:'📊' },
-  { time:'7:30', title:'Mobile Clinical App', icon:'📱' },
-  { time:'9:45', title:'Real-Time Monitoring', icon:'📡' },
-  { time:'11:20', title:'Security & Compliance', icon:'🔒' }
-];
-
-// Build chapter bars (decorative)
-const chapterBarsEl = document.getElementById('videoChapters');
-videoChapters.forEach((_, i) => {
-  const bar = document.createElement('div');
-  bar.className = 'chapter-bar' + (i === 0 ? ' active' : '');
-  bar.style.height = (Math.random() * 14 + 8) + 'px';
-  chapterBarsEl.appendChild(bar);
-});
-
-// Build chapter list
-const chapterListEl = document.getElementById('chapterList');
-videoChapters.forEach((ch, i) => {
-  const el = document.createElement('div');
-  el.style.cssText = 'display:flex;align-items:center;gap:12px;padding:12px 16px;background:var(--glass);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .3s;';
-  el.innerHTML = `<span style="font-size:20px;">${ch.icon}</span><div><div style="font-size:11px;font-weight:700;color:var(--txt);margin-bottom:2px;">${ch.title}</div><div style="font-size:10px;color:var(--txt3);">${ch.time}</div></div>`;
-  el.addEventListener('mouseenter', () => { el.style.background = 'var(--glass2)'; el.style.borderColor = 'rgba(124,58,237,.3)'; });
-  el.addEventListener('mouseleave', () => { el.style.background = 'var(--glass)'; el.style.borderColor = 'var(--border)'; });
-  el.addEventListener('click', () => playVideo(`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&t=${i*120}&rel=0`));
-  chapterListEl.appendChild(el);
-});
-
-function playVideo(src) {
-  const iframe = document.getElementById('videoIframe');
-  const frame  = document.getElementById('videoFrame');
-  const thumb  = document.getElementById('videoThumb');
-  const playBtn= document.getElementById('videoPlayBtn');
-  const dur    = document.querySelector('.video-duration');
-  const bg     = document.querySelector('.video-bg-anim');
-  frame.src = src;
-  iframe.style.display = 'block';
-  thumb.style.display  = 'none';
-  playBtn.style.display= 'none';
-  if(dur) dur.style.display = 'none';
-  if(bg)  bg.style.display  = 'none';
-}
-
-document.getElementById('videoPlayBtn').addEventListener('click', () => playVideo('https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0'));
-
-// Animate chapter bars
-let barIdx = 0;
-setInterval(() => {
-  const bars = document.querySelectorAll('.chapter-bar');
-  bars.forEach(b => b.classList.remove('active'));
-  barIdx = (barIdx + 1) % bars.length;
-  bars[barIdx].classList.add('active');
-}, 1200);
-
 /* LIGHTBOX */
 const galMeta = [
   {src:'Images/Gemini_Generated_Image_737ff7737ff7737f.png', l:'Hospital Dashboard Overview'},
@@ -1004,7 +819,7 @@ document.addEventListener('keydown', e => {
   if(e.key==='ArrowRight') navLb(1);
 });
 
-/* GSAP reveal for gallery + bento */
+/* GSAP reveal for gallery + impact */
 gsap.fromTo('.gal-item', {opacity:0, x:-110, scale:.95}, {opacity:1, x:0, scale:1, duration:1, stagger:.12, ease:'expo.out', scrollTrigger:{trigger:'.proj-gallery', start:'top 70%', once:true}});
 const hTrack = document.querySelector('.hgal-track');
 const hShell = document.querySelector('.hgal-shell');
@@ -1015,79 +830,8 @@ if (hTrack && hShell) {
     { x: () => horizontalDistance(), ease:'power2.inOut', scrollTrigger:{ trigger:'.proj-gallery', start:'top top', end:'bottom bottom', scrub:1.1, invalidateOnRefresh:true } }
   );
 }
-gsap.fromTo('.bento-card', {opacity:0, y:32, scale:.96}, {opacity:1, y:0, scale:1, duration:.65, stagger:.1, ease:'power3.out', scrollTrigger:{trigger:'.bento-grid', start:'top 82%', once:true}});
+gsap.fromTo('.impact-box', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-box-grid', start:'top 82%', once:true}});
 
-/* ══════════════════════════════════════
-   WHATSAPP TESTIMONIAL
-══════════════════════════════════════ */
-const testimonials = [
-  {
-    initials:'RM', name:'Dr. Rajesh Mehta', role:'CTO & CMIO · Apollo Health Systems',
-    color:'#7c3aed', time:'2:14 PM', preview:'Platform has saved lives...',
-    messages:[
-      {text:'We tried two other vendors before Revti. Neither could handle 500 hospitals, 15 EMR systems, and HIPAA requirements. We were skeptical going in.',right:false,time:'2:14 PM'},
-      {text:"Revti didn't just build us software — they fundamentally transformed how 12,000 clinicians work. The HealthCore platform has saved lives. I don't say that lightly.",right:true,time:'2:17 PM',stars:true},
-      {text:"The best technology investment Apollo has ever made. Technically superb, communicative, and mission-aligned from day one. 🙏",right:false,time:'2:19 PM'}
-    ], stars:5
-  },
-  {
-    initials:'PS', name:'Priya Sharma', role:'Head of Digital Transformation · Apollo',
-    color:'#06b6d4', time:'Yesterday', preview:'Rollout was flawless...',
-    messages:[
-      {text:"Rolling out to 12,000 clinicians in 90 days is enormous. Revti's team was with us every step — training materials, 24/7 support pod, zero incidents at go-live.",right:false,time:'10:30 AM'},
-      {text:"The UI is genuinely loved by clinical staff — and that almost never happens with enterprise software. 🎉",right:true,time:'10:32 AM',stars:true}
-    ], stars:5
-  },
-  {
-    initials:'AK', name:'Dr. Arjun Kapoor', role:'Chief Medical Officer · Apollo Mumbai',
-    color:'#2563eb', time:'Mon', preview:'40% fewer diagnostic errors...',
-    messages:[
-      {text:"Within the first month, our radiology department reported 40% fewer diagnostic discrepancies. The AI works offline, syncs seamlessly, and delivers results in under 2 seconds.",right:false,time:'3:45 PM'},
-      {text:"It's changed how we practice medicine at the bedside. We've never seen adoption this fast for a clinical tool.",right:true,time:'3:47 PM',stars:true}
-    ], stars:5
-  }
-];
-
-function renderWaList() {
-  const list = document.getElementById('waList');
-  list.innerHTML = '';
-  testimonials.forEach((t, i) => {
-    const el = document.createElement('div');
-    el.className = 'wa-contact';
-    el.innerHTML = `<div class="wa-avatar" style="background:${t.color};">${t.initials}</div><div class="wa-contact-info"><div class="wa-contact-name">${t.name}</div><div class="wa-contact-prev">${t.preview}</div><div class="wa-stars-sm">${'<span>★</span>'.repeat(t.stars)}</div></div><div class="wa-contact-time">${t.time}</div>`;
-    el.addEventListener('click', () => openWaChat(i));
-    list.appendChild(el);
-  });
-}
-
-function openWaChat(i) {
-  const t = testimonials[i];
-  document.querySelectorAll('.wa-contact').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.wa-contact')[i].classList.add('active');
-  document.getElementById('waEmpty').style.display = 'none';
-  const content = document.getElementById('waChatContent');
-  content.classList.add('open');
-  document.getElementById('waChatHdr').innerHTML = `<div class="wa-chat-hdr-avatar" style="background:${t.color};">${t.initials}</div><div><div class="wa-chat-hdr-name">${t.name}</div><div class="wa-chat-hdr-role">${t.role}</div></div><div class="wa-status">Active now</div>`;
-  const msgs = document.getElementById('waMessages');
-  msgs.innerHTML = '';
-  t.messages.forEach((m, j) => {
-    const el = document.createElement('div');
-    el.className = 'wa-msg' + (m.right ? ' right' : '');
-    el.style.cssText = `opacity:0;transform:translateY(14px);transition:opacity .4s ${j*.12}s,transform .4s ${j*.12}s;`;
-    el.innerHTML = `<div><div class="wa-bubble">${m.text}${m.stars ? `<div class="wa-stars">${'<span>★</span>'.repeat(t.stars)}</div>` : ''}</div><div class="wa-time">${m.time}${m.right ? '<span class="wa-check"> ✓✓</span>' : ''}</div></div>`;
-    msgs.appendChild(el);
-    requestAnimationFrame(() => requestAnimationFrame(() => { el.style.opacity='1'; el.style.transform='none'; }));
-  });
-}
-
-document.getElementById('waSearch').addEventListener('input', function() {
-  const q = this.value.toLowerCase();
-  document.querySelectorAll('.wa-contact').forEach((el, i) => { el.style.display = testimonials[i].name.toLowerCase().includes(q) ? '' : 'none'; });
-});
-
-renderWaList();
-// Auto-open first
-setTimeout(() => openWaChat(0), 600);
 </script>
 </body>
 </html>

@@ -518,6 +518,21 @@
   @media(max-width:1024px){ .proj-stack{grid-template-columns:repeat(2,minmax(0,1fr));} .gallery-sec-hdr{grid-template-columns:1fr;text-align:left;} .gallery-sec-hdr p{margin:0;}}
   @media(max-width:640px){ .wrap{padding:0 22px;} .proj-stack{grid-template-columns:1fr; gap:24px;} .filter-bar{padding:4px 22px; justify-content:flex-start;} .gallery-sec-hdr{width:calc(100% - 44px);} .pc{border-radius:22px; min-height:0; height:auto;} .pc-visual,.pc:nth-child(n) .pc-visual{height:clamp(280px,88vw,420px); border-radius:17px;} }
 
+
+  /* Simplified centered headings, full-width clickable cards, Brilio-style filters */
+  .gallery-sec-hdr { display:block !important; text-align:center !important; }
+  .gallery-sec-hdr .eyebrow { margin-left:auto; margin-right:auto; }
+  .gallery-sec-hdr p, .hero-sub, .impact-label, .impact-sub { display:none !important; }
+  .filter-outer { position:relative; top:auto; border:0; background:transparent; backdrop-filter:none; }
+  .filter-bar { gap:14px; justify-content:center; }
+  .filter-ind { display:none; }
+  .f-btn { border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.035); color:#a3a3b8; padding:11px 22px; }
+  .f-btn.active, .f-btn:hover { color:#fff; border-color:rgba(103,232,249,.45); background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(6,182,212,.16)); transform:none; }
+  .pc { padding:0; text-decoration:none; }
+  .pc-visual { width:100%; border-radius:26px 26px 0 0; }
+  .pc-info { padding:24px; }
+  .pc-link { pointer-events:none; }
+
   </style>
 </head>
 <body>
@@ -642,7 +657,6 @@
   <div class="gallery-sec-hdr">
     <span class="eyebrow">Selected Work</span>
     <h2>Creative Projects</h2>
-    <p>Click a project to view its case study.</p>
   </div>
 
   <!-- Filter bar -->
@@ -1054,8 +1068,24 @@ showcaseEl.addEventListener('mouseenter', () => clearInterval(autoPlay));
 showcaseEl.addEventListener('mouseleave', () => { clearInterval(autoPlay); autoPlay = setInterval(() => goTo((ssCurrent+1)%ssProjects.length, 1), 6000); });
 }
 
+
+/* FULL CARD LINKS */
+document.querySelectorAll('.pc').forEach(card => {
+  const link = card.querySelector('a[href]');
+  if(!link) return;
+  card.setAttribute('tabindex','0');
+  card.setAttribute('role','link');
+  card.addEventListener('click', e => {
+    if(e.target.closest('a')) return;
+    window.location.href = link.href;
+  });
+  card.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = link.href; }
+  });
+});
+
 /* ══════════════════════════════════════
-   FILTER — SLIDING INDICATOR
+   FILTER — BRILIO STYLE
 ══════════════════════════════════════ */
 const filterBtns = document.querySelectorAll('.f-btn');
 const filterBar  = document.getElementById('filterBar');
