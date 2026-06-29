@@ -284,17 +284,19 @@
   /* ══ GALLERY ══ */
   .proj-gallery { padding:100px 0; background:var(--bg); }
   .gal-cols { columns:3; column-gap:12px; margin-top:40px; }
-  .gal-item { break-inside:avoid; margin-bottom:12px; border-radius:18px; overflow:hidden; position:relative; border:1px solid var(--border); background:var(--bg3); transition:all .4s; }
+  .gal-item { display:block; width:100%; break-inside:avoid; margin:0 0 12px; padding:0; border-radius:18px; overflow:hidden; position:relative; border:1px solid var(--border); background:var(--bg3); transition:all .4s; text-align:left; }
   .gal-item:hover { border-color:rgba(124,58,237,.35); box-shadow:0 16px 48px rgba(0,0,0,.5),0 0 24px rgba(124,58,237,.08); }
-  .gal-ph { display:flex; align-items:center; justify-content:center; font-size:44px; transition:transform .6s,filter .4s; }
-  .gal-item:hover .gal-ph { transform:scale(1.06); filter:brightness(.6); }
+  .gal-img { display:block; width:100%; height:auto; aspect-ratio:4/5; object-fit:cover; transition:transform .6s,filter .4s; }
+  .gal-item:nth-child(even) .gal-img { aspect-ratio:16/10; }
+  .gal-item:nth-child(3n) .gal-img { aspect-ratio:1; }
+  .gal-item:hover .gal-img { transform:scale(1.06); filter:brightness(.6); }
   .gal-veil { position:absolute; inset:0; background:rgba(8,8,14,.55); display:flex; align-items:center; justify-content:center; font-size:22px; opacity:0; transition:opacity .3s; border-radius:18px; }
   .gal-item:hover .gal-veil { opacity:1; }
   .lb { position:fixed; inset:0; background:rgba(8,8,14,.97); backdrop-filter:blur(28px); z-index:50000; opacity:0; pointer-events:none; transition:opacity .3s; display:flex; align-items:center; justify-content:center; }
   .lb.open { opacity:1; pointer-events:all; }
-  .lb-stage { text-align:center; }
-  .lb-emoji { font-size:130px; animation:lbz .4s cubic-bezier(0.34,1.56,0.64,1); display:block; }
-  @keyframes lbz { from{transform:scale(.6);opacity:0;} to{transform:none;opacity:1;} }
+  .lb-stage { width:min(92vw,1100px); text-align:center; }
+  .lb-img { display:block; width:100%; max-height:78vh; object-fit:contain; border-radius:22px; border:1px solid var(--border); box-shadow:0 24px 80px rgba(0,0,0,.55); animation:lbz .4s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes lbz { from{transform:scale(.96);opacity:0;} to{transform:none;opacity:1;} }
   .lb-label { font-size:15px; font-weight:600; color:var(--txt2); margin-top:18px; }
   .lb-ctr { font-size:12px; color:var(--txt3); margin-top:10px; letter-spacing:.1em; }
   .lb-x { position:fixed; top:24px; right:24px; width:44px; height:44px; background:var(--glass); border:1px solid var(--border); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; color:var(--txt); transition:all .3s; z-index:50001; }
@@ -634,66 +636,44 @@
 </section>
 
 
-<!-- GALLERY Design -->
-
-<section class="gallery-section">
-  <div class="gallery-header">
-    <h2 class="gallery-title">Crafted with <em>intention</em></h2>
-  </div>
-
-  <div class="gallery-list">
-
-    <div class="gallery-item">
-      <div class="image-wrapper">
-        <img class="parallax-img" src="./Images/Gemini_Generated_Image_737ff7737ff7737f.png" alt="" loading="lazy"/>
-      </div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="image-wrapper">
-        <img class="parallax-img" src="./Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png" alt="" loading="lazy"/>
-      </div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="image-wrapper">
-        <img class="parallax-img" src="./Images/Gemini_Generated_Image_8hehif8hehif8heh.png" alt="" loading="lazy"/>
-      </div>
-    </div>
-
-    <div class="gallery-item">
-      <div class="image-wrapper">
-        <img class="parallax-img" src="./Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png" alt="" loading="lazy"/>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-
-
-
 <!-- ══ GALLERY ══ -->
 <section class="proj-gallery" id="gallery">
   <div class="wrap">
     <div class="sec-label rv"><span class="dot"></span> Project Gallery</div>
     <h2 class="sec-h2 rv" style="transition-delay:.1s;">Every screen <span class="grad">tells a story</span></h2>
     <div class="gal-cols" id="galGrid">
-      <div class="gal-item" data-idx="0"><div class="gal-ph" style="aspect-ratio:3/4;background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(6,182,212,.1));">🏥</div><div class="gal-veil">🔍</div></div>
-      <div class="gal-item" data-idx="1"><div class="gal-ph" style="aspect-ratio:16/9;background:linear-gradient(135deg,rgba(6,182,212,.18),rgba(37,99,235,.22));">📊</div><div class="gal-veil">🔍</div></div>
-      <div class="gal-item" data-idx="2"><div class="gal-ph" style="aspect-ratio:1;background:linear-gradient(135deg,rgba(37,99,235,.2),rgba(124,58,237,.16));">🧠</div><div class="gal-veil">🔍</div></div>
-      <div class="gal-item" data-idx="3"><div class="gal-ph" style="aspect-ratio:16/9;background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(6,182,212,.2));">📱</div><div class="gal-veil">🔍</div></div>
-      <div class="gal-item" data-idx="4"><div class="gal-ph" style="aspect-ratio:3/4;background:linear-gradient(135deg,rgba(6,182,212,.12),rgba(37,99,235,.16));">📡</div><div class="gal-veil">🔍</div></div>
-      <div class="gal-item" data-idx="5"><div class="gal-ph" style="aspect-ratio:1;background:linear-gradient(135deg,rgba(37,99,235,.16),rgba(124,58,237,.12));">🔒</div><div class="gal-veil">🔍</div></div>
+      <button class="gal-item" type="button" data-idx="0" aria-label="Open Hospital Dashboard Overview image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_737ff7737ff7737f.png" alt="Hospital dashboard overview" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
+      <button class="gal-item" type="button" data-idx="1" aria-label="Open Analytics and Reporting Panel image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png" alt="Analytics and reporting panel" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
+      <button class="gal-item" type="button" data-idx="2" aria-label="Open AI Diagnostic Interface image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_8hehif8hehif8heh.png" alt="AI diagnostic interface" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
+      <button class="gal-item" type="button" data-idx="3" aria-label="Open Mobile Clinical App image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png" alt="Mobile clinical app" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
+      <button class="gal-item" type="button" data-idx="4" aria-label="Open Real-Time Monitoring image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_bhkf44bhkf44bhkf.png" alt="Real-time monitoring interface" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
+      <button class="gal-item" type="button" data-idx="5" aria-label="Open Security and Compliance Center image">
+        <img class="gal-img" src="Images/Gemini_Generated_Image_5iyked5iyked5iyk.png" alt="Security and compliance center" loading="lazy" />
+        <div class="gal-veil">🔍</div>
+      </button>
     </div>
   </div>
   <!-- Lightbox -->
   <div class="lb" id="lb">
-    <div class="lb-x" id="lb-x">✕</div>
-    <div class="lb-nav lb-prev" id="lb-prev">‹</div>
-    <div class="lb-stage"><span class="lb-emoji" id="lb-emoji">🏥</span><div class="lb-label" id="lb-label">Dashboard</div><div class="lb-ctr" id="lb-ctr">1 / 6</div></div>
-    <div class="lb-nav lb-next" id="lb-next">›</div>
+    <button class="lb-x" id="lb-x" type="button" aria-label="Close gallery lightbox">✕</button>
+    <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous gallery image">‹</button>
+    <div class="lb-stage"><img class="lb-img" id="lb-img" src="" alt="" /><div class="lb-label" id="lb-label">Dashboard</div><div class="lb-ctr" id="lb-ctr">1 / 6</div></div>
+    <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next gallery image">›</button>
   </div>
 </section>
 
@@ -960,15 +940,24 @@ setInterval(() => {
 
 /* LIGHTBOX */
 const galMeta = [
-  {e:'🏥', l:'Hospital Dashboard Overview'},
-  {e:'📊', l:'Analytics & Reporting Panel'},
-  {e:'🧠', l:'AI Diagnostic Interface'},
-  {e:'📱', l:'Mobile Clinical App'},
-  {e:'📡', l:'Real-Time Monitoring'},
-  {e:'🔒', l:'Security & Compliance Center'}
+  {src:'Images/Gemini_Generated_Image_737ff7737ff7737f.png', l:'Hospital Dashboard Overview'},
+  {src:'Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png', l:'Analytics & Reporting Panel'},
+  {src:'Images/Gemini_Generated_Image_8hehif8hehif8heh.png', l:'AI Diagnostic Interface'},
+  {src:'Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png', l:'Mobile Clinical App'},
+  {src:'Images/Gemini_Generated_Image_bhkf44bhkf44bhkf.png', l:'Real-Time Monitoring'},
+  {src:'Images/Gemini_Generated_Image_5iyked5iyked5iyk.png', l:'Security & Compliance Center'}
 ];
 let lbIdx = 0;
-function openLb(i) { lbIdx=i; document.getElementById('lb-emoji').textContent=galMeta[i].e; document.getElementById('lb-label').textContent='HealthCore — '+galMeta[i].l; document.getElementById('lb-ctr').textContent=(i+1)+' / '+galMeta.length; document.getElementById('lb').classList.add('open'); document.body.style.overflow='hidden'; }
+function openLb(i) {
+  lbIdx=i;
+  const img = document.getElementById('lb-img');
+  img.src = galMeta[i].src;
+  img.alt = 'HealthCore — ' + galMeta[i].l;
+  document.getElementById('lb-label').textContent='HealthCore — '+galMeta[i].l;
+  document.getElementById('lb-ctr').textContent=(i+1)+' / '+galMeta.length;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+}
 function closeLb() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 function navLb(d) { lbIdx=(lbIdx+d+galMeta.length)%galMeta.length; openLb(lbIdx); }
 document.querySelectorAll('.gal-item').forEach((el, i) => el.addEventListener('click', () => openLb(i)));
