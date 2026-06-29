@@ -1005,8 +1005,16 @@ document.addEventListener('keydown', e => {
 });
 
 /* GSAP reveal for gallery + bento */
-gsap.fromTo('.gallery-bento-head', {opacity:0, y:34}, {opacity:1, y:0, duration:.85, ease:'power3.out', scrollTrigger:{trigger:'.proj-gallery', start:'top 78%', once:true}});
-gsap.fromTo('.gal-item', {opacity:0, y:44, scale:.94}, {opacity:1, y:0, scale:1, duration:.85, stagger:.09, ease:'power3.out', scrollTrigger:{trigger:'#galGrid', start:'top 82%', once:true}});
+gsap.fromTo('.gal-item', {opacity:0, x:-110, scale:.95}, {opacity:1, x:0, scale:1, duration:1, stagger:.12, ease:'expo.out', scrollTrigger:{trigger:'.proj-gallery', start:'top 70%', once:true}});
+const hTrack = document.querySelector('.hgal-track');
+const hShell = document.querySelector('.hgal-shell');
+if (hTrack && hShell) {
+  const horizontalDistance = () => Math.max(0, hTrack.scrollWidth - hShell.clientWidth);
+  gsap.fromTo(hTrack,
+    { x: () => -window.innerWidth * 0.82 },
+    { x: () => horizontalDistance(), ease:'power2.inOut', scrollTrigger:{ trigger:'.proj-gallery', start:'top top', end:'bottom bottom', scrub:1.1, invalidateOnRefresh:true } }
+  );
+}
 gsap.fromTo('.bento-card', {opacity:0, y:32, scale:.96}, {opacity:1, y:0, scale:1, duration:.65, stagger:.1, ease:'power3.out', scrollTrigger:{trigger:'.bento-grid', start:'top 82%', once:true}});
 
 /* ══════════════════════════════════════
