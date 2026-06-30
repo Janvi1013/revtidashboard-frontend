@@ -23,17 +23,26 @@
   :root {
     --bg:#08080e; --bg2:#0d0d18; --bg3:#12121f;
     --glass:rgba(255,255,255,0.04); --glass2:rgba(255,255,255,0.08);
-    --purple:#7c3aed; --purple-lt:#a78bfa;
-    --blue:#2563eb; --blue-lt:#93c5fd;
-    --cyan:#06b6d4; --cyan-lt:#67e8f9;
-    --grad:linear-gradient(135deg,#7c3aed,#2563eb,#06b6d4);
-    --txt:#f0f0ff; --txt2:#8888aa; --txt3:#454560;
-    --border:rgba(255,255,255,0.07);
+    --purple:#ffffff; --purple-lt:#d1d5db;
+    --blue:#ffffff; --blue-lt:#d1d5db;
+    --cyan:#ffffff; --cyan-lt:#d1d5db;
+    --grad:linear-gradient(135deg,#ffffff,#b8bcc5);
+    --txt:#f8f8f8; --txt2:#a8adb7; --txt3:#686d78;
+    --border:rgba(255,255,255,0.12);
     --font:'Inter',-apple-system,sans-serif;
     --ease:cubic-bezier(0.4,0,0.2,1);
   }
 
   body { font-family:var(--font); background:var(--bg); color:var(--txt); -webkit-font-smoothing:antialiased; }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg:#f6f6f4; --bg2:#ffffff; --bg3:#ececea;
+      --glass:rgba(0,0,0,0.035); --glass2:rgba(0,0,0,0.07);
+      --grad:linear-gradient(135deg,#000000,#6b7280);
+      --txt:#050505; --txt2:#555963; --txt3:#8b8f98;
+      --border:rgba(0,0,0,0.12);
+    }
+  }
   /* FORCE cursor none everywhere */
   *, *::before, *::after { cursor:none !important; }
   html { cursor:none !important; }
@@ -528,12 +537,16 @@
       }
   }
 
-  .impact-box-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:44px; }
-  .impact-box { min-height:180px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:22px; background:var(--glass); }
-  .impact-box span { font-size:clamp(44px,7vw,86px); font-weight:800; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+  .impact-showcase { max-width:1120px; margin:0 auto; display:grid; gap:34px; }
+  .impact-title { font-size:clamp(72px,14vw,168px); line-height:.84; letter-spacing:-.085em; font-weight:400; color:var(--txt); white-space:nowrap; }
+  .impact-title .muted { color:var(--txt2); }
+  .impact-metric-card { min-height:clamp(220px,32vw,360px); border:2px solid var(--txt); border-radius:48px; display:flex; align-items:center; justify-content:center; gap:clamp(22px,5vw,76px); padding:clamp(28px,5vw,64px); background:var(--bg); color:var(--txt); }
+  .impact-before { position:relative; font-size:clamp(48px,9vw,118px); font-weight:300; color:var(--txt2); letter-spacing:-.08em; }
+  .impact-before::after { content:''; position:absolute; left:-8%; right:-8%; top:54%; height:3px; background:var(--txt2); transform:rotate(-8deg); }
+  .impact-arrow { font-size:clamp(72px,12vw,150px); line-height:1; color:var(--txt); transform:translateY(-8px); }
+  .impact-after { font-size:clamp(66px,12vw,156px); font-weight:300; letter-spacing:-.075em; color:var(--txt); }
   .sec-label, .sec-h2, .ov-big, .proj-h1 { text-align:center; margin-left:auto; margin-right:auto; }
-  @media(max-width:900px){ .impact-box-grid{grid-template-columns:repeat(2,1fr);} }
-  @media(max-width:520px){ .impact-box-grid{grid-template-columns:1fr;} }
+  @media(max-width:760px){ .impact-title{white-space:normal;} .impact-metric-card{border-radius:32px; gap:18px;} }
 
   </style>
 </head>
@@ -692,16 +705,14 @@
   </div>
 </section>
 
-<!-- ══ RESULTS — SIMPLE IMPACT ══ -->
+<!-- ══ RESULTS — IMPACT ══ -->
 <section class="proj-results" id="results">
-  <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> Results & Impact</div>
-    <h2 class="sec-h2 rv" style="transition-delay:.1s;">Impact</h2>
-    <div class="impact-box-grid">
-      <div class="impact-box rv" style="transition-delay:.1s;"><span class="counter" data-t="40" data-s="%">40%</span></div>
-      <div class="impact-box rv" style="transition-delay:.15s;"><span class="counter" data-t="12" data-s="M">12M</span></div>
-      <div class="impact-box rv" style="transition-delay:.2s;"><span class="counter" data-t="3" data-s="×">3×</span></div>
-      <div class="impact-box rv" style="transition-delay:.25s;"><span class="counter" data-t="99" data-s="%">99%</span></div>
+  <div class="wrap impact-showcase">
+    <h2 class="impact-title rv">Impact <span class="muted">Results</span></h2>
+    <div class="impact-metric-card rv" style="transition-delay:.1s;" aria-label="Improved diagnostic errors from 10 times to 40 percent fewer errors">
+      <span class="impact-before">10×</span>
+      <span class="impact-arrow" aria-hidden="true">↗</span>
+      <span class="impact-after counter" data-t="40" data-s="%">40%</span>
     </div>
   </div>
 </section>
@@ -780,7 +791,7 @@ document.addEventListener('mousemove', e => {
 })();
 
 // Hover effects
-document.querySelectorAll('a, button, .reveal-img-container, .sim-card, .impact-box, .ov-card, .tl-item').forEach(el => {
+document.querySelectorAll('a, button, .reveal-img-container, .sim-card, .impact-metric-card, .ov-card, .tl-item').forEach(el => {
   el.addEventListener('mouseenter', () => curRing.classList.add('h'));
   el.addEventListener('mouseleave', () => curRing.classList.remove('h'));
 });
@@ -888,7 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-gsap.fromTo('.impact-box', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-box-grid', start:'top 82%', once:true}});
+gsap.fromTo('.impact-metric-card', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, ease:'power3.out', scrollTrigger:{trigger:'.impact-metric-card', start:'top 82%', once:true}});
 
 </script>
 </body>
