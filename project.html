@@ -893,7 +893,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-gsap.fromTo('.impact-metric-card', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, ease:'power3.out', scrollTrigger:{trigger:'.impact-metric-card', start:'top 82%', once:true}});
+gsap.fromTo('.impact-metric-card', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-box-grid', start:'top 82%', once:true}});
 
 </script>
 </body>
