@@ -444,56 +444,95 @@
   }
 
 
-  /* ═══════════════════════════════════════
-     MODERN BENTO PROJECT GALLERY
-  ═══════════════════════════════════════ */
-  .proj-gallery {
-    min-height:auto;
-    padding:clamp(96px,10vw,140px) 0;
-    background:#0B0B0F;
-    background-image:
-      radial-gradient(ellipse 58% 38% at 10% 8%, rgba(124,58,237,.16), transparent 62%),
-      radial-gradient(ellipse 46% 34% at 88% 20%, rgba(6,182,212,.11), transparent 58%),
-      linear-gradient(180deg,#0B0B0F 0%,#08080d 100%);
-    position:relative;
-    overflow:hidden;
+  /* ===================================== */
+  /* SCROLL REVEAL GALLERY */
+  /* ===================================== */
+  .sticky-section-gallery {
+      min-height: auto;
+      height: auto;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 120px 4%;
+      background-color: var(--bg-primary, var(--bg));
+      position: relative;
   }
-  .proj-gallery::before { content:''; position:absolute; inset:0; pointer-events:none; opacity:.055; background-image:linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.3) 1px, transparent 1px); background-size:78px 78px; mask-image:linear-gradient(to bottom, transparent, #000 16%, #000 84%, transparent); }
-  .gallery-bento-head { position:relative; z-index:1; display:grid; grid-template-columns:minmax(0,1fr) minmax(260px,390px); gap:32px; align-items:end; margin-bottom:clamp(34px,5vw,58px); }
-  .gallery-bento-copy { color:var(--txt2); line-height:1.75; font-size:15px; margin:0 0 8px; }
-  .gallery-bento { position:relative; z-index:1; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-auto-rows:minmax(190px,14vw); gap:clamp(14px,1.6vw,22px); }
-  .gal-item { width:100%; height:100%; min-height:0; border-radius:28px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,.1); background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02)); box-shadow:0 22px 70px rgba(0,0,0,.42); transition:transform .48s cubic-bezier(.22,1,.36,1), box-shadow .48s cubic-bezier(.22,1,.36,1), border-color .48s cubic-bezier(.22,1,.36,1); will-change:transform; padding:0; text-align:left; cursor:pointer; }
-  .gal-item:nth-child(1) { grid-column:span 2; grid-row:span 2; }
-  .gal-item:nth-child(2) { grid-column:span 2; grid-row:span 1; }
-  .gal-item:nth-child(3) { grid-column:span 1; grid-row:span 1; }
-  .gal-item:nth-child(4) { grid-column:span 1; grid-row:span 2; }
-  .gal-item:nth-child(5) { grid-column:span 2; grid-row:span 1; }
-  .gal-item:nth-child(6) { grid-column:span 1; grid-row:span 1; }
-  .gal-item:hover { transform:translate3d(0,-8px,0) scale(1.015); border-color:rgba(103,232,249,.35); box-shadow:0 34px 100px rgba(0,0,0,.64), 0 0 40px rgba(6,182,212,.1); z-index:4; }
-  .gal-img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .58s cubic-bezier(.22,1,.36,1), filter .48s cubic-bezier(.22,1,.36,1); will-change:transform; }
-  .gal-item:hover .gal-img { transform:scale(1.055); filter:brightness(1.08) saturate(1.08); }
-  .gal-veil { position:absolute; inset:auto 18px 18px 18px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:15px 16px; border-radius:18px; background:rgba(11,11,15,.58); border:1px solid rgba(255,255,255,.14); backdrop-filter:blur(20px); color:#fff; opacity:0; transform:translateY(14px); transition:all .42s cubic-bezier(.22,1,.36,1); }
-  .gal-item:hover .gal-veil { opacity:1; transform:none; }
-  .gal-title { font-size:15px; font-weight:800; letter-spacing:-.01em; }
-  .gal-cat { margin-top:4px; font-size:11px; color:#a8a8bb; }
-  .gal-view { font-size:12px; font-weight:800; white-space:nowrap; }
-  @media(max-width:980px){ .gallery-bento-head{grid-template-columns:1fr;} .gallery-bento{grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(210px,30vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1;} .gal-item:nth-child(1),.gal-item:nth-child(5){grid-column:span 2;} }
-  @media(max-width:560px){ .proj-gallery{padding:84px 0;} .gallery-bento{grid-template-columns:1fr; grid-auto-rows:minmax(280px,72vw);} .gal-item:nth-child(n){grid-column:span 1; grid-row:span 1; border-radius:22px;} .gal-veil{opacity:1; transform:none; inset:auto 14px 14px 14px; padding:13px 14px;} }
 
+  .gallery-scroll-container {
+      width: 95%;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
 
-  /* Simple centered headings and reference-style gallery/impact updates */
-  .sec-label, .sec-h2, .ov-big, .proj-h1 { text-align:center; margin-left:auto; margin-right:auto; }
-  .gallery-bento-head { display:block; text-align:center; max-width:980px; margin-left:auto; margin-right:auto; }
-  .gallery-bento-copy { display:none; }
-  .gallery-bento { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:minmax(360px,34vw); gap:30px; }
-  .gal-item:nth-child(n) { grid-column:auto; grid-row:auto; border-radius:0; }
-  .gal-item { box-shadow:none; border:0; background:transparent; }
-  .gal-item:hover { transform:none; box-shadow:none; }
-  .gal-img { object-fit:cover; }
+  .gallery-header {
+      text-align: center;
+      margin-bottom: 80px;
+  }
+
+  .gallery-header span {
+      font-size: 13px;
+      letter-spacing: 4px;
+      color: var(--accent, var(--cyan));
+      font-weight: 700;
+      text-transform: uppercase;
+  }
+
+  .gallery-header h2 {
+      font-family: var(--font-heading, var(--font));
+      font-size: clamp(36px, 5vw, 64px);
+      color: var(--text-primary, var(--txt));
+      margin: 10px 0 15px;
+  }
+
+  .gallery-header p {
+      font-size: 16px;
+      color: var(--text-secondary, var(--txt2));
+      max-width: 600px;
+      margin: 0 auto;
+  }
+
+  .stacked-reveal-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      width: 100%;
+  }
+
+  .reveal-img-container {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--card-shadow, 0 22px 70px rgba(0,0,0,.42));
+  }
+
+  .reveal-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.15); /* Controlled by GSAP */
+  }
+
+  @media(max-width: 768px) {
+      .stacked-reveal-gallery {
+          gap: 40px;
+      }
+      .reveal-img-container {
+          border-radius: 20px;
+          aspect-ratio: 4 / 3;
+      }
+      .sticky-section-gallery {
+          padding: 80px 24px;
+      }
+  }
+
   .impact-box-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; margin-top:44px; }
   .impact-box { min-height:180px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); border-radius:22px; background:var(--glass); }
   .impact-box span { font-size:clamp(44px,7vw,86px); font-weight:800; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  @media(max-width:900px){ .gallery-bento{grid-template-columns:1fr; grid-auto-rows:minmax(300px,68vw);} .impact-box-grid{grid-template-columns:repeat(2,1fr);} }
+  .sec-label, .sec-h2, .ov-big, .proj-h1 { text-align:center; margin-left:auto; margin-right:auto; }
+  @media(max-width:900px){ .impact-box-grid{grid-template-columns:repeat(2,1fr);} }
   @media(max-width:520px){ .impact-box-grid{grid-template-columns:1fr;} }
 
   </style>
@@ -613,49 +652,42 @@
   </div>
 </section>
 
-<!-- ══ GALLERY ══ -->
-<section class="proj-gallery" id="gallery" aria-label="Modern bento project image gallery">
-  <div class="wrap">
-    <div class="gallery-bento-head">
-      <div>
-        <div class="sec-label rv"><span class="dot"></span> Project Gallery</div>
-        <h2 class="sec-h2 rv" style="transition-delay:.1s;">Every screen <span class="grad">tells a story</span></h2>
-      </div>
-      <p class="gallery-bento-copy">A refined bento grid of product moments, clinical workflows, analytics surfaces, and compliance screens—built for quick scanning and immersive viewing.</p>
-    </div>
+<!-- 06. SCROLL REVEAL GALLERY (BRILIO STYLE) -->
+<section id="project-gallery" class="sticky-section-gallery">
+    <div class="gallery-scroll-container">
+        <div class="gallery-header">
+            <span>VISUAL IDENTITY</span>
+            <h2>Brand Showcase</h2>
+            <p>Observe the fluid left-to-right scroll reveal transition on each visual asset.</p>
+        </div>
 
-    <div class="gallery-bento" id="galGrid">
-      <button class="gal-item" type="button" data-idx="0" aria-label="Open Hospital Dashboard Overview image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_737ff7737ff7737f.png" alt="Hospital dashboard overview" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">Hospital Dashboard</div><div class="gal-cat">SaaS · Healthcare</div></div><span class="gal-view">View</span></div>
-      </button>
-      <button class="gal-item" type="button" data-idx="1" aria-label="Open Analytics and Reporting Panel image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png" alt="Analytics and reporting panel" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">Analytics Panel</div><div class="gal-cat">Data UI · Reporting</div></div><span class="gal-view">View</span></div>
-      </button>
-      <button class="gal-item" type="button" data-idx="2" aria-label="Open AI Diagnostic Interface image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_8hehif8hehif8heh.png" alt="AI diagnostic interface" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">AI Diagnostics</div><div class="gal-cat">Clinical AI</div></div><span class="gal-view">View</span></div>
-      </button>
-      <button class="gal-item" type="button" data-idx="3" aria-label="Open Mobile Clinical App image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png" alt="Mobile clinical app" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">Mobile Clinical App</div><div class="gal-cat">Mobile UX</div></div><span class="gal-view">View</span></div>
-      </button>
-      <button class="gal-item" type="button" data-idx="4" aria-label="Open Real-Time Monitoring image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_bhkf44bhkf44bhkf.png" alt="Real-time monitoring interface" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">Real-Time Monitoring</div><div class="gal-cat">Dashboard · Ops</div></div><span class="gal-view">View</span></div>
-      </button>
-      <button class="gal-item" type="button" data-idx="5" aria-label="Open Security and Compliance Center image">
-        <img class="gal-img" src="Images/Gemini_Generated_Image_5iyked5iyked5iyk.png" alt="Security and compliance center" loading="lazy" />
-        <div class="gal-veil"><div><div class="gal-title">Compliance Center</div><div class="gal-cat">Security · SaaS</div></div><span class="gal-view">View</span></div>
-      </button>
+        <div class="stacked-reveal-gallery">
+            <!-- Image 1 -->
+            <div class="reveal-img-container" onclick="openLightbox(0)">
+                <img src="./Images/Gemini_Generated_Image_39dgf639dgf639dg.png" alt="Brand Asset 01">
+            </div>
+
+            <!-- Image 2 -->
+            <div class="reveal-img-container" onclick="openLightbox(1)">
+                <img src="./Images/Gemini_Generated_Image_4wbmmb4wbmmb4wbm.png" alt="Brand Asset 02">
+            </div>
+
+            <!-- Image 3 -->
+            <div class="reveal-img-container" onclick="openLightbox(2)">
+                <img src="./Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="Brand Asset 03">
+            </div>
+
+            <!-- Image 4 -->
+            <div class="reveal-img-container" onclick="openLightbox(3)">
+                <img src="./Images/Gemini_Generated_Image_5iyked5iyked5iyk.png" alt="Brand Asset 04">
+            </div>
+        </div>
     </div>
-  </div>
 
   <div class="lb" id="lb">
     <button class="lb-x" id="lb-x" type="button" aria-label="Close gallery lightbox">✕</button>
     <button class="lb-nav lb-prev" id="lb-prev" type="button" aria-label="Previous gallery image">‹</button>
-    <div class="lb-stage"><img class="lb-img" id="lb-img" src="" alt="" /><div class="lb-label" id="lb-label">Dashboard</div><div class="lb-ctr" id="lb-ctr">1 / 6</div></div>
+    <div class="lb-stage"><img class="lb-img" id="lb-img" src="" alt="" /><div class="lb-label" id="lb-label">Brand Asset</div><div class="lb-ctr" id="lb-ctr">1 / 4</div></div>
     <button class="lb-nav lb-next" id="lb-next" type="button" aria-label="Next gallery image">›</button>
   </div>
 </section>
@@ -748,7 +780,7 @@ document.addEventListener('mousemove', e => {
 })();
 
 // Hover effects
-document.querySelectorAll('a, button, .gal-item, .sim-card, .impact-box, .ov-card, .tl-item').forEach(el => {
+document.querySelectorAll('a, button, .reveal-img-container, .sim-card, .impact-box, .ov-card, .tl-item').forEach(el => {
   el.addEventListener('mouseenter', () => curRing.classList.add('h'));
   el.addEventListener('mouseleave', () => curRing.classList.remove('h'));
 });
@@ -787,12 +819,10 @@ document.querySelectorAll('.counter').forEach(el => co.observe(el));
 
 /* LIGHTBOX */
 const galMeta = [
-  {src:'Images/Gemini_Generated_Image_737ff7737ff7737f.png', l:'Hospital Dashboard Overview'},
-  {src:'Images/Gemini_Generated_Image_ctj4lwctj4lwctj4.png', l:'Analytics & Reporting Panel'},
-  {src:'Images/Gemini_Generated_Image_8hehif8hehif8heh.png', l:'AI Diagnostic Interface'},
-  {src:'Images/Gemini_Generated_Image_cr7t9ycr7t9ycr7t.png', l:'Mobile Clinical App'},
-  {src:'Images/Gemini_Generated_Image_bhkf44bhkf44bhkf.png', l:'Real-Time Monitoring'},
-  {src:'Images/Gemini_Generated_Image_5iyked5iyked5iyk.png', l:'Security & Compliance Center'}
+  {src:'Images/Gemini_Generated_Image_39dgf639dgf639dg.png', l:'Brand Asset 01'},
+  {src:'Images/Gemini_Generated_Image_4wbmmb4wbmmb4wbm.png', l:'Brand Asset 02'},
+  {src:'Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png', l:'Brand Asset 03'},
+  {src:'Images/Gemini_Generated_Image_5iyked5iyked5iyk.png', l:'Brand Asset 04'}
 ];
 let lbIdx = 0;
 function openLb(i) {
@@ -807,7 +837,7 @@ function openLb(i) {
 }
 function closeLb() { document.getElementById('lb').classList.remove('open'); document.body.style.overflow=''; }
 function navLb(d) { lbIdx=(lbIdx+d+galMeta.length)%galMeta.length; openLb(lbIdx); }
-document.querySelectorAll('.gal-item').forEach((el, i) => el.addEventListener('click', () => openLb(i)));
+window.openLightbox = openLb;
 document.getElementById('lb-x').addEventListener('click', closeLb);
 document.getElementById('lb-prev').addEventListener('click', () => navLb(-1));
 document.getElementById('lb-next').addEventListener('click', () => navLb(1));
@@ -820,16 +850,44 @@ document.addEventListener('keydown', e => {
 });
 
 /* GSAP reveal for gallery + impact */
-gsap.fromTo('.gal-item', {opacity:0, x:-110, scale:.95}, {opacity:1, x:0, scale:1, duration:1, stagger:.12, ease:'expo.out', scrollTrigger:{trigger:'.proj-gallery', start:'top 70%', once:true}});
-const hTrack = document.querySelector('.hgal-track');
-const hShell = document.querySelector('.hgal-shell');
-if (hTrack && hShell) {
-  const horizontalDistance = () => Math.max(0, hTrack.scrollWidth - hShell.clientWidth);
-  gsap.fromTo(hTrack,
-    { x: () => -window.innerWidth * 0.82 },
-    { x: () => horizontalDistance(), ease:'power2.inOut', scrollTrigger:{ trigger:'.proj-gallery', start:'top top', end:'bottom bottom', scrub:1.1, invalidateOnRefresh:true } }
-  );
-}
+// ==========================================================================
+// GSAP SCROLLTRIGGER GALLERY REVEAL (PROJECT PAGE)
+// ==========================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Left-to-right clipPath image reveal animation
+        const revealContainers = document.querySelectorAll('.reveal-img-container');
+        revealContainers.forEach(container => {
+            const img = container.querySelector('img');
+            if (!img) return;
+
+            // Set initial state
+            gsap.set(container, { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)' });
+            gsap.set(img, { scale: 1.15 });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: container,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none'
+                }
+            });
+
+            tl.to(container, {
+                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                duration: 1.4,
+                ease: 'power3.inOut'
+            })
+            .to(img, {
+                scale: 1,
+                duration: 1.4,
+                ease: 'power3.out'
+            }, '-=1.4');
+        });
+    }
+});
 gsap.fromTo('.impact-box', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-box-grid', start:'top 82%', once:true}});
 
 </script>
