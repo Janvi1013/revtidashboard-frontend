@@ -36,15 +36,7 @@
   }
 
   body { font-family:var(--font); background:var(--bg); color:var(--txt); -webkit-font-smoothing:antialiased; cursor:none !important; }
-  @media (prefers-color-scheme: light) {
-    :root {
-      --bg:#f6f6f4; --bg2:#ffffff; --bg3:#ececea;
-      --glass:rgba(0,0,0,0.035); --glass2:rgba(0,0,0,0.07);
-      --grad:linear-gradient(135deg,#000000,#6b7280);
-      --txt:#050505; --txt2:#555963; --txt3:#8b8f98;
-      --border:rgba(0,0,0,0.12);
-    }
-  }
+  /* Force the portfolio to stay in the dark brand theme regardless of OS preference. */
   *, *::after, *::before { cursor:none !important; }
   ::selection { background:rgba(124,58,237,.3); }
   ::-webkit-scrollbar { width:3px; }
@@ -98,7 +90,7 @@
   .hero-ey { display:inline-flex; align-items:center; gap:8px; padding:7px 18px; border-radius:99px; margin-bottom:36px; background:rgba(124,58,237,.1); border:1px solid rgba(124,58,237,.22); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--purple-lt); animation:fu .7s both .2s; }
   .ey-dot { width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px var(--cyan); animation:blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.3;} }
-  .hero-h1 { font-size:clamp(56px,9vw,130px); font-weight:900; line-height:.92; letter-spacing:-.04em; margin-bottom:28px; animation:fu .8s both .4s; }
+  .hero-h1 { font-size:clamp(38px,6vw,84px); font-weight:900; line-height:.92; letter-spacing:-.04em; margin-bottom:28px; animation:fu .8s both .4s; }
   .grad { background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .hero-sub { font-size:clamp(16px,1.6vw,20px); color:var(--txt2); max-width:560px; line-height:1.75; margin:0 auto 44px; animation:fu .8s both .6s; }
   .hero-btns { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; animation:fu .8s both .8s; }
@@ -115,11 +107,11 @@
 
   /* ── IMPACT ── */
   .impact { padding:80px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2); }
-  .impact-grid { display:grid; grid-template-columns:repeat(3,1fr); }
-  .impact-item { padding:44px 52px; border-right:1px solid var(--border); transition:background .3s; }
+  .impact-grid { display:grid; grid-template-columns:repeat(4,1fr); }
+  .impact-item { padding:36px 30px; border-right:1px solid var(--border); transition:background .3s; }
   .impact-item:last-child { border-right:none; }
   .impact-item:hover { background:rgba(255,255,255,.02); }
-  .impact-num { font-size:clamp(52px,7vw,88px); font-weight:900; letter-spacing:-.04em; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; display:block; }
+  .impact-num { font-size:clamp(36px,4.8vw,64px); font-weight:900; letter-spacing:-.04em; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; display:block; }
   .impact-label { font-size:13px; font-weight:600; color:var(--txt2); text-transform:uppercase; letter-spacing:.1em; }
   .impact-sub { font-size:12px; color:var(--txt3); margin-top:4px; }
 
@@ -179,14 +171,14 @@
   .ss-eyebrow::before { content:''; width:32px; height:1.5px; background:var(--grad); flex-shrink:0; }
   .ss-title-wrap { overflow:hidden; margin-bottom:8px; }
   .ss-title {
-    font-size:clamp(52px,8vw,120px);
-    font-weight:900; line-height:.92; letter-spacing:-.04em;
+    font-size:clamp(38px,6vw,84px);
+    font-weight:900; line-height:.96; letter-spacing:-.035em;
     white-space:nowrap;
     opacity:0; transform:translateY(100%);
   }
   .ss-title-line2 {
-    font-size:clamp(52px,8vw,120px);
-    font-weight:900; line-height:.92; letter-spacing:-.04em;
+    font-size:clamp(38px,6vw,84px);
+    font-weight:900; line-height:.96; letter-spacing:-.035em;
     color:var(--txt2); font-weight:300;
     white-space:nowrap;
     opacity:0; transform:translateY(100%);
@@ -472,7 +464,7 @@
     .impact-grid { grid-template-columns:1fr; }
     .impact-item { border-right:none; border-bottom:1px solid var(--border); padding:32px 24px; }
     .ss-content { padding:0 24px; max-width:100%; }
-    .ss-title, .ss-title-line2 { font-size:clamp(40px,10vw,80px); white-space:normal; }
+    .ss-title, .ss-title-line2 { font-size:clamp(34px,9vw,64px); white-space:normal; }
     .ss-arrow { display:none; }
     .ss-counter { right:24px; }
     .gallery-sec-hdr h2 { white-space:normal; font-size:clamp(40px,12vw,80px); }
@@ -499,7 +491,7 @@
   .gallery-sec-hdr { width:min(1180px, calc(100% - 48px)); margin:0 auto clamp(42px,6vw,76px); text-align:left; display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:end; position:relative; z-index:1; }
   .gallery-sec-hdr .eyebrow { display:inline-flex; width:max-content; align-items:center; gap:10px; padding:8px 14px; border:1px solid rgba(255,255,255,.11); border-radius:999px; background:rgba(255,255,255,.035); backdrop-filter:blur(18px); color:#a3a3b8; font-size:11px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; margin-bottom:22px; }
   .gallery-sec-hdr .eyebrow::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--cyan); box-shadow:0 0 16px rgba(6,182,212,.9); }
-  .gallery-sec-hdr h2 { font-size:clamp(44px,8vw,118px); line-height:.88; letter-spacing:-.065em; font-weight:900; margin:0; white-space:normal; color:#fff; }
+  .gallery-sec-hdr h2 { font-size:clamp(36px,6.4vw,88px); line-height:.88; letter-spacing:-.065em; font-weight:900; margin:0; white-space:normal; color:#fff; }
   .gallery-sec-hdr p { max-width:380px; margin:0 0 10px auto; color:#8f8fa3; font-size:clamp(14px,1.4vw,17px); line-height:1.75; }
   .filter-outer { position:sticky; top:66px; z-index:800; margin-bottom:clamp(36px,5vw,64px); padding:12px 0; background:rgba(11,11,15,.78); backdrop-filter:blur(24px); border-block:1px solid rgba(255,255,255,.06); }
   .proj-stack { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(22px,2.6vw,36px); align-items:stretch; }
@@ -550,23 +542,24 @@
   .gallery-sec { background:var(--bg); background-image:none; padding:clamp(72px,8vw,118px) 0; }
   .gallery-sec::before { display:none; }
   .gallery-sec-hdr { width:min(1120px, calc(100% - 56px)); margin:0 auto clamp(28px,4vw,48px); display:block !important; text-align:left !important; }
-  .gallery-sec-hdr h2 { font-size:clamp(58px,12vw,132px); line-height:.86; letter-spacing:-.085em; font-weight:400; color:var(--txt); white-space:nowrap; }
+  .gallery-sec-hdr h2 { font-size:clamp(40px,7vw,92px); line-height:.86; letter-spacing:-.085em; font-weight:400; color:var(--txt); white-space:nowrap; }
   .gallery-sec-hdr h2::after { content:' Portfolio'; color:var(--txt2); }
-  .filter-outer { display:none; }
-  .proj-stack { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(34px,4vw,48px) clamp(28px,4vw,38px); }
+  .filter-outer { display:block; position:relative; top:auto; margin:0 0 clamp(28px,4vw,44px); border:0; background:transparent; backdrop-filter:none; }
+  .proj-stack { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(20px,2vw,28px); }
   .pc { min-height:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; backdrop-filter:none; text-decoration:none; }
   .pc::after, .pc-visual-ov { display:none; }
   .pc:hover { transform:none; border-color:transparent; box-shadow:none; background:transparent; }
-  .pc-visual { height:auto; aspect-ratio:1.08/1; border-radius:22px; background:var(--bg3); overflow:hidden; }
-  .pc-visual-img, .pc-visual-inner { border-radius:22px; }
+  .pc-visual { height:auto; aspect-ratio:4/5; border-radius:7px; background:var(--bg3); overflow:hidden; }
+  .pc-visual-img, .pc-visual-inner { border-radius:7px; }
   .pc:hover .pc-visual-img, .pc:hover .pc-visual-inner { transform:none; filter:none; }
-  .pc-info { padding:28px 0 0; display:block; }
-  .pc-title { font-size:clamp(26px,3vw,34px); line-height:1; letter-spacing:-.055em; font-weight:700; color:var(--txt); margin:0 0 18px; }
-  .pc-tags { display:flex; flex-wrap:wrap; gap:10px; margin:0; }
-  .pc-tag { padding:8px 18px; border-radius:999px; border:1px solid var(--txt); background:transparent; color:var(--txt); font-size:14px; font-weight:800; letter-spacing:-.02em; text-transform:uppercase; }
+  .pc-info { padding:18px 4px 0; display:block; }
+  .pc-title { font-size:clamp(18px,1.7vw,22px); line-height:1.08; letter-spacing:-.04em; font-weight:700; color:var(--txt); margin:0 0 12px; }
+  .pc-tags { display:flex; flex-wrap:wrap; gap:7px; margin:0; }
+  .pc-tag { padding:6px 10px; border-radius:999px; border:1px solid var(--txt); background:transparent; color:var(--txt); font-size:10px; font-weight:800; letter-spacing:-.02em; text-transform:uppercase; }
   .pc-tag:nth-child(n+3) { display:none; }
-  .pc:nth-child(even) .pc-tag { background:var(--txt); color:var(--bg); }
+  .pc:nth-child(even) .pc-tag { background:transparent; color:var(--txt); }
   .pc-cta-hover { display:none; }
+  @media(max-width:1024px){ .proj-stack{grid-template-columns:repeat(2,minmax(0,1fr));} }
   @media(max-width:760px){ .gallery-sec-hdr h2{white-space:normal;} .proj-stack{grid-template-columns:1fr;} }
   </style>
 </head>
@@ -623,6 +616,7 @@
       <div class="impact-item rv"><span class="impact-num counter" data-t="10" data-s="+">10+</span><div class="impact-label">Years of Experience</div><div class="impact-sub">Delivering results since 2018</div></div>
       <div class="impact-item rv" style="transition-delay:.1s;"><span class="impact-num counter" data-t="200" data-s="+">200+</span><div class="impact-label">Clients Served</div><div class="impact-sub">Across 8+ industries globally</div></div>
       <div class="impact-item rv" style="transition-delay:.2s;"><span class="impact-num counter" data-t="50" data-s="+">50+</span><div class="impact-label">Projects Delivered</div><div class="impact-sub">On time, on budget, on point</div></div>
+      <div class="impact-item rv" style="transition-delay:.3s;"><span class="impact-num counter" data-t="8" data-s="+">8+</span><div class="impact-label">Industries Covered</div><div class="impact-sub">Focused expertise across growth sectors</div></div>
     </div>
   </div>
 </section>
