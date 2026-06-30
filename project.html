@@ -109,8 +109,8 @@
     background: var(--bg);
     text-align: center;
   }
-  .hero-mesh { position:absolute; inset:0; background:radial-gradient(ellipse 70% 65% at 50% 45%,rgba(124,58,237,.13),transparent),radial-gradient(ellipse 50% 50% at 80% 75%,rgba(37,99,235,.09),transparent),radial-gradient(ellipse 40% 40% at 15% 80%,rgba(6,182,212,.07),transparent); }
-  .hero-grid-bg { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px); background-size:72px 72px; }
+  .hero-mesh { position:absolute; inset:0;}
+  .hero-grid-bg { position:absolute; inset:0;}
   .hero-wm { position:absolute; right:-40px; bottom:-60px; font-size:clamp(160px,20vw,300px); font-weight:900; letter-spacing:-.05em; color:rgba(255,255,255,.022); pointer-events:none; user-select:none; line-height:1; }
   .orb { position:absolute; border-radius:50%; filter:blur(100px); pointer-events:none; animation:orb-f 10s ease-in-out infinite; }
   @keyframes orb-f { 0%,100%{transform:translate(0,0);} 50%{transform:translate(15px,-15px);} }
@@ -536,10 +536,10 @@
   .impact-metric-card { min-height:clamp(190px,24vw,260px); border:2px solid var(--txt); border-radius:42px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; justify-items:center; gap:clamp(10px,3vw,28px); padding:clamp(24px,4vw,40px); background:var(--bg); color:var(--txt); position:relative; overflow:hidden; }
   .impact-before { position:relative; font-size:clamp(36px,6vw,76px); font-weight:300; color:var(--txt2); letter-spacing:-.08em; }
   .impact-before::after { content:''; position:absolute; left:-12%; right:-12%; top:56%; height:2px; background:var(--txt2); transform:rotate(-9deg); }
-  .impact-arrow { font-size:clamp(46px,8vw,96px); line-height:1; color:var(--txt); transform:translateY(-4px); }
+  .impact-arrow { font-size:clamp(46px,8vw,96px); line-height:2; color:var(--txt); transform:translateY(-4px); }
   .impact-after { font-size:clamp(42px,7vw,88px); font-weight:400; letter-spacing:-.075em; color:var(--txt); }
   .impact-copy { grid-column:1/-1; text-align:center; color:var(--txt2); font-size:clamp(12px,1.2vw,15px); line-height:1.55; max-width:460px; margin:0 auto; }
-  .sec-label, .sec-h2, .ov-big, .proj-h1 { text-align:center; margin-left:auto; margin-right:auto; }
+  .sec-label, .sec-h2, .ov-big, .proj-h1 {  margin-left:auto; margin-right:auto; }
   @media(max-width:900px){ .impact-card-grid{grid-template-columns:1fr;} }
   @media(max-width:760px){ .impact-metric-card{border-radius:30px; grid-template-columns:1fr; gap:8px;} .impact-arrow{transform:rotate(90deg);} }
 
@@ -615,9 +615,9 @@
 <header class="proj-hero">
   <div class="hero-mesh"></div>
   <div class="hero-grid-bg"></div>
-  <div class="hero-wm">HC</div>
-  <div class="orb" style="width:500px;height:500px;top:-80px;left:-100px;background:rgba(124,58,237,.09);"></div>
-  <div class="orb" style="width:320px;height:320px;bottom:20%;right:-60px;background:rgba(6,182,212,.06);animation-delay:-5s;"></div>
+  <!-- <div class="hero-wm">HC</div> -->
+  <div class="orb" style="width:500px;height:500px;top:-80px;left:-100px;background:black;"></div>
+  <div class="orb" style="width:320px;height:320px;bottom:20%;right:-60px;background:black;animation-delay:-5s;"></div>
   <div style="width:100%;">
     <div class="proj-hero-content">
       <ol class="breadcrumb">
@@ -658,8 +658,9 @@
   <div class="wrap">
     <div class="overview-grid">
       <div>
-        <div class="sec-label rv"><span class="dot"></span> Overview</div>
-        <h2 class="ov-big rv" style="transition-delay:.1s;">Revolutionising diagnostics with <span class="grad">AI intelligence</span></h2>
+        <!-- <div class="sec-label rv"><span class="dot"></span> Overview</div> -->
+          <h2 class="sec-h2 rv" style="transition-delay:.1s;margin-bottom:56px;"><span class="grad">Overview</span></h2>
+        <h2 class="ov-big rv" style="transition-delay:.1s;">Revolutionising diagnostics with AI intelligence</h2>
         <p class="ov-p rv" style="transition-delay:.15s;">Apollo Health Systems faced fragmented patient data across 500+ facilities — overwhelming clinical staff and causing costly diagnostic delays. Revti Digital designed and engineered a unified AI-powered platform that connects every hospital, surfaces real-time insights, and assists physicians with evidence-based recommendations.</p>
         <p class="ov-p rv" style="transition-delay:.2s;">Full HIPAA, HL7 FHIR R4, and ISO 27001 compliance from sprint one — zero security incidents since April 2024 launch.</p>
 
@@ -677,7 +678,7 @@
 <!-- ══ PROCESS ══ -->
 <section class="proj-process" id="process">
   <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> Our Process</div>
+    <!-- <div class="sec-label rv"><span class="dot"></span> Our Process</div> -->
     <h2 class="sec-h2 rv" style="transition-delay:.1s;margin-bottom:56px;">From discovery to <span class="grad">deployment</span></h2>
     <div class="timeline">
       <div class="tl-item rv"><div class="tl-dot">🔍</div><div class="tl-body"><div class="tl-step">Phase 01 · Weeks 1–4</div><h3 class="tl-title">Discovery & Research</h3><p class="tl-text">80+ stakeholder interviews across 12 hospitals. Mapped 200+ clinical workflows and synthesised 40 pain points into a strategic platform blueprint.</p></div></div>
@@ -693,7 +694,7 @@
 <section id="project-gallery" class="sticky-section-gallery">
     <div class="gallery-scroll-container">
         <div class="gallery-header">
-            <span>VISUAL IDENTITY</span>
+            <!-- <span>VISUAL IDENTITY</span> -->
             <h2>Brand Showcase</h2>
             <p>Observe the fluid left-to-right scroll reveal transition on each visual asset.</p>
         </div>
@@ -736,33 +737,41 @@
     <div class="impact-card-grid" aria-label="Impact result metrics">
       <div class="impact-metric-card rv" style="transition-delay:.1s;" aria-label="Improved diagnostic errors from ten times to forty percent fewer errors">
         <span class="impact-metric-label">Diagnostic Errors</span>
-        <span class="impact-before-label">Before</span>
-        <div class="impact-metric-row"><span class="impact-before">10×</span><span class="impact-arrow" aria-hidden="true">→</span><span><span class="impact-after-label">After</span><span class="impact-after counter" data-t="40" data-s="%">40%</span></span></div>
+        <!-- <span class="impact-before-label">Before</span> -->
+        <div class="impact-metric-row"><span class="impact-before">10×</span><span class="impact-arrow" aria-hidden="true">→</span><span>
+          <!-- <span class="impact-after-label">After</span> -->
+          <span class="impact-after counter" data-t="40" data-s="%">40%</span></span></div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.16s;" aria-label="Reporting improved from one times to three times faster">
         <span class="impact-metric-label">Reporting Speed</span>
-        <span class="impact-before-label">Before</span>
-        <div class="impact-metric-row"><span class="impact-before">1×</span><span class="impact-arrow" aria-hidden="true">→</span><span><span class="impact-after-label">After</span><span class="impact-after counter" data-t="3" data-s="×">3×</span></span></div>
+        <!-- <span class="impact-before-label">Before</span> -->
+        <div class="impact-metric-row"><span class="impact-before">1×</span><span class="impact-arrow" aria-hidden="true">→</span><span>
+          <!-- <span class="impact-after-label">After</span> -->
+          <span class="impact-after counter" data-t="3" data-s="×">3×</span></span></div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.22s;" aria-label="Annual savings improved from zero million to twelve million dollars">
         <span class="impact-metric-label">Annual Savings</span>
-        <span class="impact-before-label">Before</span>
-        <div class="impact-metric-row"><span class="impact-before">$0</span><span class="impact-arrow" aria-hidden="true">→</span><span><span class="impact-after-label">After</span><span class="impact-after counter" data-p="$" data-t="12" data-s="M">$12M</span></span></div>
+        <!-- <span class="impact-before-label">Before</span> -->
+        <div class="impact-metric-row"><span class="impact-before">$0</span><span class="impact-arrow" aria-hidden="true">→</span><span>
+          <!-- <span class="impact-after-label">After</span> -->
+          <span class="impact-after counter" data-p="$" data-t="12" data-s="M">$12M</span></span></div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.28s;" aria-label="Hospital rollout improved from one hospital to five hundred plus hospitals">
         <span class="impact-metric-label">Hospitals Connected</span>
-        <span class="impact-before-label">Before</span>
-        <div class="impact-metric-row"><span class="impact-before">1</span><span class="impact-arrow" aria-hidden="true">→</span><span><span class="impact-after-label">After</span><span class="impact-after counter" data-t="500" data-s="+">500+</span></span></div>
+        <!-- <span class="impact-before-label">Before</span> -->
+        <div class="impact-metric-row"><span class="impact-before">1</span><span class="impact-arrow" aria-hidden="true">→</span><span>
+          <!-- <span class="impact-after-label">After</span> -->
+          <span class="impact-after counter" data-t="500" data-s="+">500+</span></span></div>
       </div>
     </div>
-    <p class="impact-copy rv" style="transition-delay:.18s;">Fewer diagnostic errors after launching the AI-assisted healthcare platform.</p>
+    <!-- <p class="impact-copy rv" style="transition-delay:.18s;">Fewer diagnostic errors after launching the AI-assisted healthcare platform.</p> -->
   </div>
 </section>
 
 <!-- ══ SIMILAR ══ -->
 <section class="proj-similar" id="similar">
   <div class="wrap">
-    <div class="sec-label rv"><span class="dot"></span> More Case Studies</div>
+    <!-- <div class="sec-label rv"><span class="dot"></span> More Case Studies</div> -->
     <h2 class="sec-h2 rv" style="transition-delay:.1s;">Explore <span class="grad">related work</span></h2>
     <div class="sim-grid">
       <a href="project.html?id=seo" class="sim-card"><div class="sim-thumb" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(37,99,235,.12));">📈</div><div class="sim-body"><span class="sim-cat sc-p">SEO · Digital Marketing</span><h3 class="sim-title">OrganicBoost SEO Campaign</h3><p class="sim-sub">340% organic growth in 6 months.</p></div></a>
