@@ -544,7 +544,15 @@
   .gallery-sec-hdr { width:min(1120px, calc(100% - 56px)); margin:0 auto clamp(28px,4vw,48px); display:block !important; text-align:left !important; }
   .gallery-sec-hdr h2 { font-size:clamp(40px,7vw,92px); line-height:.86; letter-spacing:-.085em; font-weight:400; color:var(--txt); white-space:nowrap; }
   .gallery-sec-hdr h2::after { content:' Portfolio'; color:var(--txt2); }
-  .filter-outer { display:block; position:relative; top:auto; margin:0 0 clamp(28px,4vw,44px); border:0; background:transparent; backdrop-filter:none; }
+  .filter-outer { display:flex; justify-content:center; position:relative; top:auto; margin:0 auto clamp(36px,5vw,58px); padding:0; border:0; background:transparent; backdrop-filter:none; }
+  .filter-bar { width:min(100%, 880px); justify-content:center; gap:clamp(24px,4vw,52px); padding:0 24px 28px; overflow-x:auto; border-bottom:1px solid rgba(255,255,255,.08); }
+  .filter-ind { display:none !important; }
+  .f-btn { position:relative; border:0; border-radius:0; background:transparent; padding:0 0 14px; color:var(--txt2); font-size:13px; font-weight:800; letter-spacing:.28em; line-height:1; text-transform:uppercase; }
+  .f-btn::after { content:''; position:absolute; left:50%; right:50%; bottom:0; height:2px; background:currentColor; transition:left .28s var(--ease), right .28s var(--ease); }
+  .f-btn:hover { color:var(--txt); transform:none; }
+  .f-btn.active { color:var(--txt); font-weight:900; }
+  .f-btn.active::after, .f-btn:hover::after { left:0; right:0; }
+  .f-btn .fc { display:none; }
   .proj-stack { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(20px,2vw,28px); }
   .pc { min-height:0; padding:0; border:0; border-radius:0; background:transparent; box-shadow:none; backdrop-filter:none; text-decoration:none; }
   .pc::after, .pc-visual-ov { display:none; }
@@ -560,7 +568,7 @@
   .pc:nth-child(even) .pc-tag { background:transparent; color:var(--txt); }
   .pc-cta-hover { display:none; }
   @media(max-width:1024px){ .proj-stack{grid-template-columns:repeat(2,minmax(0,1fr));} }
-  @media(max-width:760px){ .gallery-sec-hdr h2{white-space:normal;} .proj-stack{grid-template-columns:1fr;} }
+  @media(max-width:760px){ .gallery-sec-hdr h2{white-space:normal;} .proj-stack{grid-template-columns:1fr;} .filter-outer{justify-content:center;} .filter-bar{justify-content:flex-start; gap:28px; padding-inline:22px;} .f-btn{font-size:12px; letter-spacing:.2em;} }
   </style>
 </head>
 <body>
@@ -693,12 +701,10 @@
     <div class="filter-bar" id="filterBar">
       <div class="filter-ind" id="filterInd"></div>
       <button class="f-btn active" data-filter="all">All <span class="fc">8</span></button>
-      <button class="f-btn" data-filter="digital-marketing">Digital Marketing <span class="fc">3</span></button>
-      <button class="f-btn" data-filter="seo">SEO <span class="fc">1</span></button>
-      <button class="f-btn" data-filter="web-dev">Web Dev <span class="fc">3</span></button>
-      <button class="f-btn" data-filter="social-media">Social Media <span class="fc">2</span></button>
-      <button class="f-btn" data-filter="ecommerce">E-Commerce <span class="fc">1</span></button>
       <button class="f-btn" data-filter="branding">Branding <span class="fc">2</span></button>
+      <button class="f-btn" data-filter="seo">SEO <span class="fc">1</span></button>
+      <button class="f-btn" data-filter="web-dev">Web Design <span class="fc">3</span></button>
+      <button class="f-btn" data-filter="illustration">Illustration <span class="fc">2</span></button>
     </div>
   </div>
 
@@ -724,7 +730,7 @@
       </article>
 
       <!-- Project 2 (alt) -->
-      <article class="pc alt" data-cat="social-media digital-marketing">
+      <article class="pc alt" data-cat="social-media digital-marketing illustration">
         <div class="pc-visual" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(6,182,212,.1),var(--bg3));">
           <div class="pc-visual-inner">📱</div>
           <div class="pc-visual-ov"></div>
@@ -832,7 +838,7 @@
       </article>
 
       <!-- Project 8 (alt) -->
-      <article class="pc alt" data-cat="branding social-media">
+      <article class="pc alt" data-cat="branding social-media illustration">
         <div class="pc-visual" style="background:linear-gradient(135deg,rgba(6,182,212,.18),rgba(37,99,235,.12),var(--bg3));">
           <div class="pc-visual-inner">🚀</div>
           <div class="pc-visual-ov"></div>
