@@ -804,6 +804,118 @@
   @media(max-width:1024px){ .proj-stack{grid-template-columns:repeat(2,minmax(0,1fr)) !important; width:min(100%,760px);} }
   @media(max-width:760px){ .hero{padding:110px 0 64px;} .cta-line{display:none;} .hero-h1,.gallery-sec-hdr h2,.sec-h2,.cta-title{font-size:clamp(42px,15vw,72px)!important;} .proj-stack{grid-template-columns:1fr !important; width:min(100%,420px);} }
 
+
+  /* Responsive polish: wider, shorter project cards and safer layouts on every viewport */
+  .wrap, .nav-in {
+    width:min(100%, 1440px);
+    padding-inline:clamp(18px, 4vw, 56px);
+  }
+
+  .nav-in { gap:24px; }
+  .nav-links { gap:clamp(20px, 3vw, 36px); }
+
+  .hero {
+    min-height:min(92vh, 920px);
+    padding-block:clamp(104px, 14vw, 150px) clamp(56px, 8vw, 88px);
+  }
+
+  .hero-content {
+    width:min(100%, 980px);
+    padding-top:0;
+  }
+
+  .hero-h1, .gallery-sec-hdr h2, .sec-h2, .cta-title {
+    text-wrap:balance;
+  }
+
+  .impact { padding-block:clamp(56px, 8vw, 100px); }
+  .impact-grid { grid-template-columns:repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+  .impact-item { min-width:0; }
+
+  .gallery-sec { padding-block:clamp(60px, 8vw, 112px) !important; }
+  .gallery-sec-hdr { width:min(1280px, calc(100% - 36px)) !important; }
+  .filter-bar { max-width:100%; }
+
+  .proj-stack {
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+    width:min(100%, 1280px) !important;
+    gap:clamp(20px, 2.6vw, 34px) !important;
+  }
+
+  .pc {
+    padding:clamp(10px, 1.3vw, 14px) !important;
+  }
+
+  .pc-visual {
+    aspect-ratio:16 / 9.5 !important;
+  }
+
+  .pc-info {
+    padding:clamp(14px, 1.6vw, 20px) clamp(4px, 1vw, 8px) 0 !important;
+  }
+
+  .pc-title {
+    font-size:clamp(21px, 2vw, 28px) !important;
+    margin-bottom:clamp(10px, 1.2vw, 14px) !important;
+  }
+
+  .pc-tags { gap:7px !important; }
+  .pc-tag { padding:7px 10px !important; }
+
+  .contact-cta { padding-block:clamp(64px, 9vw, 120px); }
+  .cta-socials { gap:clamp(16px, 4vw, 34px); }
+
+  @media (max-width: 1180px) {
+    .proj-stack { width:min(100%, 980px) !important; }
+    .nav-cta { padding-inline:18px; }
+  }
+
+  @media (max-width: 900px) {
+    .nav-links, .nav-cta { display:none; }
+    .ham { display:flex; }
+    .hero { min-height:auto; }
+    .hero-btns { align-items:center; }
+    .proj-stack { grid-template-columns:1fr !important; width:min(100%, 620px) !important; }
+    .pc-visual { aspect-ratio:16 / 9 !important; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    html, body, *, *::before, *::after { cursor:auto !important; }
+    .cur-dot, .cur-ring, .cur-view-txt { display:none !important; }
+    .wrap, .nav-in { padding-inline:18px; }
+    .logo-t { font-size:16px; }
+    .logo-i { width:34px; height:34px; }
+    .hero { padding-block:96px 52px; }
+    .hero-h1, .gallery-sec-hdr h2, .sec-h2, .cta-title {
+      font-size:clamp(38px, 13vw, 62px) !important;
+      letter-spacing:-.055em !important;
+    }
+    .hero-sub { font-size:15px; line-height:1.65; margin-bottom:26px; }
+    .hero-btns, .cta-row { flex-direction:column; width:100%; }
+    .btn-primary, .btn-ghost { width:100%; justify-content:center; }
+    .impact-grid { gap:16px; }
+    .impact-item { padding:26px 18px; }
+    .impact-num { font-size:clamp(36px, 14vw, 54px); }
+    .gallery-sec-hdr { width:calc(100% - 36px) !important; margin-bottom:28px !important; }
+    .filter-outer { justify-content:flex-start; overflow:hidden; }
+    .filter-bar { justify-content:flex-start; gap:22px; padding:0 18px 22px; }
+    .proj-stack { width:100% !important; gap:28px !important; }
+    .pc { border-radius:10px !important; padding:10px 10px 14px !important; }
+    .pc-visual { aspect-ratio:4 / 3 !important; }
+    .pc-title { font-size:clamp(22px, 7vw, 28px) !important; }
+    .cta-socials, .foot-leg { flex-direction:column; align-items:center; gap:14px; }
+    .footer-grid { grid-template-columns:1fr; gap:30px; }
+    .foot-bot { align-items:center; }
+  }
+
+  @media (max-width: 380px) {
+    .wrap, .nav-in { padding-inline:14px; }
+    .mob-nav a { font-size:28px; }
+    .f-btn { font-size:11px; letter-spacing:.14em; }
+    .pc-tag { font-size:10px !important; padding:6px 8px !important; }
+  }
+
   </style>
 </head>
 <body>
@@ -819,7 +931,7 @@
     <a href="index.html" class="logo"><div class="logo-i">R</div><span class="logo-t">Revti<span>Digital</span></span></a>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
-      <li><a href="#showcase">Projects</a></li>
+      <li><a href="#gallery">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Start a Project</a>
@@ -827,7 +939,7 @@
   </div>
 </nav>
 <div class="mob-nav" id="mob">
-  <a href="#hero">Home</a><a href="#showcase">Projects</a><a href="#contact">Contact</a>
+  <a href="#hero">Home</a><a href="#gallery">Projects</a><a href="#contact">Contact</a>
   <a href="#contact" class="nav-cta" style="font-size:18px;">Start a Project</a>
 </div>
 
@@ -1127,7 +1239,7 @@
           <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
         </div>
       </div>
-      <div><h3 class="foot-h">Navigation</h3><nav class="foot-links"><a href="#hero">Home</a><a href="#showcase">Showcase</a><a href="#gallery">Projects</a><a href="#contact">Contact</a></nav></div>
+      <div><h3 class="foot-h">Navigation</h3><nav class="foot-links"><a href="#hero">Home</a><a href="#gallery">Projects</a><a href="#contact">Contact</a></nav></div>
       <div><h3 class="foot-h">Services</h3><nav class="foot-links"><a href="#">SEO & Content</a><a href="#">Social Media</a><a href="#">PPC & Paid Ads</a><a href="#">Web Development</a><a href="#">E-Commerce</a><a href="#">Branding</a></nav></div>
       <div>
         <h3 class="foot-h">Contact</h3>
