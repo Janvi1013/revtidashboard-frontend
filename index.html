@@ -920,16 +920,19 @@
 
   /* Flight-card inspired project cards */
   .proj-stack {
+    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
+    width:min(100%, 1320px) !important;
+    gap:clamp(18px, 2vw, 28px) !important;
     align-items:stretch;
   }
   .pc {
-    border-radius:42px !important;
+    border-radius:34px !important;
     padding:10px !important;
     background:linear-gradient(180deg,#ffffff,#eef1f5) !important;
     border:1px solid rgba(255,255,255,.9) !important;
     box-shadow:0 24px 70px rgba(0,0,0,.42), inset 0 0 0 1px rgba(255,255,255,.7) !important;
     overflow:hidden !important;
-    min-height:clamp(500px, 52vw, 680px) !important;
+    min-height:clamp(430px, 36vw, 520px) !important;
   }
   .pc:hover {
     transform:translateY(-8px) !important;
@@ -942,23 +945,23 @@
     width:auto !important;
     height:auto !important;
     aspect-ratio:auto !important;
-    border-radius:34px !important;
+    border-radius:26px !important;
     overflow:hidden !important;
     background:#151821 !important;
   }
   .pc-visual::before {
     content:'♡';
     position:absolute;
-    top:20px;
-    right:20px;
+    top:16px;
+    right:16px;
     z-index:3;
-    width:58px;
-    height:58px;
+    width:50px;
+    height:50px;
     border-radius:50%;
     display:grid;
     place-items:center;
     color:#fff;
-    font-size:31px;
+    font-size:27px;
     line-height:1;
     background:rgba(255,255,255,.12);
     border:1px solid rgba(255,255,255,.35);
@@ -967,27 +970,28 @@
   }
   .pc-visual-img,
   .pc-visual-inner {
-    border-radius:34px !important;
-    filter:saturate(1.05) contrast(1.02) !important;
+    border-radius:26px !important;
+    filter:blur(1.8px) saturate(1.05) contrast(.96) brightness(.92) !important;
+    transform:scale(1.03);
   }
   .pc-visual-ov {
     display:block !important;
     opacity:1 !important;
     z-index:2;
-    background:linear-gradient(180deg,rgba(5,5,5,0) 38%,rgba(5,5,5,.62) 70%,rgba(5,5,5,.92) 100%) !important;
+    background:linear-gradient(180deg,rgba(245,247,255,.28) 0%,rgba(5,5,5,.42) 52%,rgba(5,5,5,.9) 100%) !important;
   }
   .pc-info {
     position:relative !important;
     z-index:4;
     margin-top:auto !important;
-    padding:0 clamp(18px,2.4vw,30px) clamp(22px,2.6vw,32px) !important;
+    padding:0 clamp(16px,1.8vw,24px) clamp(18px,2vw,24px) !important;
     color:#fff !important;
-    min-height:210px !important;
+    min-height:235px !important;
     justify-content:flex-end !important;
   }
   .pc-title {
     color:#fff !important;
-    font-size:clamp(28px,3.2vw,46px) !important;
+    font-size:clamp(24px,2.35vw,36px) !important;
     letter-spacing:-.055em !important;
     margin-bottom:10px !important;
     text-shadow:0 3px 18px rgba(0,0,0,.38);
@@ -1001,7 +1005,7 @@
     color:rgba(255,255,255,.86) !important;
     background:transparent !important;
     padding:0 !important;
-    font-size:clamp(14px,1.5vw,18px) !important;
+    font-size:clamp(13px,1.1vw,15px) !important;
     font-weight:600 !important;
     letter-spacing:-.02em !important;
     text-transform:none !important;
@@ -1017,8 +1021,8 @@
     align-items:center;
     justify-content:center;
     width:100% !important;
-    margin-top:22px !important;
-    padding:16px 22px !important;
+    margin-top:18px !important;
+    padding:14px 20px !important;
     border:0 !important;
     border-radius:999px !important;
     background:linear-gradient(180deg,#fff,#eef0f3) !important;
@@ -1029,7 +1033,8 @@
     pointer-events:none;
   }
   .pc-link::after { display:none !important; }
-  @media(max-width:760px){ .pc{min-height:560px !important; border-radius:34px !important;} .pc-visual{border-radius:26px !important;} .pc-visual-img,.pc-visual-inner{border-radius:26px !important;} }
+  @media(max-width:1024px){ .proj-stack{grid-template-columns:repeat(2, minmax(0, 1fr)) !important; width:min(100%, 900px) !important;} }
+  @media(max-width:760px){ .proj-stack{grid-template-columns:1fr !important; width:min(100%, 420px) !important;} .pc{min-height:540px !important; border-radius:34px !important;} .pc-visual{border-radius:26px !important;} .pc-visual-img,.pc-visual-inner{border-radius:26px !important;} }
 
   </style>
 </head>
