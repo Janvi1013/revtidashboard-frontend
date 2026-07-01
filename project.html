@@ -805,6 +805,57 @@
   }
 
 
+  /* Studio-style project prev/next arrows */
+  .project-switcher {
+    position:fixed;
+    inset:50% 28px auto;
+    transform:translateY(-50%);
+    z-index:8500;
+    display:flex;
+    justify-content:space-between;
+    pointer-events:none;
+  }
+  .project-switch {
+    pointer-events:auto;
+    width:54px;
+    height:54px;
+    border-radius:999px;
+    display:grid;
+    place-items:center;
+    text-decoration:none;
+    color:var(--txt) !important;
+    background:rgba(5,5,5,.38) !important;
+    border:1px solid rgba(255,255,255,.22) !important;
+    box-shadow:0 14px 40px rgba(0,0,0,.48), inset 0 1px 0 rgba(255,255,255,.08) !important;
+    backdrop-filter:blur(14px);
+    transition:transform .25s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+  }
+  .project-switch:hover {
+    transform:scale(1.08);
+    background:rgba(255,255,255,.055) !important;
+    border-color:rgba(255,255,255,.38) !important;
+  }
+  .project-switch i { font-size:18px; line-height:1; }
+  .project-switch span {
+    position:absolute;
+    top:calc(100% + 10px);
+    color:var(--txt2);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    opacity:.88;
+  }
+  .project-prev span { left:0; }
+  .project-next span { right:0; }
+  @media(max-width:760px){
+    .project-switcher { inset:auto 18px 22px; transform:none; }
+    .project-switch { width:48px; height:48px; }
+    .project-switch span { display:none; }
+  }
+
+
   </style>
 </head>
 <body>
@@ -838,6 +889,17 @@
     <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<!-- Project Previous / Next -->
+<div class="project-switcher" aria-label="Project navigation">
+  <a class="project-switch project-prev" id="projectPrev" href="project.html?id=seo" aria-label="Previous project">
+    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i><span>Previous</span>
+  </a>
+  <a class="project-switch project-next" id="projectNext" href="project.html?id=branding" aria-label="Next project">
+    <span>Next</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+  </a>
+</div>
+
 <div class="mob-nav" id="mob">
   <a href="index.html">Home</a>
   <a href="index.html#showcase">Projects</a>
@@ -1021,31 +1083,6 @@
 <!-- ══ BACK HOME ══ -->
 <div class="back-bar"><a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a></div>
 
-<!-- ══ FOOTER ══ -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="index.html" class="logo"><div class="logo-i">R</div><span class="logo-t">Revti<span>Digital</span></span></a>
-        <p>Tailor-made digital marketing and software that drives measurable growth.</p>
-        <div class="soc-row"><a href="#" class="soc-btn"><i class="fa-brands fa-linkedin-in"></i></a><a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a><a href="#" class="soc-btn"><i class="fa-brands fa-x-twitter"></i></a><a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a></div>
-      </div>
-      <div><h3 class="foot-h">Navigation</h3><nav class="foot-links"><a href="index.html">Home</a><a href="index.html#showcase">All Projects</a><a href="index.html#contact">Contact</a></nav></div>
-      <div><h3 class="foot-h">Case Studies</h3><nav class="foot-links"><a href="#">HealthCore Platform</a><a href="#">OrganicBoost SEO</a><a href="#">LuxeStore</a><a href="#">Zenith Rebrand</a></nav></div>
-      <div>
-        <h3 class="foot-h">Contact</h3>
-        <div class="cr"><i class="fa-solid fa-envelope"></i><a href="mailto:hello@revtidigital.com">hello@revtidigital.com</a></div>
-        <div class="cr"><i class="fa-solid fa-phone"></i><a href="tel:+919876543210">+91 98765 43210</a></div>
-        <div class="cr"><i class="fa-solid fa-location-dot"></i><span>Mumbai · Bangalore · Remote</span></div>
-        <a href="index.html#contact" class="btn-primary" style="margin-top:20px;display:inline-flex;padding:11px 22px;font-size:13px;border-radius:99px;background:var(--grad);color:#fff;font-weight:600;text-decoration:none;gap:8px;box-shadow:0 4px 16px rgba(124,58,237,.35);align-items:center;"><i class="fa-solid fa-rocket"></i> Start a Project</a>
-      </div>
-    </div>
-    <div class="foot-bot">
-      <p class="foot-copy">© 2024 Revti Digital. All rights reserved.</p>
-      <nav class="foot-leg"><a href="#">Privacy</a><a href="#">Terms</a></nav>
-    </div>
-  </div>
-</footer>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -1187,6 +1224,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+/* Project Previous / Next navigation */
+const projectSequence = ['seo','social','healthcore','branding','ecommerce','fintech','mfg','nova'];
+const params = new URLSearchParams(window.location.search);
+const currentProject = params.get('id') || 'healthcore';
+const currentProjectIndex = Math.max(projectSequence.indexOf(currentProject), 0);
+const prevProjectId = projectSequence[(currentProjectIndex - 1 + projectSequence.length) % projectSequence.length];
+const nextProjectId = projectSequence[(currentProjectIndex + 1) % projectSequence.length];
+const projectPrev = document.getElementById('projectPrev');
+const projectNext = document.getElementById('projectNext');
+if (projectPrev && projectNext) {
+  projectPrev.href = `project.html?id=${prevProjectId}`;
+  projectNext.href = `project.html?id=${nextProjectId}`;
+}
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lb');
+  if (lb && lb.classList.contains('open')) return;
+  if (e.key === 'ArrowLeft' && projectPrev) window.location.href = projectPrev.href;
+  if (e.key === 'ArrowRight' && projectNext) window.location.href = projectNext.href;
+});
+
 gsap.fromTo('.impact-metric-card', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-card-grid', start:'top 82%', once:true}});
 
 </script>
