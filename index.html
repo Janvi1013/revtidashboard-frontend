@@ -106,14 +106,208 @@
   .scroll-label { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--txt3); }
 
   /* ── IMPACT ── */
-  .impact { padding:80px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2); }
+  /* .impact { padding:80px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2); }
   .impact-grid { display:grid; grid-template-columns:repeat(4,1fr); }
   .impact-item { padding:36px 30px; border-right:1px solid var(--border); transition:background .3s; }
   .impact-item:last-child { border-right:none; }
   .impact-item:hover { background:rgba(255,255,255,.02); }
   .impact-num { font-size:clamp(36px,4.8vw,64px); font-weight:900; letter-spacing:-.04em; line-height:1; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:10px; display:block; }
   .impact-label { font-size:13px; font-weight:600; color:var(--txt2); text-transform:uppercase; letter-spacing:.1em; }
-  .impact-sub { font-size:12px; color:var(--txt3); margin-top:4px; }
+  .impact-sub { font-size:12px; color:var(--txt3); margin-top:4px; } */
+
+
+/* ===========================
+   IMPACT SECTION
+=========================== */
+
+.impact{
+    position:relative;
+    padding:100px 0;
+    background:
+        radial-gradient(circle at top left, rgba(99,102,241,.12), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(236,72,153,.10), transparent 35%),
+        var(--bg2);
+    overflow:hidden;
+}
+
+.impact::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+    background-size:40px 40px;
+    mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);
+    pointer-events:none;
+}
+
+.impact-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+}
+
+.impact-item{
+    position:relative;
+    padding:42px 30px;
+    text-align:center;
+
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:22px;
+
+    backdrop-filter:blur(14px);
+
+    transition:.4s ease;
+    overflow:hidden;
+}
+
+.impact-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    padding:1px;
+    border-radius:22px;
+    background:linear-gradient(
+        135deg,
+        rgba(99,102,241,.6),
+        rgba(236,72,153,.6)
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+            mask-composite:exclude;
+
+    opacity:0;
+    transition:.35s;
+}
+
+.impact-item:hover{
+    transform:translateY(-10px);
+    background:rgba(255,255,255,.06);
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.35),
+        0 0 30px rgba(99,102,241,.15);
+}
+
+.impact-item:hover::before{
+    opacity:1;
+}
+
+.impact-num{
+    position:relative;
+    display:inline-block;
+
+    font-size:clamp(42px,5vw,70px);
+    font-weight:900;
+    line-height:1;
+    letter-spacing:-2px;
+
+    background:var(--grad);
+    background-size:200% auto;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:gradientMove 5s linear infinite;
+
+    margin-bottom:18px;
+}
+
+.impact-num::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:110px;
+    height:110px;
+    transform:translate(-50%,-50%);
+    background:rgba(99,102,241,.18);
+    filter:blur(45px);
+    border-radius:50%;
+    z-index:-1;
+}
+
+.impact-label{
+    font-size:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--txt);
+    margin-bottom:8px;
+}
+
+.impact-sub{
+    font-size:14px;
+    line-height:1.7;
+    color:var(--txt2);
+    max-width:220px;
+    margin:auto;
+}
+
+/* Floating animation */
+
+.impact-item:nth-child(1){
+    animation:floatCard 6s ease-in-out infinite;
+}
+
+.impact-item:nth-child(2){
+    animation:floatCard 6s ease-in-out infinite .4s;
+}
+
+.impact-item:nth-child(3){
+    animation:floatCard 6s ease-in-out infinite .8s;
+}
+
+.impact-item:nth-child(4){
+    animation:floatCard 6s ease-in-out infinite 1.2s;
+}
+
+@keyframes floatCard{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes gradientMove{
+    to{
+        background-position:200% center;
+    }
+}
+
+/* Responsive */
+
+@media(max-width:991px){
+
+    .impact-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:640px){
+
+    .impact{
+        padding:70px 0;
+    }
+
+    .impact-grid{
+        grid-template-columns:1fr;
+    }
+
+    .impact-item{
+        padding:35px 25px;
+    }
+
+}
+
 
   /* ═══════════════════════════════════════
      CINEMATIC PROJECT SHOWCASE SLIDER
