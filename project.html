@@ -748,6 +748,37 @@
   .pc-visual-img, .sim-thumb img, img, video { filter:none !important; }
 
 
+  /* Impact before/after labels */
+  .impact-metric-row {
+    align-items:flex-end !important;
+    gap:clamp(12px,1.8vw,18px) !important;
+  }
+  .impact-value-group {
+    display:inline-flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:flex-end;
+    gap:8px;
+    min-width:0;
+  }
+  .impact-before-label,
+  .impact-after-label {
+    display:block !important;
+    color:var(--txt3) !important;
+    font-size:11px !important;
+    font-weight:700 !important;
+    letter-spacing:.14em !important;
+    line-height:1 !important;
+    margin:0 !important;
+    text-transform:uppercase !important;
+  }
+  .impact-arrow { color:var(--txt2) !important; line-height:1 !important; padding-bottom:2px; }
+  @media(max-width:760px){
+    .impact-metric-row { align-items:center !important; }
+    .impact-value-group { align-items:center; }
+  }
+
+
   </style>
 </head>
 <body>
@@ -913,31 +944,35 @@
     <div class="impact-card-grid" aria-label="Impact result metrics">
       <div class="impact-metric-card rv" style="transition-delay:.1s;" aria-label="Improved diagnostic errors from ten times to forty percent fewer errors">
         <span class="impact-metric-label">Diagnostic Errors</span>
-        <!-- <span class="impact-before-label">Before</span> -->
-        <div class="impact-metric-row"><span class="impact-before">10×</span><span class="impact-arrow" aria-hidden="true">→</span><span>
-          <!-- <span class="impact-after-label">After</span> -->
-          <span class="impact-after counter" data-t="40" data-s="%">40%</span></span></div>
+        <div class="impact-metric-row">
+          <span class="impact-value-group"><span class="impact-before-label">Before</span><span class="impact-before">10×</span></span>
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <span class="impact-value-group"><span class="impact-after-label">After</span><span class="impact-after counter" data-t="40" data-s="%">40%</span></span>
+        </div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.16s;" aria-label="Reporting improved from one times to three times faster">
         <span class="impact-metric-label">Reporting Speed</span>
-        <!-- <span class="impact-before-label">Before</span> -->
-        <div class="impact-metric-row"><span class="impact-before">1×</span><span class="impact-arrow" aria-hidden="true">→</span><span>
-          <!-- <span class="impact-after-label">After</span> -->
-          <span class="impact-after counter" data-t="3" data-s="×">3×</span></span></div>
+        <div class="impact-metric-row">
+          <span class="impact-value-group"><span class="impact-before-label">Before</span><span class="impact-before">1×</span></span>
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <span class="impact-value-group"><span class="impact-after-label">After</span><span class="impact-after counter" data-t="3" data-s="×">3×</span></span>
+        </div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.22s;" aria-label="Annual savings improved from zero million to twelve million dollars">
         <span class="impact-metric-label">Annual Savings</span>
-        <!-- <span class="impact-before-label">Before</span> -->
-        <div class="impact-metric-row"><span class="impact-before">$0</span><span class="impact-arrow" aria-hidden="true">→</span><span>
-          <!-- <span class="impact-after-label">After</span> -->
-          <span class="impact-after counter" data-p="$" data-t="12" data-s="M">$12M</span></span></div>
+        <div class="impact-metric-row">
+          <span class="impact-value-group"><span class="impact-before-label">Before</span><span class="impact-before">$0</span></span>
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <span class="impact-value-group"><span class="impact-after-label">After</span><span class="impact-after counter" data-p="$" data-t="12" data-s="M">$12M</span></span>
+        </div>
       </div>
       <div class="impact-metric-card rv" style="transition-delay:.28s;" aria-label="Hospital rollout improved from one hospital to five hundred plus hospitals">
         <span class="impact-metric-label">Hospitals Connected</span>
-        <!-- <span class="impact-before-label">Before</span> -->
-        <div class="impact-metric-row"><span class="impact-before">1</span><span class="impact-arrow" aria-hidden="true">→</span><span>
-          <!-- <span class="impact-after-label">After</span> -->
-          <span class="impact-after counter" data-t="500" data-s="+">500+</span></span></div>
+        <div class="impact-metric-row">
+          <span class="impact-value-group"><span class="impact-before-label">Before</span><span class="impact-before">1</span></span>
+          <span class="impact-arrow" aria-hidden="true">→</span>
+          <span class="impact-value-group"><span class="impact-after-label">After</span><span class="impact-after counter" data-t="500" data-s="+">500+</span></span>
+        </div>
       </div>
     </div>
     <!-- <p class="impact-copy rv" style="transition-delay:.18s;">Fewer diagnostic errors after launching the AI-assisted healthcare platform.</p> -->
