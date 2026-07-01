@@ -779,6 +779,32 @@
   }
 
 
+  /* Align impact arrows between before/after values */
+  .impact-metric-row {
+    display:grid !important;
+    grid-template-columns:minmax(56px, max-content) 34px minmax(82px, max-content) !important;
+    align-items:end !important;
+    justify-content:center !important;
+    column-gap:clamp(10px,1.5vw,16px) !important;
+  }
+  .impact-arrow {
+    align-self:end !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    height:clamp(30px, 3vw, 40px) !important;
+    padding:0 !important;
+    line-height:1 !important;
+    transform:none !important;
+  }
+  .impact-value-group { align-self:end !important; }
+  @media(max-width:760px){
+    .impact-metric-row { grid-template-columns:1fr 34px 1fr !important; width:100%; }
+    .impact-value-group:first-child { align-items:flex-end; }
+    .impact-value-group:last-child { align-items:flex-start; }
+  }
+
+
   </style>
 </head>
 <body>
