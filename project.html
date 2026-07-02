@@ -377,18 +377,80 @@
 
   /* ══ SIMILAR ══ */
   .proj-similar { padding:100px 0; background:var(--bg2); }
-  .sim-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:48px; }
-  .sim-card { border-radius:20px; overflow:hidden; background:var(--bg3); border:1px solid var(--border); text-decoration:none; display:block; transition:all .4s; }
-  .sim-card:hover { transform:translateY(-7px); border-color:rgba(124,58,237,.3); box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 30px rgba(124,58,237,.1); }
-  .sim-thumb { aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; font-size:44px; transition:transform .6s; }
-  .sim-card:hover .sim-thumb { transform:scale(1.04); }
+  /* Similar cards — identical to index.html project-card */
+  .sim-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,3vw,36px); margin-top:48px; align-items:stretch; }
+  .sim-card {
+    display:flex;
+    flex-direction:column;
+    text-decoration:none;
+    color:inherit;
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+    background:linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    transition:opacity .4s cubic-bezier(.25,.46,.45,.94),
+               transform .4s cubic-bezier(.25,.46,.45,.94),
+               border-color .4s cubic-bezier(.22,1,.36,1),
+               box-shadow .4s cubic-bezier(.22,1,.36,1);
+    will-change:transform,opacity;
+  }
+  .sim-card:hover {
+    transform:translateY(-10px);
+    border-color:rgba(103,232,249,0.3);
+    box-shadow:0 28px 70px rgba(0,0,0,0.5),0 0 36px rgba(6,182,212,0.1);
+  }
+  /* image area */
+  .sim-thumb {
+    position:relative;
+    aspect-ratio:4/5;
+    width:100%;
+    overflow:hidden;
+    border-radius:20px;
+    background:var(--bg3);
+    flex-shrink:0;
+  }
+  .sim-thumb img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform 0.7s cubic-bezier(.22,1,.36,1);
+    will-change:transform;
+  }
+  .sim-card:hover .sim-thumb img { transform:scale(1.08); }
+  /* overlay */
+  .sim-overlay {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.8) 100%);
+    opacity:0;
+    transition:opacity .5s cubic-bezier(.22,1,.36,1);
+    display:flex;
+    align-items:flex-end;
+    padding:24px;
+  }
+  .sim-card:hover .sim-overlay { opacity:1; }
+  .sim-overlay-content {
+    transform:translateY(20px);
+    transition:transform .5s cubic-bezier(.22,1,.36,1);
+  }
+  .sim-card:hover .sim-overlay-content { transform:translateY(0); }
+  .sim-overlay-cat {
+    display:inline-block;
+    padding:6px 14px;
+    background:rgba(124,58,237,0.3);
+    border:1px solid rgba(124,58,237,0.5);
+    border-radius:99px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#fff;
+    margin-bottom:12px;
+  }
+  /* body */
   .sim-body { padding:20px; }
-  .sim-cat { display:inline-block; margin-bottom:8px; padding:3px 12px; border-radius:99px; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
-  .sc-p { background:rgba(124,58,237,.18); color:var(--purple-lt); border:1px solid rgba(124,58,237,.28); }
-  .sc-c { background:rgba(6,182,212,.14); color:var(--cyan-lt); border:1px solid rgba(6,182,212,.28); }
-  .sc-b { background:rgba(37,99,235,.18); color:var(--blue-lt); border:1px solid rgba(37,99,235,.28); }
-  .sim-title { font-size:17px; font-weight:700; letter-spacing:-.01em; margin-bottom:5px; color:var(--txt); }
-  .sim-sub { font-size:12px; color:var(--txt3); }
   @media(max-width:768px) { .sim-grid { grid-template-columns:1fr 1fr; } }
   @media(max-width:480px) { .sim-grid { grid-template-columns:1fr; } }
 
@@ -564,8 +626,8 @@
   .impact-metric-label { display:block; color:var(--txt2); font-size:15px; font-weight:600; margin-bottom:26px; }
   .impact-before-label, .impact-after-label { display:block; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--txt3); margin-bottom:6px; }
   .impact-metric-row { display:flex; align-items:flex-end; gap:12px; }
-  .impact-before { font-size:clamp(22px,2.4vw,30px) !important; font-weight:700 !important; letter-spacing:-.04em !important; }
-  .impact-before::after { top:55%; height:2px; transform:rotate(-7deg); }
+  .impact-before { font-size:clamp(22px,2.4vw,30px) !important; font-weight:500 !important; letter-spacing:-.04em !important; color:#5a5a6e !important; opacity:0.75; }
+  .impact-before::after { top:55%; height:1.5px; transform:rotate(-7deg); background:#5a5a6e !important; }
   .impact-arrow { font-size:24px !important; color:#c084fc !important; transform:none !important; }
   .impact-after { font-size:clamp(28px,3vw,40px) !important; font-weight:800 !important; letter-spacing:-.05em !important; background:var(--grad); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
   .impact-copy { text-align:left !important; margin:0 !important; max-width:none !important; }
@@ -580,87 +642,13 @@
 
   /* Reference image-style related-work cards */
   .proj-similar { background:#050505 !important; }
-  .sim-grid {
-    grid-template-columns:repeat(3, minmax(0, 1fr)) !important;
-    gap:clamp(20px, 2.2vw, 32px) !important;
-    align-items:start !important;
+  /* sim-card mobile touch — same as project-card mobile rules */
+  @media (hover: none), (max-width: 768px) {
+    .sim-thumb { aspect-ratio: 16/9 !important; }
+    .sim-meta { position:static !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:12px !important; margin-top:12px !important; }
+    .sim-card .sim-tags { position:static !important; display:flex !important; flex-wrap:wrap !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; }
+    .sim-card .sim-show { position:static !important; display:flex !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; font-size:13px; color:rgba(255,255,255,0.55); }
   }
-  .sim-card {
-    display:flex !important;
-    flex-direction:column !important;
-    min-height:0 !important;
-    padding:0 !important;
-    border:0 !important;
-    border-radius:0 !important;
-    background:transparent !important;
-    box-shadow:none !important;
-    overflow:visible !important;
-    text-decoration:none !important;
-  }
-  .sim-card:hover { transform:none !important; border-color:transparent !important; box-shadow:none !important; }
-  .sim-card::after { display:none !important; }
-  .sim-thumb {
-    position:relative !important;
-    inset:auto !important;
-    width:100% !important;
-    height:auto !important;
-    aspect-ratio:4 / 5.42 !important;
-    border-radius:5px !important;
-    overflow:hidden !important;
-    background:#15151a !important;
-    font-size:0 !important;
-  }
-  .sim-thumb::after { display:none !important; }
-  .sim-thumb img {
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit:cover;
-    transition:transform .45s var(--ease);
-  }
-  .sim-card:hover .sim-thumb,
-  .sim-card:hover .sim-thumb img { transform:none !important; }
-  .sim-card:hover .sim-thumb img { transform:scale(1.035) !important; }
-  .sim-body {
-    position:relative !important;
-    left:auto !important;
-    right:auto !important;
-    bottom:auto !important;
-    z-index:1 !important;
-    padding:20px 6px 0 !important;
-  }
-  .sim-body::after { display:none !important; }
-  .sim-title {
-    color:#f5f5f5 !important;
-    font-size:clamp(22px,2vw,30px) !important;
-    line-height:1.05 !important;
-    letter-spacing:-.06em !important;
-    font-weight:800 !important;
-    margin:0 0 14px !important;
-    text-shadow:none !important;
-  }
-  .sim-tags { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
-  .sim-cat,
-  .sc-p,
-  .sc-c,
-  .sc-b {
-    display:inline-flex !important;
-    align-items:center !important;
-    min-height:30px !important;
-    margin:0 !important;
-    padding:6px 11px !important;
-    border:1.5px solid rgba(255,255,255,.92) !important;
-    border-radius:999px !important;
-    background:transparent !important;
-    color:#fff !important;
-    font-size:11px !important;
-    font-weight:800 !important;
-    letter-spacing:-.04em !important;
-    line-height:1 !important;
-    text-transform:none !important;
-  }
-  .sim-sub { display:none !important; }
-  @media(max-width:768px) { .sim-grid { grid-template-columns:1fr !important; max-width:430px; margin-inline:auto; } .sim-thumb{aspect-ratio:4 / 5.1 !important;} }
 
   /* Site-wide neutral typography and controls */
   :root {
@@ -815,7 +803,7 @@
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    padding: 0 clamp(12px, 2.5vw, 36px);
+    padding: 0 clamp(12px, 2vw, 32px);
     pointer-events: none;
     z-index: 8500;
   }
@@ -835,27 +823,38 @@
   }
   .project-switch:hover {
     opacity: 1;
-    transform: scale(1.18);
+    transform: scale(1.12);
   }
   .project-switch svg {
-    width: clamp(60px, 7vw, 100px);
-    height: clamp(120px, 14vw, 200px);
+    /* Arrow shrinks fluidly — never wider than ~7% of viewport */
+    width:  clamp(32px, 5vw, 80px);
+    height: clamp(64px, 10vw, 160px);
     stroke: #ffffff;
-    stroke-width: 0.8;
+    stroke-width: 0.9;
     fill: none;
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.22));
   }
 
-  /* Safe paddings — generous on desktop, tight on mobile */
+  /*
+   * CONTENT SAFE-ZONE
+   * Arrow footprint from edge = container-padding + svg-width
+   *   ≈ clamp(12px,2vw,32px) + clamp(32px,5vw,80px) = clamp(44px,7vw,112px)
+   * Content padding must always be LARGER than that footprint.
+   * clamp(90px, 10vw, 150px) guarantees:
+   *   @ 769px  → 90px  > ~76px footprint  ✓
+   *   @ 1024px → 102px > ~75px footprint  ✓
+   *   @ 1280px → 128px > ~96px footprint  ✓
+   *   @ 1600px → 150px > ~112px footprint ✓
+   */
   .wrap {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 130px) !important;
+    padding: 0 clamp(90px, 10vw, 150px) !important;
   }
   .proj-hero-content {
     position: relative;
     z-index: 2;
-    padding: 120px clamp(20px, 5vw, 130px) 64px !important;
+    padding: 120px clamp(90px, 10vw, 150px) 64px !important;
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
@@ -864,8 +863,9 @@
     width: 100% !important;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 130px) !important;
+    padding: 0 clamp(90px, 10vw, 150px) !important;
   }
+
 
   /* ── MOBILE: hide arrows, fix nav, normalise paddings ── */
   @media (max-width: 768px) {
@@ -1154,9 +1154,54 @@
     <!-- <div class="sec-label rv"><span class="dot"></span> More Case Studies</div> -->
     <h2 class="sec-h2 rv" style="transition-delay:.1s;">Explore <span class="grad">related work</span></h2>
     <div class="sim-grid">
-      <a href="project.html?id=seo" class="sim-card"><div class="sim-thumb"><img src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost SEO Campaign" loading="lazy"></div><div class="sim-body"><h3 class="sim-title">OrganicBoost SEO Campaign</h3><div class="sim-tags"><span class="sim-cat sc-p">SEO</span><span class="sim-cat sc-b">Branding</span></div><p class="sim-sub">340% organic growth in 6 months.</p></div></a>
-      <a href="project.html?id=ecommerce" class="sim-card"><div class="sim-thumb"><img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy"></div><div class="sim-body"><h3 class="sim-title">LuxeStore Commerce</h3><div class="sim-tags"><span class="sim-cat sc-c">UI/UX</span></div><p class="sim-sub">AI-powered e-commerce — 280% conversion lift.</p></div></a>
-      <a href="project.html?id=branding" class="sim-card"><div class="sim-thumb"><img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty Rebrand" loading="lazy"></div><div class="sim-body"><h3 class="sim-title">Zenith Realty Rebrand</h3><div class="sim-tags"><span class="sim-cat sc-b">Branding</span><span class="sim-cat sc-c">Web Design</span></div><p class="sim-sub">Full identity overhaul for luxury real estate.</p></div></a>
+      <a href="project.html?id=seo" class="sim-card">
+        <div class="sim-thumb">
+          <img src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost SEO Campaign" loading="lazy">
+          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">SEO</span></div></div>
+        </div>
+        <div class="sim-body">
+          <h3 class="sim-title">OrganicBoost SEO Campaign</h3>
+          <div class="sim-meta">
+            <div class="sim-tags">
+              <span class="sim-cat">SEO</span>
+              <span class="sim-cat">Branding</span>
+            </div>
+            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+      </a>
+      <a href="project.html?id=ecommerce" class="sim-card">
+        <div class="sim-thumb">
+          <img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy">
+          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">UI/UX</span></div></div>
+        </div>
+        <div class="sim-body">
+          <h3 class="sim-title">LuxeStore Commerce</h3>
+          <div class="sim-meta">
+            <div class="sim-tags">
+              <span class="sim-cat">UI/UX</span>
+              <span class="sim-cat">E-commerce</span>
+            </div>
+            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+      </a>
+      <a href="project.html?id=branding" class="sim-card">
+        <div class="sim-thumb">
+          <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty Rebrand" loading="lazy">
+          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">Branding</span></div></div>
+        </div>
+        <div class="sim-body">
+          <h3 class="sim-title">Zenith Realty Rebrand</h3>
+          <div class="sim-meta">
+            <div class="sim-tags">
+              <span class="sim-cat">Branding</span>
+              <span class="sim-cat">Web Design</span>
+            </div>
+            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
