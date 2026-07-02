@@ -86,14 +86,14 @@
   .nav-links a:hover { color:var(--txt); }
   .nav-back { display:inline-flex; align-items:center; gap:8px; padding:9px 20px; border-radius:99px; background:var(--glass); border:1px solid var(--border); font-size:13px; font-weight:500; color:var(--txt2); text-decoration:none; transition:all .3s; backdrop-filter:blur(10px); }
   .nav-back:hover { border-color:rgba(124,58,237,.4); color:var(--txt); transform:translateX(-2px); }
-  .ham { display:none; flex-direction:column; gap:5px; padding:4px; }
-  .ham span { display:block; width:22px; height:2px; background:var(--txt); border-radius:2px; transition:all .3s; }
+  .ham { display:none; flex-direction:column; gap:5px; padding:6px; background:transparent !important; border:none !important; outline:none !important; cursor:none !important; }
+  .ham span { display:block; width:22px; height:2px; background:var(--txt2) !important; border-radius:2px; transition:all .3s; }
   .ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
   .ham.open span:nth-child(2) { opacity:0; }
   .ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-  .mob-nav { position:fixed; inset:0; background:rgba(8,8,14,.97); backdrop-filter:blur(20px); z-index:8999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; transform:translateY(-100%); transition:transform .5s; }
-  .mob-nav.open { transform:none; }
-  .mob-nav a { font-size:32px; font-weight:700; color:var(--txt2); text-decoration:none; transition:color .2s; }
+  .mob-nav { position:fixed; top:0; right:0; bottom:0; width:300px; height:100vh; background:rgba(8, 8, 14, 0.98); backdrop-filter:blur(24px); border-left:1px solid rgba(255, 255, 255, 0.08); z-index:8999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:32px; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .mob-nav.open { transform:translateX(0); }
+  .mob-nav a { font-size:24px; font-weight:700; color:var(--txt2); text-decoration:none; transition:color 0.3s ease; }
   .mob-nav a:hover { color:var(--txt); }
 
   .wrap { max-width:1320px; margin:0 auto; padding:0 48px; }
@@ -846,16 +846,16 @@
     filter: drop-shadow(0 0 10px rgba(255,255,255,0.25));
   }
 
-  /* Safe paddings globally on project.html to prevent any content overlap on any screen size */
+  /* Safe paddings — generous on desktop, tight on mobile */
   .wrap {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 0 clamp(68px, 8vw, 130px) !important;
+    padding: 0 clamp(20px, 5vw, 130px) !important;
   }
   .proj-hero-content {
     position: relative;
     z-index: 2;
-    padding: 120px clamp(68px, 8vw, 130px) 64px !important;
+    padding: 120px clamp(20px, 5vw, 130px) 64px !important;
     max-width: 1100px;
     margin: 0 auto;
     width: 100%;
@@ -864,7 +864,59 @@
     width: 100% !important;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 clamp(68px, 8vw, 130px) !important;
+    padding: 0 clamp(20px, 5vw, 130px) !important;
+  }
+
+  /* ── MOBILE: hide arrows, fix nav, normalise paddings ── */
+  @media (max-width: 768px) {
+    /* Hide prev/next arrows — no room on small screens */
+    .project-switcher { display: none !important; }
+
+    /* Nav-back button: shrink so it doesn't collide with logo */
+    .nav-back {
+      font-size: 11px !important;
+      padding: 6px 12px !important;
+      max-width: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Hero content: comfortable side padding */
+    .proj-hero-content {
+      padding: 100px 20px 48px !important;
+    }
+
+    /* Wrap & gallery: 20px sides */
+    .wrap {
+      padding: 0 20px !important;
+    }
+    .gallery-scroll-container {
+      padding: 0 20px !important;
+    }
+
+    /* Nav inner: tighter on phone */
+    .nav-in {
+      padding: 0 16px !important;
+    }
+
+    /* Reduce large section gaps on mobile */
+    .proj-overview,
+    .proj-process,
+    .proj-video,
+    .proj-results,
+    .proj-testimonial,
+    .proj-similar,
+    .proj-impact,
+    .sticky-section-gallery {
+      padding-top:    clamp(36px, 6vw, 64px) !important;
+      padding-bottom: clamp(36px, 6vw, 64px) !important;
+    }
+
+    /* Tighten internal wrap vertical rhythm */
+    .wrap > * + * {
+      margin-top: clamp(24px, 4vw, 48px);
+    }
   }
 
 
@@ -1273,6 +1325,34 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft' && projectPrev) window.location.href = projectPrev.href;
   if (e.key === 'ArrowRight' && projectNext) window.location.href = projectNext.href;
 });
+
+/* ── TOUCH SWIPE: swipe left = next project, swipe right = prev project ── */
+(function initSwipe() {
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const SWIPE_THRESHOLD = 60;   // min horizontal px to count as a swipe
+  const ANGLE_LIMIT    = 40;    // max vertical drift (deg) to avoid false triggers on scroll
+
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    // Ignore if mostly vertical (user is scrolling)
+    if (Math.abs(dy) > Math.abs(dx) * Math.tan(ANGLE_LIMIT * Math.PI / 180)) return;
+    if (Math.abs(dx) < SWIPE_THRESHOLD) return;
+    if (dx < 0 && projectNext) {
+      // Swipe LEFT  → next project
+      window.location.href = projectNext.href;
+    } else if (dx > 0 && projectPrev) {
+      // Swipe RIGHT → prev project
+      window.location.href = projectPrev.href;
+    }
+  }, { passive: true });
+})();
 
 gsap.fromTo('.impact-metric-card', {opacity:0, y:24, scale:.96}, {opacity:1, y:0, scale:1, duration:.55, stagger:.08, ease:'power3.out', scrollTrigger:{trigger:'.impact-card-grid', start:'top 82%', once:true}});
 

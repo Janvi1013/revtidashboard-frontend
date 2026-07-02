@@ -67,14 +67,14 @@
   .nav-links a:hover::after { width:100%; }
   .nav-cta { padding:10px 24px; border-radius:99px; background:var(--grad); color:#fff; font-size:13px; font-weight:600; text-decoration:none; box-shadow:0 4px 18px rgba(124,58,237,.35); transition:all .3s; }
   .nav-cta:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(124,58,237,.55); }
-  .ham { display:none; flex-direction:column; gap:5px; padding:4px; }
-  .ham span { display:block; width:22px; height:2px; background:var(--txt); border-radius:2px; transition:all .3s; }
+  .ham { display:none; flex-direction:column; gap:5px; padding:6px; background:transparent !important; border:none !important; outline:none !important; cursor:none !important; }
+  .ham span { display:block; width:22px; height:2px; background:var(--txt2) !important; border-radius:2px; transition:all .3s; }
   .ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
   .ham.open span:nth-child(2) { opacity:0; }
   .ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-  .mob-nav { position:fixed; inset:0; background:rgba(8,8,14,.97); backdrop-filter:blur(20px); z-index:8999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; transform:translateY(-100%); transition:transform .5s; }
-  .mob-nav.open { transform:none; }
-  .mob-nav a { font-size:32px; font-weight:700; color:var(--txt2); text-decoration:none; }
+  .mob-nav { position:fixed; top:0; right:0; bottom:0; width:300px; height:100vh; background:rgba(8,8,14,.98); backdrop-filter:blur(24px); border-left:1px solid rgba(255,255,255,0.08); z-index:8999; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:32px; transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+  .mob-nav.open { transform:translateX(0); }
+  .mob-nav a { font-size:24px; font-weight:700; color:var(--txt2); text-decoration:none; transition:color 0.3s ease; }
   .mob-nav a:hover { color:var(--txt); }
 
   .wrap { max-width:1320px; margin:0 auto; padding:0 48px; }
@@ -122,7 +122,7 @@
 
 .impact{
     position:relative;
-    padding:100px 0;
+    padding:50px 0;
     background:
         radial-gradient(circle at top left, rgba(99,102,241,.12), transparent 35%),
         radial-gradient(circle at bottom right, rgba(236,72,153,.10), transparent 35%),
@@ -1251,7 +1251,7 @@
   
   /* Portfolio Section */
   .portfolio-section {
-    padding: clamp(100px, 12vw, 180px) 0;
+    padding: clamp(50px, 12vw, 50px) 0;
     background: var(--bg);
     position: relative;
     overflow: hidden;
@@ -1329,7 +1329,7 @@
   }
 
   /* Filter Tabs */
-  .filter-wrapper {
+  /* .filter-wrapper {
     position: sticky;
     top: 80px;
     z-index: 100;
@@ -1354,30 +1354,115 @@
     position: relative;
     z-index: 1;
     padding: 8px 18px;
-    border-radius: 12px;
+    border-radius: 99px;
     background: transparent;
-    border: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     font-family: var(--font);
-    font-size: 13px;
-    font-weight: 500;
+    font-size: 20px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--txt2);
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.6);
     cursor: none;
-    transition: all 0.25s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     white-space: nowrap;
   }
 
   .filter-btn:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    color: #fff;
+    /* background-color: rgba(255, 255, 255, 0.05); 
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
   }
 
   .filter-btn.active {
     background-color: #ffffff;
-    color: #000000;
+    border-color: #ffffff;
+    color: #050505;
     font-weight: 700;
-  }
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+  } */
+
+
+/* filter button design  */
+
+.filter-wrapper {
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  margin-bottom: clamp(48px, 6vw, 72px);
+  padding: 16px 0;
+  background: rgba(8,8,14,0.85);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.filter-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 6px;
+  max-width: fit-content;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 999px;
+}
+
+.filter-btn {
+  position: relative;
+  z-index: 1;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid transparent;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.55);
+  cursor: none;
+  transition: color 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+              transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+  white-space: nowrap;
+}
+
+.filter-btn:hover {
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.filter-btn.active {
+  color: #050505;
+  font-weight: 700;
+}
+
+/* sliding pill background */
+.filter-btn.active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #ffffff, #d7d7d7);
+  border-radius: 999px;
+  z-index: -1;
+  box-shadow: 0 6px 20px rgba(255,255,255,0.18);
+  animation: pillIn 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+@keyframes pillIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .filter-tabs { max-width: 100% !important; justify-content: center !important; flex-wrap: wrap !important; border-radius: 20px !important; background: transparent !important; border: none !important; padding: 10px !important; }
+  .filter-btn { font-size: 12px; padding: 9px 16px; }
+}
+
+
 
   /* Project Grid */
   .project-grid {
@@ -1387,42 +1472,45 @@
     align-items: stretch;
   }
 
-  /* Project Card */
+  /* ── PROJECT CARD — consistent on every screen size ── */
   .project-card {
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
     position: relative;
-    border-radius: 24px;
+    border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
     border: 1px solid rgba(255,255,255,0.08);
     backdrop-filter: blur(20px);
     cursor: none;
-    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+    /* filter animation + hover animation share the same transition */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                border-color 0.5s cubic-bezier(0.22,1,0.36,1),
-                box-shadow 0.5s cubic-bezier(0.22,1,0.36,1);
+                border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow  0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform, opacity;
-    transform-style: preserve-3d;
     opacity: 1;
     transform: scale(1);
   }
 
+  /* Hover — identical on desktop, tablet and mobile */
   .project-card:hover {
-    transform: translateY(-12px);
+    transform: translateY(-10px);
     border-color: rgba(103,232,249,0.3);
-    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 40px rgba(6,182,212,0.1);
+    box-shadow: 0 28px 70px rgba(0,0,0,0.5), 0 0 36px rgba(6,182,212,0.1);
   }
 
-  /* Card Visual */
+  /* Card Visual — same aspect-ratio everywhere */
   .card-visual {
     position: relative;
-    aspect-ratio: 4/5;
+    aspect-ratio: 4 / 5;
+    width: 100%;
     overflow: hidden;
-    border-radius: 24px;
+    border-radius: 20px;
     background: var(--bg3);
+    flex-shrink: 0;
   }
 
   .card-image-wrapper {
@@ -1567,7 +1655,7 @@
     display: none;
   }
 
-  /* Responsive */
+  /* ── GRID BREAKPOINTS — only column count changes, card style stays identical ── */
   @media (max-width: 1024px) {
     .project-grid {
       grid-template-columns: repeat(2, 1fr);
@@ -1575,50 +1663,28 @@
   }
 
   @media (max-width: 640px) {
-    .portfolio-section {
-      padding: 80px 0;
+    .project-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
-
-    .portfolio-container {
-      padding: 0 20px;
-    }
-
-    .portfolio-title {
-      font-size: clamp(32px, 8vw, 48px);
-    }
-
-    .portfolio-subtitle {
-      font-size: 14px;
-    }
-
     .filter-wrapper {
       position: relative;
       top: auto;
-      margin-bottom: 32px;
-      padding: 12px 0;
+      margin-bottom: 28px;
+      padding: 10px 0;
     }
-
     .filter-tabs {
       gap: 6px;
       padding: 6px;
+      justify-content: center !important;
+      flex-wrap: wrap !important;
+      border-radius: 20px !important;
+      background: transparent !important;
+      border: none !important;
     }
-
     .filter-btn {
-      padding: 6px 12px;
-      font-size: 12px;
-    }
-
-    .project-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
-    }
-
-    .project-card {
-      border-radius: 20px;
-    }
-
-    .card-visual {
-      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 11px;
     }
   }
 
@@ -1642,40 +1708,164 @@
     letter-spacing: 0 !important;
   }
 
+/* filter menu  */
 
- /* Filter Menu Styling */
-        .filter-menu {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 40px;
-            list-style: none;
-        }
+.filter-menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto clamp(48px, 6vw, 72px);
+  padding: 6px;
+  max-width: fit-content;
+}
 
-        .filter-btn {
-            background: none;
-            border: none;
-            font-size: 0.75rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #999;
-            cursor: pointer;
-            padding: 6px 14px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
+.filter-menu .filter-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.14);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.6);
+  cursor: none;
+  white-space: nowrap;
+  transition: color .3s, border-color .3s, background .3s, transform .3s;
+}
 
-        .filter-btn:hover {
-            color: #000;
-        }
+.filter-menu .filter-btn:hover {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+  transform: translateY(-1px);
+}
 
-        /* Active Filter Button style matching the black bubble style */
-        .filter-btn.active {
-            background-color: #000;
-            color: #fff;
-        }
+.filter-menu .filter-btn.active {
+  background: #fff;
+  border-color: #fff;
+  color: #050505;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .filter-menu {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: unset;
+    max-width: 100%;
+    gap: 8px;
+    padding: 0 16px;
+  }
+  .filter-menu .filter-btn {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+
+/* Container to maintain fixed area bounds */
+.meta-container {
+  position: relative;
+  height: 32px; /* Set height matching your tag sizes to avoid layout shifting */
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* Default View (Category Pills) */
+.card-tags {
+  display: flex;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover View: "Show Project —" */
+.show-project-view {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #b3b3b3; /* Or your preferred theme text color */
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(6px); /* Starts slightly lower to create a lifting effect */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+/* Appending the accent dash after text */
+.show-project-view::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: #b3b3b3;
+}
+
+/* --- HOVER INTERACTION TRIGGER --- */
+
+/* Slide out and fade tags */
+.project-card:hover .card-tags {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+/* Slide in and reveal Show Project link */
+.project-card:hover .show-project-view {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ── MOBILE: touch devices have no hover ── */
+@media (hover: none), (max-width: 768px) {
+  /* Wider image ratio so cards don't tower on phone */
+  .card-visual {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  /* Pull meta-container out of the absolute/relative trick — just static flow */
+  .meta-container {
+    position: static !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+
+  /* Tags: always visible, in normal flow */
+  .project-card .card-tags {
+    position: static !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  /* Show Project: always visible below tags, in normal flow */
+  .project-card .show-project-view {
+    position: static !important;
+    display: flex !important;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    margin-top: 0 !important;
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+  }
+}
 
 
   </style>
@@ -1746,10 +1936,9 @@
   <div class="portfolio-container">
     <!-- Section Header -->
     <div class="portfolio-header">
-      <span class="portfolio-eyebrow">
-        <span class="eyebrow-dot"></span>
-        Selected Work
-      </span>
+      <!-- <span class="portfolio-eyebrow">
+       
+      </span> -->
       <h2 class="portfolio-title">Creative Projects</h2>
       <p class="portfolio-subtitle">Crafting digital experiences that drive measurable results across branding, design, and development.</p>
     </div>
@@ -1772,7 +1961,7 @@
     <!-- Project Grid -->
     <div class="project-grid" id="projectGrid">
       <!-- Project 1 - Branding -->
-      <a href="project.html?id=branding" class="project-card" data-category="Branding">
+      <!-- <a href="project.html?id=branding" class="project-card" data-category="Branding">
         <div class="card-visual">
           <div class="card-image-wrapper">
             <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty" loading="lazy" />
@@ -1796,10 +1985,39 @@
             <span class="tag">Guidelines</span>
           </div>
         </div>
-      </a>
+      </a> -->
+
+
+<a href="project.html?id=branding" class="project-card" data-category="Branding">
+  <div class="card-visual">
+    <div class="card-image-wrapper">
+      <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty" loading="lazy" />
+      <div class="card-overlay">
+        <div class="overlay-content">
+          <span class="overlay-category">Branding</span>
+          <h3 class="overlay-title">Zenith Realty Rebrand</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-info">
+    <h3 class="card-title">Zenith Realty Rebrand</h3>
+    
+    <div class="meta-container">
+      <div class="card-tags">
+        <span class="tag">Brand Identity</span>
+        <span class="tag">Visual Design</span>
+        <span class="tag">Guidelines</span>
+      </div>
+      
+      <div class="show-project-view">Show Project</div>
+    </div>
+  </div>
+</a>
+
 
       <!-- Project 2 - Web Design -->
-      <a href="project.html?id=healthcore" class="project-card" data-category="Websites">
+      <a href="project.html?id=websites" class="project-card" data-category="Websites">
         <div class="card-visual">
           <div class="card-image-wrapper">
             <img src="Images/Gemini_Generated_Image_9y2spc9y2spc9y2s.png" alt="HealthCore Platform" loading="lazy" />
@@ -1811,8 +2029,19 @@
             </div>
           </div>
         </div>
+
+
         <div class="card-info">
-          <div class="card-category">
+          <h3 class="card-title">Healthcare Platform</h3>
+          <div class="meta-container">
+          <div class ="card-tags">
+             <span class="tag">Healthcare</span>
+            <span class="tag">SaaS</span>
+            <span class="tag">Dashboard</span>
+          </div>
+
+          <div class ="show-project-view">Show Project</div>
+          <!-- <div class="card-category">
             <i class="fa-solid fa-laptop-code"></i>
             <span>Websites</span>
           </div>
@@ -1821,12 +2050,13 @@
             <span class="tag">Healthcare</span>
             <span class="tag">SaaS</span>
             <span class="tag">Dashboard</span>
+          </div> -->
           </div>
         </div>
       </a>
 
       <!-- Project 3 - UI/UX -->
-      <a href="project.html?id=ecommerce" class="project-card" data-category="Events">
+      <a href="project.html?id=events" class="project-card" data-category="Events">
         <div class="card-visual">
           <div class="card-image-wrapper">
             <img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy" />
@@ -1839,15 +2069,15 @@
           </div>
         </div>
         <div class="card-info">
-          <div class="card-category">
-            <i class="fa-solid fa-layer-group"></i>
-            <span>Events</span>
-          </div>
-          <h3 class="card-title">LuxeStore Commerce</h3>
-          <div class="card-tags">
+          <h3 class ="card-title">LuxeStore Commerce</h3>
+
+          <div class="meta-container">
+            <div class ="card-tags">     
             <span class="tag">E-Commerce</span>
             <span class="tag">UX Research</span>
             <span class="tag">Design System</span>
+          </div>
+          <div class="show-project-view">Show Project</div>
           </div>
         </div>
       </a>
