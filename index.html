@@ -2457,6 +2457,7 @@ gsap.fromTo('.gallery-sec-hdr', { opacity:0, y:40 }, {
 document.addEventListener('DOMContentLoaded', () => {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    const projectGrid = document.getElementById('projectGrid');
 
     filterButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -2493,6 +2494,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+  // entrance animation
+  if (projectGrid && projectCards.length) {
+    gsap.fromTo(projectCards, { opacity: 0, y: 40, scale: 0.95 }, {
+      opacity: 1, y: 0, scale: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out',
+      scrollTrigger: { trigger: projectGrid, start: 'top 80%', once: true }
+    });
+  }
     
 
 </script>
