@@ -1868,6 +1868,12 @@
 }
 
 
+  /* Hide custom cursor on tablets, mobile devices, and touch screens */
+  @media (max-width: 1024px), (hover: none), (pointer: coarse) {
+    #cur-dot, #cur-ring, .cur-dot, .cur-ring, .cur-view-txt { display: none !important; }
+    html, body, *, *::before, *::after { cursor: auto !important; }
+  }
+
   </style>
 </head>
 <body>
@@ -1883,7 +1889,7 @@
     <a href="index.html" class="logo"><div class="logo-i">R</div><span class="logo-t">Revti<span>Digital</span></span></a>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
-      <li><a href="#gallery">Projects</a></li>
+      <li><a href="#portfolio">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Start a Project</a>
@@ -1891,7 +1897,7 @@
   </div>
 </nav>
 <div class="mob-nav" id="mob">
-  <a href="#hero">Home</a><a href="#gallery">Projects</a><a href="#contact">Contact</a>
+  <a href="#hero">Home</a><a href="#portfolio">Projects</a><a href="#contact">Contact</a>
   <a href="#contact" class="nav-cta" style="font-size:18px;">Start a Project</a>
 </div>
 
@@ -1908,7 +1914,7 @@
       <h1 class="hero-h1">We Make<span class="grad"> Digital </span>Matter.</h1>
       <p class="hero-sub">From SEO-driven growth strategies to full-scale enterprise software — Revti Digital builds things that perform.</p>
       <div class="hero-btns">
-        <a href="#portfolio-section" class="btn-primary"><i class="fa-solid fa-arrow-down"></i> View Our Work</a>
+        <a href="#portfolio" class="btn-primary"><i class="fa-solid fa-arrow-down"></i> View Our Work</a>
         <a href="#contact" class="btn-ghost"><i class="fa-solid fa-paper-plane"></i> Start a Project</a>
       </div>
     </div>

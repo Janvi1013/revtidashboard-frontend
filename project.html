@@ -541,8 +541,30 @@
 
   @media(max-width:900px) {
     .overview-grid { grid-template-columns:1fr; gap:40px; }
-    .proj-meta-row { gap:0; flex-wrap:wrap; }
-    .meta-item { padding:16px 20px; border-right:none; border-bottom:1px solid var(--border); text-align:left; min-width:50%; }
+    .proj-meta-row {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 0 !important;
+      padding-top: 24px !important;
+    }
+    .meta-item {
+      padding: 14px 10px !important;
+      border-right: none !important;
+      border-bottom: 1px solid var(--border) !important;
+    }
+    .meta-item:nth-child(odd) {
+      text-align: left !important;
+      padding-left: 0 !important;
+    }
+    .meta-item:nth-child(even) {
+      text-align: right !important;
+      padding-right: 0 !important;
+    }
+    /* Remove bottom border on the bottom row of the 2x2 grid */
+    .meta-item:nth-child(3),
+    .meta-item:nth-child(4) {
+      border-bottom: none !important;
+    }
     .footer-grid { grid-template-columns:1fr 1fr; gap:36px; }
     .proj-h1 { white-space:normal; }
   }
@@ -986,6 +1008,12 @@
     letter-spacing: 0 !important;
   }
 
+  /* Hide custom cursor on tablets, mobile devices, and touch screens */
+  @media (max-width: 1024px), (hover: none), (pointer: coarse) {
+    #cur-dot, #cur-ring, .cur-dot, .cur-ring, .cur-view-txt { display: none !important; }
+    html, body, *, *::before, *::after { cursor: auto !important; }
+  }
+
   </style>
 </head>
 <body>
@@ -1054,16 +1082,16 @@
           <span class="meta-value">Apollo Health Systems</span>
         </div>
         <div class="meta-item">
+          <span class="meta-label">Industry</span>
+          <span class="meta-value">Healthcare / MedTech</span>
+        </div>
+        <div class="meta-item">
           <span class="meta-label">Year</span>
           <span class="meta-value">2023 – 2024</span>
         </div>
         <div class="meta-item">
           <span class="meta-label">Sprint</span>
           <span class="meta-value">18-Month Agile</span>
-        </div>
-        <div class="meta-item">
-          <span class="meta-label">Industry</span>
-          <span class="meta-value">Healthcare / MedTech</span>
         </div>
       </div>
     </div>
