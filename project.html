@@ -377,9 +377,9 @@
 
   /* ══ SIMILAR ══ */
   .proj-similar { padding:100px 0; background:var(--bg2); }
-  /* Similar cards — identical to index.html project-card */
   .sim-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(24px,3vw,36px); margin-top:48px; align-items:stretch; }
-  .sim-card {
+  
+  .sim-grid .project-card {
     display:flex;
     flex-direction:column;
     text-decoration:none;
@@ -396,13 +396,12 @@
                box-shadow .4s cubic-bezier(.22,1,.36,1);
     will-change:transform,opacity;
   }
-  .sim-card:hover {
+  .sim-grid .project-card:hover {
     transform:translateY(-10px);
     border-color:rgba(103,232,249,0.3);
     box-shadow:0 28px 70px rgba(0,0,0,0.5),0 0 36px rgba(6,182,212,0.1);
   }
-  /* image area */
-  .sim-thumb {
+  .sim-grid .card-visual {
     position:relative;
     aspect-ratio:4/5;
     width:100%;
@@ -411,16 +410,21 @@
     background:var(--bg3);
     flex-shrink:0;
   }
-  .sim-thumb img {
+  .sim-grid .card-image-wrapper {
+    position:relative;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+  }
+  .sim-grid .card-image-wrapper img {
     width:100%;
     height:100%;
     object-fit:cover;
     transition:transform 0.7s cubic-bezier(.22,1,.36,1);
     will-change:transform;
   }
-  .sim-card:hover .sim-thumb img { transform:scale(1.08); }
-  /* overlay */
-  .sim-overlay {
+  .sim-grid .project-card:hover .card-image-wrapper img { transform:scale(1.08); }
+  .sim-grid .card-overlay {
     position:absolute;
     inset:0;
     background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,0.8) 100%);
@@ -430,13 +434,13 @@
     align-items:flex-end;
     padding:24px;
   }
-  .sim-card:hover .sim-overlay { opacity:1; }
-  .sim-overlay-content {
+  .sim-grid .project-card:hover .card-overlay { opacity:1; }
+  .sim-grid .overlay-content {
     transform:translateY(20px);
     transition:transform .5s cubic-bezier(.22,1,.36,1);
   }
-  .sim-card:hover .sim-overlay-content { transform:translateY(0); }
-  .sim-overlay-cat {
+  .sim-grid .project-card:hover .overlay-content { transform:translateY(0); }
+  .sim-grid .overlay-category {
     display:inline-block;
     padding:6px 14px;
     background:rgba(124,58,237,0.3);
@@ -449,10 +453,57 @@
     color:#fff;
     margin-bottom:12px;
   }
-  /* body */
-  .sim-body { padding:20px; }
-  @media(max-width:768px) { .sim-grid { grid-template-columns:1fr 1fr; } }
-  @media(max-width:480px) { .sim-grid { grid-template-columns:1fr; } }
+  .sim-grid .card-info { padding:20px; }
+  .sim-grid .card-title {
+    font-size:clamp(16px,1.8vw,20px);
+    font-weight:700;
+    color:var(--txt);
+    margin:0 0 16px;
+    line-height:1.3;
+  }
+  .sim-grid .card-tags { display:flex; flex-wrap:wrap; gap:8px; margin:0; position:relative; }
+  .sim-grid .tag {
+    padding:6px 12px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:99px;
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:var(--txt2);
+    transition:all .3s ease;
+  }
+  .sim-grid .project-card:hover .tag {
+    background:rgba(124,58,237,0.15);
+    border-color:rgba(124,58,237,0.3);
+    color:var(--purple-lt);
+  }
+  .sim-grid .show-project-view {
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:.9rem;
+    color:#b3b3b3;
+    position:absolute;
+    top:0; left:0;
+    opacity:0;
+    transform:translateY(6px);
+    transition:opacity .3s ease,transform .3s ease;
+    pointer-events:none;
+  }
+  .sim-grid .show-project-view::after {
+    content:'';
+    display:inline-block;
+    width:24px; height:1px;
+    background:#b3b3b3;
+  }
+  .sim-grid .project-card:hover .card-tags { opacity:0; transform:translateY(-6px); pointer-events:none; }
+  .sim-grid .project-card:hover .show-project-view { opacity:1; transform:translateY(0); pointer-events:auto; }
+  .sim-grid .meta-container { position:relative; height:32px; width:100%; margin-top:12px; }
+  
+  @media(max-width:1024px) { .sim-grid { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:640px)  { .sim-grid { grid-template-columns:1fr; gap:20px; } }
 
   /* ══ BACK HOME ══ */
   .back-bar { padding:56px 0; background:var(--bg); border-top:1px solid var(--border); text-align:center; }
@@ -642,12 +693,12 @@
 
   /* Reference image-style related-work cards */
   .proj-similar { background:#050505 !important; }
-  /* sim-card mobile touch — same as project-card mobile rules */
+  /* project-card mobile touch rules on project.html */
   @media (hover: none), (max-width: 768px) {
-    .sim-thumb { aspect-ratio: 16/9 !important; }
-    .sim-meta { position:static !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:12px !important; margin-top:12px !important; }
-    .sim-card .sim-tags { position:static !important; display:flex !important; flex-wrap:wrap !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; }
-    .sim-card .sim-show { position:static !important; display:flex !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; font-size:13px; color:rgba(255,255,255,0.55); }
+    .sim-grid .card-visual { aspect-ratio: 16/9 !important; }
+    .sim-grid .meta-container { position:static !important; height:auto !important; display:flex !important; flex-direction:column !important; gap:12px !important; margin-top:12px !important; }
+    .sim-grid .project-card .card-tags { position:static !important; display:flex !important; flex-wrap:wrap !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; }
+    .sim-grid .project-card .show-project-view { position:static !important; display:flex !important; opacity:1 !important; transform:none !important; pointer-events:auto !important; font-size:13px; color:rgba(255,255,255,0.55); }
   }
 
   /* Site-wide neutral typography and controls */
@@ -1154,51 +1205,69 @@
     <!-- <div class="sec-label rv"><span class="dot"></span> More Case Studies</div> -->
     <h2 class="sec-h2 rv" style="transition-delay:.1s;">Explore <span class="grad">related work</span></h2>
     <div class="sim-grid">
-      <a href="project.html?id=seo" class="sim-card">
-        <div class="sim-thumb">
-          <img src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost SEO Campaign" loading="lazy">
-          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">SEO</span></div></div>
-        </div>
-        <div class="sim-body">
-          <h3 class="sim-title">OrganicBoost SEO Campaign</h3>
-          <div class="sim-meta">
-            <div class="sim-tags">
-              <span class="sim-cat">SEO</span>
-              <span class="sim-cat">Branding</span>
+      <a href="project.html?id=seo" class="project-card">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost SEO Campaign" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">SEO</span>
+              </div>
             </div>
-            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">OrganicBoost SEO Campaign</h3>
+          <div class="meta-container">
+            <div class="card-tags">
+              <span class="tag">SEO</span>
+              <span class="tag">Branding</span>
+            </div>
+            <div class="show-project-view">Show Project</div>
           </div>
         </div>
       </a>
-      <a href="project.html?id=ecommerce" class="sim-card">
-        <div class="sim-thumb">
-          <img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy">
-          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">UI/UX</span></div></div>
-        </div>
-        <div class="sim-body">
-          <h3 class="sim-title">LuxeStore Commerce</h3>
-          <div class="sim-meta">
-            <div class="sim-tags">
-              <span class="sim-cat">UI/UX</span>
-              <span class="sim-cat">E-commerce</span>
+      <a href="project.html?id=ecommerce" class="project-card">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">UI/UX</span>
+              </div>
             </div>
-            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">LuxeStore Commerce</h3>
+          <div class="meta-container">
+            <div class="card-tags">
+              <span class="tag">UI/UX</span>
+              <span class="tag">E-commerce</span>
+            </div>
+            <div class="show-project-view">Show Project</div>
           </div>
         </div>
       </a>
-      <a href="project.html?id=branding" class="sim-card">
-        <div class="sim-thumb">
-          <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty Rebrand" loading="lazy">
-          <div class="sim-overlay"><div class="sim-overlay-content"><span class="sim-overlay-cat">Branding</span></div></div>
-        </div>
-        <div class="sim-body">
-          <h3 class="sim-title">Zenith Realty Rebrand</h3>
-          <div class="sim-meta">
-            <div class="sim-tags">
-              <span class="sim-cat">Branding</span>
-              <span class="sim-cat">Web Design</span>
+      <a href="project.html?id=branding" class="project-card">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty Rebrand" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Branding</span>
+              </div>
             </div>
-            <div class="sim-show">Show Project</div>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3 class="card-title">Zenith Realty Rebrand</h3>
+          <div class="meta-container">
+            <div class="card-tags">
+              <span class="tag">Branding</span>
+              <span class="tag">Web Design</span>
+            </div>
+            <div class="show-project-view">Show Project</div>
           </div>
         </div>
       </a>
