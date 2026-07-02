@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Eksaat Style Portfolio Filter</title>
+    <style>
+        /* Base Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Filter Menu Styling */
+        .filter-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            list-style: none;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #999;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: #000;
+        }
+
+        /* Active Filter Button style matching the black bubble style */
+        .filter-btn.active {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Project Grid Layout */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Project Card Styling */
+
+      /* Project Card Styling with transition setup */
+.project-card {
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* Smooth transitions for opacity and scaling */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* 1. State when item is scaling down and fading out */
+.project-card.fade-out {
+    opacity: 0;
+    transform: scale(0.85);
+}
+
+/* 2. State when item is completely hidden from the layout */
+.project-card.hide {
+    display: none;
+}
+
+        /* Smoothly hide items not matching the filter */
+        .project-card.hide {
+            display: none;
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* Maintaining 1:1 Aspect Ratio like the video */
+            background-color: #eee;
+            overflow: hidden;
+        }
+
+        .thumbnail-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .thumbnail-wrapper img {
+            transform: scale(1.03);
+        }
+
+        /* Content Details beneath card */
+        .project-info {
+            padding: 15px 10px;
+            text-align: left;
+        }
+
+        .project-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #111;
+        }
+
+        .project-category {
+            font-size: 0.75rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Studio Eksaat</h1>
+        
+        <div class="filter-menu">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="branding">Branding</button>
+            <button class="filter-btn" data-filter="events">Events</button>
+            <button class="filter-btn" data-filter="illustration">Illustration</button>
+            <button class="filter-btn" data-filter="interiors">Interiors</button>
+            <button class="filter-btn" data-filter="packaging">Packaging</button>
+            <button class="filter-btn" data-filter="print">Print</button>
+            <button class="filter-btn" data-filter="publication">Publication</button>
+            <button class="filter-btn" data-filter="websites">Websites</button>
+        </div>
+    </header>
+
+    <main class="project-grid">
+        
+        <div class="project-card" data-category="events illustration print">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=1" alt="Intergenerational Cafe">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Intergenerational Cafe – Ford Foundation</div>
+                <div class="project-category">Events, Illustration, Print</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="illustration packaging">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=2" alt="Millet Family">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Millet Family</div>
+                <div class="project-category">Illustration, Packaging</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="branding events illustration">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=3" alt="ORA Ideas Festival">
+            </div>
+            <div class="project-info">
+                <div class="project-title">ORA Ideas Festival</div>
+                <div class="project-category">Branding, Events, Illustration</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="interiors">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=4" alt="Rodeo Cantina">
+            </div>
+            <div class="project-info">
+                <div class="project-title">RODEO, Cantina & Kitchen</div>
+                <div class="project-category">Interiors</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="packaging">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=5" alt="Kapiva">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Kapiva Portfolio</div>
+                <div class="project-category">Packaging</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="publication print">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=6" alt="Seventeen Words">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Seventeen Words Report Design</div>
+                <div class="project-category">Print, Publication</div>
+            </div>
+        </div>
+
+        <div class="project-card" data-category="websites">
+            <div class="thumbnail-wrapper">
+                <img src="https://picsum.photos/600/600?random=7" alt="Jagori Website">
+            </div>
+            <div class="project-info">
+                <div class="project-title">Jagori Website</div>
+                <div class="project-category">Websites</div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. Handle Active Button States
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const selectedFilter = button.getAttribute('data-filter');
+
+            // 2. Phase 1: Fade out all currently visible cards
+            projectCards.forEach(card => {
+                card.classList.add('fade-out');
+            });
+
+            // 3. Phase 2: Wait for fade-out animation to finish (400ms), then re-arrange layout
+            setTimeout(() => {
+                projectCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-category').split(' ');
+
+                    if (selectedFilter === 'all' || cardCategories.includes(selectedFilter)) {
+                        // Show matching cards in the layout, but keep them invisible momentarily
+                        card.classList.remove('hide');
+                        
+                        // Small browser paint delay to trigger entry animation
+                        setTimeout(() => {
+                            card.classList.remove('fade-out');
+                        }, 20);
+                    } else {
+                        // Completely hide non-matching cards from layout
+                        card.classList.add('hide');
+                    }
+                });
+            }, 400); // Matches the 0.4s duration in the CSS transition
+        });
+    });
+});
+    </script>
+</body>
+</html>

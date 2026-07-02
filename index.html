@@ -7,7 +7,7 @@
   <meta name="description" content="Award-winning digital agency crafting SEO, web development, social media, and brand experiences that drive measurable growth." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
@@ -31,7 +31,7 @@
     --grad:   linear-gradient(135deg,#ffffff,#b8bcc5);
     --txt:    #f8f8f8; --txt2: #a8adb7; --txt3: #686d78;
     --border: rgba(255,255,255,0.12);
-    --font:   'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font:   'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --ease:   cubic-bezier(0.4,0,0.2,1);
   }
 
@@ -757,7 +757,8 @@
   .pc-info { padding:18px 4px 0; display:block; }
   .pc-title { font-size:clamp(18px,1.7vw,22px); line-height:1.08; letter-spacing:-.04em; font-weight:700; color:var(--txt); margin:0 0 12px; }
   .pc-tags { display:flex; flex-wrap:wrap; gap:7px; margin:0; }
-  .pc-tag { padding:6px 10px; border-radius:999px; border:1px solid var(--txt); background:transparent; color:var(--txt); font-size:10px; font-weight:800; letter-spacing:-.02em; text-transform:uppercase; }
+  .pc-tag { padding:6px 10px; border-radius:999px; border:1px solid var(--txt); background:transparent; color:var(--txt); font-size:10px; font-weight:800; letter-spacing:.02em !important; text-transform:uppercase; cursor:pointer; transition:all .3s var(--ease); }
+  .pc-tag:hover { background:var(--txt); color:var(--bg); transform:scale(1.05); }
   .pc-tag:nth-child(n+3) { display:none; }
   .pc:nth-child(even) .pc-tag { background:transparent; color:var(--txt); }
   .pc-cta-hover { display:none; }
@@ -1134,7 +1135,7 @@
     --txt2:#b8b8b8;
     --txt3:#737373;
     --border:rgba(255,255,255,.16);
-    --font:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   }
   body {
     background:#050505 !important;
@@ -1143,14 +1144,15 @@
   }
   body, p, li, a, button, input, textarea, .pc-tag, .sim-cat, .foot-copy, .foot-links a {
     font-family:var(--font) !important;
+    letter-spacing:-0.01em !important;
   }
   h1, h2, h3, h4, h5, h6,
   .hero-h1, .gallery-sec-hdr h2, .sec-h2, .cta-title, .proj-h1, .sim-title, .pc-title {
     font-family:var(--font) !important;
     color:var(--txt) !important;
-    font-weight:500 !important;
-    letter-spacing:-.055em;
-    line-height:1.05;
+    font-weight:400 !important;
+    letter-spacing:0 !important;
+    line-height:1.1 !important;
   }
   .hero-sub, .pc-desc, .sim-sub, .sec-label, .gallery-sec-hdr .eyebrow, .impact-sub,
   .pc-cat, .pc-meta, .foot-h, .foot-copy, .foot-links a, .nav-links a {
@@ -1243,6 +1245,439 @@
   }
 
 
+  /* ═══════════════════════════════════════
+     PREMIUM ANIMATED FILTERING GALLERY
+  ═══════════════════════════════════════ */
+  
+  /* Portfolio Section */
+  .portfolio-section {
+    padding: clamp(100px, 12vw, 180px) 0;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portfolio-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 70% 50% at 20% 0%, rgba(124,58,237,0.08), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(6,182,212,0.06), transparent 50%);
+    pointer-events: none;
+  }
+
+  .portfolio-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 4vw, 60px);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Portfolio Header */
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: clamp(48px, 6vw, 80px);
+  }
+
+  .portfolio-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 18px;
+    background: rgba(124,58,237,0.1);
+    border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple-lt);
+    margin-bottom: 24px;
+  }
+
+  .eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.5); }
+  }
+
+  .portfolio-title {
+    font-size: clamp(40px, 7vw, 96px);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.06em;
+    margin-bottom: 20px;
+    color: var(--txt);
+  }
+
+  .portfolio-subtitle {
+    font-size: clamp(15px, 1.4vw, 18px);
+    color: var(--txt2);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* Filter Tabs */
+  .filter-wrapper {
+    position: sticky;
+    top: 80px;
+    z-index: 100;
+    margin-bottom: clamp(48px, 6vw, 72px);
+    padding: 16px 0;
+    background: rgba(8,8,14,0.85);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .filter-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+    padding: 8px;
+  }
+
+  .filter-btn {
+    position: relative;
+    z-index: 1;
+    padding: 8px 18px;
+    border-radius: 12px;
+    background: transparent;
+    border: none;
+    font-family: var(--font);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--txt2);
+    cursor: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+
+  .filter-btn.active {
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 700;
+  }
+
+  /* Project Grid */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(24px, 3vw, 36px);
+    align-items: stretch;
+  }
+
+  /* Project Card */
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    cursor: none;
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.5s cubic-bezier(0.22,1,0.36,1),
+                box-shadow 0.5s cubic-bezier(0.22,1,0.36,1);
+    will-change: transform, opacity;
+    transform-style: preserve-3d;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .project-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(103,232,249,0.3);
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 40px rgba(6,182,212,0.1);
+  }
+
+  /* Card Visual */
+  .card-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--bg3);
+  }
+
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .card-image-wrapper img,
+  .card-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    will-change: transform;
+  }
+
+  .card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+  }
+
+  .placeholder-icon {
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.3));
+  }
+
+  .project-card:hover .card-image-wrapper img,
+  .project-card:hover .card-placeholder {
+    transform: scale(1.08);
+  }
+
+  /* Card Overlay */
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 30%, rgba(0,0,0,0.8) 100%);
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1);
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+  }
+
+  .project-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .overlay-content {
+    transform: translateY(20px);
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .project-card:hover .overlay-content {
+    transform: translateY(0);
+  }
+
+  .overlay-category {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(124,58,237,0.3);
+    border: 1px solid rgba(124,58,237,0.5);
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .overlay-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Card Info */
+  .card-info {
+    padding: 20px;
+  }
+
+  .card-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple-lt);
+    margin-bottom: 12px;
+  }
+
+  .card-category i {
+    font-size: 10px;
+  }
+
+  .card-title {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 700;
+    color: var(--txt);
+    margin: 0 0 16px;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 99px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--txt2);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover .tag {
+    background: rgba(124,58,237,0.15);
+    border-color: rgba(124,58,237,0.3);
+    color: var(--purple-lt);
+  }
+
+  /* Project Card Styling with transition setup */
+  .project-card.fade-out {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  .project-card.hide {
+    display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .portfolio-section {
+      padding: 80px 0;
+    }
+
+    .portfolio-container {
+      padding: 0 20px;
+    }
+
+    .portfolio-title {
+      font-size: clamp(32px, 8vw, 48px);
+    }
+
+    .portfolio-subtitle {
+      font-size: 14px;
+    }
+
+    .filter-wrapper {
+      position: relative;
+      top: auto;
+      margin-bottom: 32px;
+      padding: 12px 0;
+    }
+
+    .filter-tabs {
+      gap: 6px;
+      padding: 6px;
+    }
+
+    .filter-btn {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    .project-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .project-card {
+      border-radius: 20px;
+    }
+
+    .card-visual {
+      border-radius: 20px;
+    }
+  }
+
+
+  /* ══ FINAL LETTER-SPACING RESET — must stay last ══
+     Wins over every earlier !important negative value  */
+  h1, h2, h3, h4, h5, h6,
+  .hero-h1,
+  .ss-title,
+  .ss-title-line2,
+  .gallery-sec-hdr h2,
+  .sec-h2,
+  .cta-title,
+  .proj-h1,
+  .sim-title,
+  .pc-title,
+  .ov-big,
+  .tl-title,
+  .impact-label,
+  .portfolio-title {
+    letter-spacing: 0 !important;
+  }
+
+
+ /* Filter Menu Styling */
+        .filter-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 40px;
+            list-style: none;
+        }
+
+        .filter-btn {
+            background: none;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #999;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            color: #000;
+        }
+
+        /* Active Filter Button style matching the black bubble style */
+        .filter-btn.active {
+            background-color: #000;
+            color: #fff;
+        }
+
+
   </style>
 </head>
 <body>
@@ -1303,231 +1738,376 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════
-     CINEMATIC PROJECT SHOWCASE SLIDER
-═══════════════════════════════════════ -->
-<!-- <section class="showcase" id="showcase" aria-label="Project Showcase">
-
-
-  <div id="ssBgContainer"></div>
-
-
-  <div class="ss-grain"></div>
-
-  <div class="ss-num-wm" id="ssNumWm">01</div>
-
-  <div class="ss-content" id="ssContent">
-    <div class="ss-eyebrow" id="ssEyebrow">Digital Marketing · SEO</div>
-    <div class="ss-title-wrap">
-      <div class="ss-title" id="ssTitle">OrganicBoost</div>
-    </div>
-    <div class="ss-title-wrap" style="margin-bottom:0;">
-      <div class="ss-title-line2" id="ssTitleSub">SEO Campaign</div>
-    </div>
-    <p class="ss-desc" id="ssDesc">340% organic traffic growth across 200+ high-intent keywords in just 6 months with full-funnel content strategy.</p>
-    <div class="ss-meta" id="ssMeta">
-      <div class="ss-meta-item"><div class="ss-meta-label">Client</div><div class="ss-meta-val" id="ssClient">E-Commerce Retailer</div></div>
-      <div class="ss-meta-item"><div class="ss-meta-label">Year</div><div class="ss-meta-val" id="ssYear">2024</div></div>
-      <div class="ss-meta-item"><div class="ss-meta-label">Services</div><div class="ss-meta-val" id="ssServices">SEO · Content · Analytics</div></div>
-    </div>
-    <a href="project.html" class="ss-cta" id="ssCta">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-  </div>
-
-]
-  <div class="ss-counter">
-    <span class="ss-count-num" id="ssCurNum">01</span>
-    <div class="ss-count-sep"></div>
-    <span class="ss-count-total" id="ssTotNum">08</span>
-  </div>
-
-
-  <div class="ss-dots" id="ssDots"></div>
-
-
-  <button class="ss-arrow ss-prev" id="ssPrev" aria-label="Previous project">
-    <div class="ss-arrow-info">
-      <div class="ss-arrow-lbl">Previous</div>
-      <div class="ss-arrow-title" id="ssPrevTitle">NovaBrand Launch</div>
-    </div>
-    <div class="ss-arrow-btn"><i class="fa-solid fa-arrow-left"></i></div>
-  </button>
-  <button class="ss-arrow ss-next" id="ssNext" aria-label="Next project">
-    <div class="ss-arrow-btn"><i class="fa-solid fa-arrow-right"></i></div>
-    <div class="ss-arrow-info">
-      <div class="ss-arrow-lbl">Next</div>
-      <div class="ss-arrow-title" id="ssNextTitle">SocialPulse Campaign</div>
-    </div>
-  </button>
-</section> -->
 
 <!-- ═══════════════════════════════════════
-     EDITORIAL GALLERY SECTION
+     PREMIUM ANIMATED FILTERING GALLERY
 ═══════════════════════════════════════ -->
-<section class="gallery-sec" id="gallery">
-  <!-- Section Header (matching reference image) -->
-  <div class="gallery-sec-hdr">
-    <span class="eyebrow">Selected Work</span>
-    <h2>Creative Projects</h2>
-  </div>
-
-  <!-- Filter bar -->
-  <div class="filter-outer">
-    <div class="filter-bar" id="filterBar">
-      <div class="filter-ind" id="filterInd"></div>
-      <button class="f-btn active" data-filter="all"><span class="fc">08</span><span class="fl">All</span></button>
-      <button class="f-btn" data-filter="branding"><span class="fc">02</span><span class="fl">Branding</span></button>
-      <button class="f-btn" data-filter="ui-ux"><span class="fc">03</span><span class="fl">UI/UX</span></button>
-      <button class="f-btn" data-filter="app-design"><span class="fc">03</span><span class="fl">App Design</span></button>
+<section class="portfolio-section" id="portfolio">
+  <div class="portfolio-container">
+    <!-- Section Header -->
+    <div class="portfolio-header">
+      <span class="portfolio-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Selected Work
+      </span>
+      <h2 class="portfolio-title">Creative Projects</h2>
+      <p class="portfolio-subtitle">Crafting digital experiences that drive measurable results across branding, design, and development.</p>
     </div>
-  </div>
 
-  <div class="wrap">
-    <div class="proj-stack" id="projStack">
 
-      <!-- Project 1 -->
-      <article class="pc" data-cat="seo digital-marketing">
-        <div class="pc-visual">
-          <img class="pc-visual-img" src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost" loading="lazy" />
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=seo" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="pc-info">
-          <span class="pc-num">01</span>
-          <div class="pc-cat"><i class="fa-solid fa-chart-line" style="font-size:9px;"></i> SEO · Digital Marketing</div>
-          <h3 class="pc-title">OrganicBoost SEO Campaign</h3>
-          <p class="pc-desc">Full-funnel SEO strategy taking an e-commerce brand from page 5 to #1 across 200+ high-intent keywords — 340% organic traffic growth in 6 months.</p>
-          <div class="pc-tags"><span class="pc-tag">SEO</span><span class="pc-tag">Content Marketing</span><span class="pc-tag">Analytics</span><span class="pc-tag">Link Building</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>E-Commerce Retailer</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html?id=seo" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </article>
 
-      <!-- Project 2 (alt) -->
-      <article class="pc alt" data-cat="social-media digital-marketing illustration app-design">
-        <div class="pc-visual" style="background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(6,182,212,.1),var(--bg3));">
-          <div class="pc-visual-inner">📱</div>
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=social" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-        <div class="pc-info">
-          <span class="pc-num">02</span>
-          <div class="pc-cat"><i class="fa-solid fa-mobile-alt" style="font-size:9px;"></i> Social Media</div>
-          <h3 class="pc-title">SocialPulse Brand Campaign</h3>
-          <p class="pc-desc">360° social media strategy across Instagram, Facebook, and LinkedIn growing followers by 280% and delivering 4× ROAS on every ad rupee spent.</p>
-          <div class="pc-tags"><span class="pc-tag">Instagram</span><span class="pc-tag">LinkedIn Ads</span><span class="pc-tag">Content</span><span class="pc-tag">Paid Social</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>Lifestyle Brand, Mumbai</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html?id=social" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </article>
 
-      <!-- Project 3 -->
-      <article class="pc" data-cat="web-dev ui-ux">
-        <div class="pc-visual">
-          <img class="pc-visual-img" src="Images/Gemini_Generated_Image_9y2spc9y2spc9y2s.png" alt="HealthCore" loading="lazy" />
-          <div class="pc-visual-ov"></div>
-          <a href="project.html" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+     <div class="filter-menu">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="Branding">Branding</button>
+            <button class="filter-btn" data-filter="Events">Events</button>
+            <button class="filter-btn" data-filter="Illustration">Illustration</button>
+            <button class="filter-btn" data-filter="Interiors">Interiors</button>
+            <button class="filter-btn" data-filter="Packaging">Packaging</button>
+            <button class="filter-btn" data-filter="Print">Print</button>
+            <button class="filter-btn" data-filter="Publication">Publication</button>
+            <button class="filter-btn" data-filter="Websites">Websites</button>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">03</span>
-          <div class="pc-cat"><i class="fa-solid fa-code" style="font-size:9px;"></i> Web Development</div>
-          <h3 class="pc-title">HealthCore Web Platform</h3>
-          <p class="pc-desc">AI-powered HIPAA-compliant patient management platform serving 500+ hospitals — 40% fewer diagnostic errors and $12M in annual savings.</p>
-          <div class="pc-tags"><span class="pc-tag">React 18</span><span class="pc-tag">Python/FastAPI</span><span class="pc-tag">TensorFlow</span><span class="pc-tag">AWS</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>Apollo Health Systems</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
-        </div>
-      </article>
 
-      <!-- Project 4 (alt) -->
-      <article class="pc alt" data-cat="branding">
-        <div class="pc-visual">
-          <img class="pc-visual-img" src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Rebrand" loading="lazy" />
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=branding" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+    <!-- Project Grid -->
+    <div class="project-grid" id="projectGrid">
+      <!-- Project 1 - Branding -->
+      <a href="project.html?id=branding" class="project-card" data-category="Branding">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_9hy5999hy5999hy5.png" alt="Zenith Realty" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Branding</span>
+                <h3 class="overlay-title">Zenith Realty Rebrand</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">04</span>
-          <div class="pc-cat"><i class="fa-solid fa-palette" style="font-size:9px;"></i> Branding</div>
-          <h3 class="pc-title">Zenith Realty Rebrand</h3>
-          <p class="pc-desc">Complete brand identity overhaul — logo, visual language, digital presence — for a luxury real estate developer repositioning for the ultra-premium segment.</p>
-          <div class="pc-tags"><span class="pc-tag">Brand Identity</span><span class="pc-tag">Visual Design</span><span class="pc-tag">Brand Guidelines</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>Zenith Properties, Bangalore</span></div><div class="pc-meta-item">Year: <span>2023</span></div></div>
-          <a href="project.html?id=branding" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-palette"></i>
+            <span>Branding</span>
+          </div>
+          <h3 class="card-title">Zenith Realty Rebrand</h3>
+          <div class="card-tags">
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Visual Design</span>
+            <span class="tag">Guidelines</span>
+          </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Project 5 -->
-      <article class="pc" data-cat="ecommerce web-dev ui-ux app-design">
-        <div class="pc-visual">
-          <img class="pc-visual-img" src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore" loading="lazy" />
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=ecommerce" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+      <!-- Project 2 - Web Design -->
+      <a href="project.html?id=healthcore" class="project-card" data-category="Websites">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_9y2spc9y2spc9y2s.png" alt="HealthCore Platform" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Websites</span>
+                <h3 class="overlay-title">HealthCore Platform</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">05</span>
-          <div class="pc-cat"><i class="fa-solid fa-shopping-bag" style="font-size:9px;"></i> E-Commerce</div>
-          <h3 class="pc-title">LuxeStore Commerce</h3>
-          <p class="pc-desc">Premium luxury e-commerce with AI product recommendations, AR try-on feature, and integrated PPC management — 280% conversion lift within 60 days of launch.</p>
-          <div class="pc-tags"><span class="pc-tag">Shopify Plus</span><span class="pc-tag">AI Recs</span><span class="pc-tag">AR Try-On</span><span class="pc-tag">PPC</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>LuxeRetail Group, Delhi</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html?id=ecommerce" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Websites</span>
+          </div>
+          <h3 class="card-title">HealthCore Platform</h3>
+          <div class="card-tags">
+            <span class="tag">Healthcare</span>
+            <span class="tag">SaaS</span>
+            <span class="tag">Dashboard</span>
+          </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Project 6 (alt) -->
-      <article class="pc alt" data-cat="digital-marketing">
-        <div class="pc-visual">
-          <img class="pc-visual-img" src="Images/Gemini_Generated_Image_ctaev4ctaev4ctae.png" alt="FinEdge" loading="lazy" />
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=fintech" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+      <!-- Project 3 - UI/UX -->
+      <a href="project.html?id=ecommerce" class="project-card" data-category="Events">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_56kvyt56kvyt56kv.png" alt="LuxeStore Commerce" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Events</span>
+                <h3 class="overlay-title">LuxeStore Commerce</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">06</span>
-          <div class="pc-cat"><i class="fa-solid fa-bullseye" style="font-size:9px;"></i> Digital Marketing</div>
-          <h3 class="pc-title">FinEdge Growth Marketing</h3>
-          <p class="pc-desc">Performance marketing across Google, Meta, and LinkedIn generating 12,000+ qualified leads at 60% lower CPA than the industry benchmark.</p>
-          <div class="pc-tags"><span class="pc-tag">Google Ads</span><span class="pc-tag">Meta Ads</span><span class="pc-tag">LinkedIn</span><span class="pc-tag">CRO</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>HDFC Fintech Division</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html?id=fintech" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Events</span>
+          </div>
+          <h3 class="card-title">LuxeStore Commerce</h3>
+          <div class="card-tags">
+            <span class="tag">E-Commerce</span>
+            <span class="tag">UX Research</span>
+            <span class="tag">Design System</span>
+          </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Project 7 -->
-      <article class="pc" data-cat="web-dev ui-ux">
-        <div class="pc-visual" style="background:linear-gradient(135deg,rgba(37,99,235,.2),rgba(124,58,237,.12),var(--bg3));">
-          <div class="pc-visual-inner">🏭</div>
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=mfg" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+      <!-- Project 4 - Mobile Apps -->
+      <a href="project.html?id=nova" class="project-card" data-category="Publication">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(6,182,212,0.2));">
+              <span class="placeholder-icon">📱</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Mobile Apps</span>
+                <h3 class="overlay-title">FitTrack Pro</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">07</span>
-          <div class="pc-cat"><i class="fa-solid fa-industry" style="font-size:9px;"></i> Web Development</div>
-          <h3 class="pc-title">IndustrIQ IoT Dashboard</h3>
-          <p class="pc-desc">Real-time IoT factory monitoring web app with predictive maintenance alerts, digital twin simulation, and live telemetry across 40+ production lines.</p>
-          <div class="pc-tags"><span class="pc-tag">React</span><span class="pc-tag">IoT</span><span class="pc-tag">WebSocket</span><span class="pc-tag">Digital Twin</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>Mahindra Manufacturing</span></div><div class="pc-meta-item">Year: <span>2023</span></div></div>
-          <a href="project.html?id=mfg" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <span>Publication</span>
+          </div>
+          <h3 class="card-title">FitTrack Pro</h3>
+          <div class="card-tags">
+            <span class="tag">iOS</span>
+            <span class="tag">Android</span>
+            <span class="tag">Health</span>
+          </div>
         </div>
-      </article>
+      </a>
 
-      <!-- Project 8 (alt) -->
-      <article class="pc alt" data-cat="branding social-media illustration app-design">
-        <div class="pc-visual" style="background:linear-gradient(135deg,rgba(6,182,212,.18),rgba(37,99,235,.12),var(--bg3));">
-          <div class="pc-visual-inner">🚀</div>
-          <div class="pc-visual-ov"></div>
-          <a href="project.html?id=nova" class="pc-cta-hover">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+      <!-- Project 5 - Development -->
+      <a href="project.html?id=mfg" class="project-card" data-category="Publication">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(37,99,235,0.3), rgba(124,58,237,0.2));">
+              <span class="placeholder-icon">🏭</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Development</span>
+                <h3 class="overlay-title">IndustrIQ IoT</h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="pc-info">
-          <span class="pc-num">08</span>
-          <div class="pc-cat"><i class="fa-solid fa-rocket" style="font-size:9px;"></i> Branding · Social Media</div>
-          <h3 class="pc-title">NovaBrand Launch Campaign</h3>
-          <p class="pc-desc">Full brand identity creation plus omni-channel social media launch reaching 5M+ impressions in the first week with an 18% engagement rate.</p>
-          <div class="pc-tags"><span class="pc-tag">Brand Identity</span><span class="pc-tag">Social Strategy</span><span class="pc-tag">Paid Launch</span></div>
-          <div class="pc-meta"><div class="pc-meta-item">Client: <span>Nova Startups Pvt. Ltd.</span></div><div class="pc-meta-item">Year: <span>2024</span></div></div>
-          <a href="project.html?id=nova" class="pc-link">View Case Study <i class="fa-solid fa-arrow-right"></i></a>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-code"></i>
+            <span>Publication</span>
+          </div>
+          <h3 class="card-title">IndustrIQ IoT Dashboard</h3>
+          <div class="card-tags">
+            <span class="tag">React</span>
+            <span class="tag">IoT</span>
+            <span class="tag">Real-time</span>
+          </div>
         </div>
-      </article>
+      </a>
 
+      <!-- Project 6 - Branding -->
+      <a href="project.html?id=nova" class="project-card" data-category="Branding">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(6,182,212,0.3), rgba(37,99,235,0.2));">
+              <span class="placeholder-icon">🚀</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Branding</span>
+                <h3 class="overlay-title">NovaBrand Launch</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-palette"></i>
+            <span>Branding</span>
+          </div>
+          <h3 class="card-title">NovaBrand Launch Campaign</h3>
+          <div class="card-tags">
+            <span class="tag">Identity</span>
+            <span class="tag">Strategy</span>
+            <span class="tag">Launch</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 7 - Web Design -->
+      <a href="project.html?id=seo" class="project-card" data-category="Websites">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_7pjuoj7pjuoj7pju.png" alt="OrganicBoost" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Web Design</span>
+                <h3 class="overlay-title">OrganicBoost SEO</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Websites</span>
+          </div>
+          <h3 class="card-title">OrganicBoost SEO Campaign</h3>
+          <div class="card-tags">
+            <span class="tag">SEO</span>
+            <span class="tag">Marketing</span>
+            <span class="tag">Growth</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 8 - UI/UX -->
+      <a href="project.html?id=social" class="project-card" data-category="Interiors">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(236,72,153,0.3), rgba(124,58,237,0.2));">
+              <span class="placeholder-icon">🎨</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">UI/UX</span>
+                <h3 class="overlay-title">ArtFlow Creative</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Interiors</span>
+          </div>
+          <h3 class="card-title">ArtFlow Creative Platform</h3>
+          <div class="card-tags">
+            <span class="tag">Creative</span>
+            <span class="tag">Collaboration</span>
+            <span class="tag">SaaS</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 9 - Mobile Apps -->
+      <a href="project.html?id=fintech" class="project-card" data-category="Packaging">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(34,197,94,0.3), rgba(6,182,212,0.2));">
+              <span class="placeholder-icon">💰</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Mobile Apps</span>
+                <h3 class="overlay-title">PayWise Finance</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-mobile-screen"></i>
+            <span>Packaging</span>
+          </div>
+          <h3 class="card-title">PayWise Finance App</h3>
+          <div class="card-tags">
+            <span class="tag">Fintech</span>
+            <span class="tag">Payments</span>
+            <span class="tag">Security</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 10 - Development -->
+      <a href="project.html?id=fintech" class="project-card" data-category="Packaging">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <img src="Images/Gemini_Generated_Image_ctaev4ctaev4ctae.png" alt="FinEdge" loading="lazy" />
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Development</span>
+                <h3 class="overlay-title">FinEdge Platform</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-code"></i>
+            <span>Packaging</span>
+          </div>
+          <h3 class="card-title">FinEdge Growth Platform</h3>
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">AWS</span>
+            <span class="tag">ML</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 11 - Web Design -->
+      <a href="project.html?id=ecommerce" class="project-card" data-category="Events">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(251,146,60,0.3), rgba(236,72,153,0.2));">
+              <span class="placeholder-icon">🍔</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">Web Design</span>
+                <h3 class="overlay-title">FoodieHub Delivery</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-laptop-code"></i>
+            <span>Events</span>
+          </div>
+          <h3 class="card-title">FoodieHub Delivery Platform</h3>
+          <div class="card-tags">
+            <span class="tag">Food Tech</span>
+            <span class="tag">Marketplace</span>
+            <span class="tag">UX</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 12 - UI/UX -->
+      <a href="project.html?id=mfg" class="project-card" data-category="Websites">
+        <div class="card-visual">
+          <div class="card-image-wrapper">
+            <div class="card-placeholder" style="background: linear-gradient(135deg, rgba(168,85,247,0.3), rgba(236,72,153,0.2));">
+              <span class="placeholder-icon">📊</span>
+            </div>
+            <div class="card-overlay">
+              <div class="overlay-content">
+                <span class="overlay-category">UI/UX</span>
+                <h3 class="overlay-title">DataViz Analytics</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-info">
+          <div class="card-category">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Websites</span>
+          </div>
+          <h3 class="card-title">DataViz Analytics Dashboard</h3>
+          <div class="card-tags">
+            <span class="tag">Analytics</span>
+            <span class="tag">Data Viz</span>
+            <span class="tag">Enterprise</span>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1582,8 +2162,8 @@ function addViewCursor(els) {
     el.addEventListener('mouseleave', () => { curView.classList.remove('show'); curRing.classList.remove('h'); });
   });
 }
-addHover(document.querySelectorAll('a, button, .f-btn'));
-addViewCursor(document.querySelectorAll('.pc-visual, .pc'));
+addHover(document.querySelectorAll('a, button, .f-btn, .filter-btn'));
+addViewCursor(document.querySelectorAll('.pc-visual, .pc, .project-card, .card-visual'));
 
 /* SCROLL PROG + NAV */
 const prog = document.getElementById('prog');
@@ -1782,36 +2362,29 @@ document.querySelectorAll('.pc').forEach(card => {
 });
 
 /* ══════════════════════════════════════
-   FILTER — BRILIO STYLE
+   HOVER-BASED TAG FILTERING
 ══════════════════════════════════════ */
-const filterBtns = document.querySelectorAll('.f-btn');
-const filterBar  = document.getElementById('filterBar');
-const filterInd  = document.getElementById('filterInd');
-const articles   = document.querySelectorAll('.pc[data-cat]');
+const projectTags = document.querySelectorAll('.pc-tag');
+let hoverTimeout;
 
-function moveInd(btn) {
-  const br = filterBar.getBoundingClientRect(), r = btn.getBoundingClientRect();
-  filterInd.style.left  = (r.left - br.left + filterBar.scrollLeft) + 'px';
-  filterInd.style.width = r.width + 'px';
-  filterInd.style.top   = (r.top - br.top) + 'px';
-}
-window.addEventListener('load', () => { const a = document.querySelector('.f-btn.active'); if(a) moveInd(a); });
-window.addEventListener('resize', () => { const a = document.querySelector('.f-btn.active'); if(a) moveInd(a); });
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    btn.scrollIntoView({ behavior:'smooth', block:'nearest', inline:'center' });
-    requestAnimationFrame(() => moveInd(btn));
-
-    const f = btn.dataset.filter;
+projectTags.forEach(tag => {
+  tag.addEventListener('mouseenter', () => {
+    clearTimeout(hoverTimeout);
+    const tagText = tag.textContent.trim().toLowerCase();
+    
+    // Find all projects with this tag
     const visible = [];
     articles.forEach(art => {
       gsap.killTweensOf(art);
-      const cats = art.dataset.cat ? art.dataset.cat.split(' ') : [];
-      const show = f === 'all' || cats.includes(f);
-      if(show) {
+      const tags = art.querySelectorAll('.pc-tag');
+      let hasTag = false;
+      tags.forEach(t => {
+        if (t.textContent.trim().toLowerCase() === tagText) {
+          hasTag = true;
+        }
+      });
+      
+      if (hasTag) {
         art.classList.remove('hidden');
         visible.push(art);
       } else {
@@ -1829,11 +2402,27 @@ filterBtns.forEach(btn => {
       }
     );
   });
+
+  tag.addEventListener('mouseleave', () => {
+    // Reset to show all projects after a short delay
+    hoverTimeout = setTimeout(() => {
+      const visible = [];
+      articles.forEach(art => {
+        gsap.killTweensOf(art);
+        art.classList.remove('hidden');
+        visible.push(art);
+      });
+
+      gsap.fromTo(visible,
+        { opacity:0, y:28, scale:.98 },
+        { opacity:1, y:0, scale:1, duration:.58, stagger:.06, ease:'power3.out', delay:.08,
+          onComplete:() => ScrollTrigger.refresh()
+        }
+      );
+    }, 300);
+  });
 });
-filterBar.addEventListener('scroll', () => {
-  const active = document.querySelector('.f-btn.active');
-  if(active) moveInd(active);
-}, { passive:true });
+
 
 /* ══════════════════════════════════════
    GSAP SCROLL REVEALS — Editorial Cards
@@ -1861,6 +2450,51 @@ gsap.fromTo('.gallery-sec-hdr', { opacity:0, y:40 }, {
   opacity:1, y:0, duration:.9, ease:'power3.out',
   scrollTrigger: { trigger:'.gallery-sec-hdr', start:'top 80%', once:true }
 });
+
+
+// project filtering
+
+document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. Handle Active Button States
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const selectedFilter = button.getAttribute('data-filter');
+
+            // 2. Phase 1: Fade out all currently visible cards
+            projectCards.forEach(card => {
+                card.classList.add('fade-out');
+            });
+
+            // 3. Phase 2: Wait for fade-out animation to finish (400ms), then re-arrange layout
+            setTimeout(() => {
+                projectCards.forEach(card => {
+                    const cardCategories = card.getAttribute('data-category').split(' ');
+
+                    if (selectedFilter === 'all' || cardCategories.includes(selectedFilter)) {
+                        // Show matching cards in the layout, but keep them invisible momentarily
+                        card.classList.remove('hide');
+                        
+                        // Small browser paint delay to trigger entry animation
+                        setTimeout(() => {
+                            card.classList.remove('fade-out');
+                        }, 20);
+                    } else {
+                        // Completely hide non-matching cards from layout
+                        card.classList.add('hide');
+                    }
+                });
+            }, 400); // Matches the 0.4s duration in the CSS transition
+        });
+    });
+});
+    
+
 </script>
 </body>
 </html>
